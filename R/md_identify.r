@@ -11,6 +11,7 @@ md_identify <- function()
 	out2 <- rdatacite::identify()
 	out3 <- rhindawi::identify()
 	out4 <- rdryad::identify()$Identify
-	outall <- llply(list(out1, out2, out3, out4), function(x) data.frame(t(as.matrix(x))))
-	rbind.fill(outall[[1]], outall[[2]], outall[[3]], outall[[4]])
+	out5 <- rpensoft::identify()$Identify
+	outall <- llply(list(out1, out2, out3, out4, out5), function(x) data.frame(t(as.matrix(x))))
+	rbind.fill(outall[[1]], outall[[2]], outall[[3]], outall[[4]], outall[[5]])
 }
