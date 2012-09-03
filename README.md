@@ -18,3 +18,9 @@ require(devtools)
 install_github("rmetadata", "ropensci")
 require(rmetadata)
 ```
+
+# The following data sources are incorporated thus far:
++ [DataCite](http://datacite.org/)
++ [PubMed Central](http://www.ncbi.nlm.nih.gov/pmc/)
++ [Hindawi Journals](http://www.hindawi.com/journals/)
++ [Pensoft Journals](http://www.pensoft.net/index.php)

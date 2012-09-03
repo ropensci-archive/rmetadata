@@ -3,14 +3,19 @@ Type: Package
 Title: Interface via OAI-PMH methods to article metadata for various databases.
 Version: 0.0.1
 License: C00
-Date: 2012-07-31
+Date: 2012-09-03
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 Description: A wrapper to get article metatdata for a number of databases,
-    including PubMed Central, DataCite, etc…
+    including PubMed Central, DataCite, Pensoft, and Hindawi journals.
 URL: https://github.com/ropensci/rmetadata
 Imports:
-    OAIHarvester
+    OAIHarvester,
+    rpmc,
+    rdatacite,
+    rpensoft,
+    rdryad,
+    rhindawi
 Collate:
     'md_getrecord.r'
     'md_identify.r'

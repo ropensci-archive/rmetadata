@@ -1,6 +1,6 @@
 #' Get a record via OAI-PMH from a data provider.
 #' 
-#' @import OAIHarvester rpmc rdatacite rdryad rhindawi XML
+#' @import OAIHarvester XML rpmc rdatacite rdryad rhindawi rpensoft
 #' @param df A data.frame of two columns, named "datasource" and "id". 
 #' 		df does not have to be supplied. 
 #' @param datasource Datasource, currently one of: "datacite", "pmc", "dryad", 
