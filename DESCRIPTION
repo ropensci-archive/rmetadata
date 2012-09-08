@@ -20,3 +20,4 @@ Collate:
     'md_getrecord.r'
     'md_identify.r'
     'md_listsets.r'
+    'oaipmh_providers.r'
