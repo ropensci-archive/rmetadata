@@ -1,64 +1,50 @@
-#' Get a record via OAI-PMH from a data provider.
+#' Get a record from a OAI-PMH data provider.
 #' 
-#' @import OAIHarvester XML rpmc rdatacite rdryad rhindawi rpensoft
-#' @param df A data.frame of two columns, named "datasource" and "id". 
-#' 		df does not have to be supplied. 
-#' @param datasource Datasource, currently one of: "datacite", "pmc", "dryad", 
-#' 		"hindawi", or "pensoft".
-#' @param id ID for the article/dataset. 
-#' @param todf Convert output to a data.frame (logical). 
-#' @details The function takes a data.frame as input, or just one set of 
-#' 		datasource and id specified in the function call. So the function can be used 
-#' 		to do more than one call by supplying a data.frame or by supplying one 
-#' 		pair of datasource and id at a time in a lapply type call.
+#' Get records for the data sources from the OAI-PMH list, and others not 
+#' 		on that list, including PMC, DataCite, Hindawi Journals, Dryad, and 
+#' 		Pensoft Journals.
+#' 
+#' @import XML httr plyr
+#' @param provider The metadata provider.
+#' @param identifier The OAI-PMH identifier for the record.
+#' @param metadataPrefix Specifies the metadata format that the records will be 
+#'     returned in. 
+#' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
+#' @details To query multiple different identifier's from a single provider, 
+#' 		just pass in multiple identifiers like c("identifier1", "identifier2").
+#' 		To query identifiers from different providers, just use separate calls to
+#' 		md_getrecord.
 #' @author Scott Chamberlain \link{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
-#' # Single source
-#' md_getrecord(datasource = "pensoft", id = "10.3897/zookeys.1.10")
+#' # Single provider, one identifier
+#' md_getrecord(provider = "pensoft", identifier = "10.3897/zookeys.1.10")
 #' 
-#' # Many sources. Submit a data.frame to the function:
-#' df <- data.frame(datasource = c('datacite','pmc','pensoft'), id = c(56225, 152494, "10.3897/zookeys.1.10"))
-#' md_getrecord(df = df, todf=F) # list output
-#' md_getrecord(df = df) # data.frame output
+#' # Single provider, multiple identifiers
+#' md_getrecord(provider = "pensoft", identifier = c("10.3897/zookeys.1.10","10.3897/zookeys.4.57"))
 #' }
 #' @export
-md_getrecord <- function(datasource = NULL, id = NULL, df = NULL, 
-	todf = TRUE)
+md_getrecord <- function(provider = NULL, identifier = NULL, 
+	metadataPrefix = "oai_dc", fuzzy = FALSE)
 { 
-	if(is.null(df) == TRUE){
-		df2 <- data.frame(datasource, id)
-	} else
-		{ df2 <- df }
+	if(exists(as.character(substitute(providers)))==TRUE){ NULL } else
+		{ data(providers); message("loaded providers") }
 	
-	getrecord_ <- function(x) {
-		datasource2 <- match.arg(as.character(x$datasource), choices = c("datacite","dryad","pmc","hindawi","pensoft"))
-		if(datasource2 == "datacite" ){
-			rdatacite::getrecord(x$id, TRUE)
+	doit <- function(provider, identifier) {
+		args <- compact(list(verb = 'GetRecord', metadataPrefix = metadataPrefix,
+											 identifier = identifier))
+		if(fuzzy){ get_ <- providers[ agrep(provider, providers[,1], ...), ] } else
+			{ get_ <- providers[ grep(provider, providers[,1]), ] }
+		if(nrow(get_) == 0){
+			data.frame(x="no match found")
 		} else
-			if(datasource2 == "pmc" ){
-				rpmc::getrecord(x$id, TRUE)
+			if(nrow(get_) > 1){ 
+				data.frame(repo_name = get_[,1])
 			} else
-				if(datasource2 == "dryad" ){
-					rdryad::getrecord(x$id, TRUE)
-				} else
-					if(datasource2 == "hindawi" ){
-						rhindawi::getrecord(x$id, TRUE)
-					} else
-						if(datasource2 == "pensoft" ){
-							rpensoft::getrecord(x$id, TRUE)
-						} else
-						stop("Must be one of datacite, pmc, dryad, hindawi, or pensoft")
-	}
-	if(nrow(df2) > 1){
-		tt <- llply(split(df2, row.names(df2)), getrecord_)
-	} else
-	 { tt <- getrecord_(df2) }
-	
-	if(todf == TRUE){
-		if(nrow(df2) > 1){
-			do.call(rbind.fill, llply(tt, function(x) data.frame(xmlToList(x$metadata))))
-		} else
-		{ data.frame(xmlToList(tt$metadata)) }
-	} else
-	 { tt }
+			{
+				url <- get_[,"base_url"]
+				crr <- xmlToList(xmlParse(content(GET(url, query=args), as="text")))
+				ldply(crr$GetRecord, function(x) cbind(data.frame(x$header), data.frame(x$metadata)))[,-1]
+			}
+	}	
+	ldply(identifier, function(x) doit(provider, x) )
 }

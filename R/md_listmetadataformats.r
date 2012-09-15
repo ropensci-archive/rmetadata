@@ -1,36 +1,55 @@
 #' List available metadata formats from various providers.
 #' 
-#' @import OAIHarvester rpmc rdatacite rdryad rhindawi rpensoft
-#' @param id ID for the article/dataset. 
+#' List metadata formats for the data sources from the OAI-PMH list, and others not 
+#' 		on that list, including PMC, DataCite, Hindawi Journals, Dryad, and 
+#' 		Pensoft Journals.
+#' 
+#' @import XML httr plyr
+#' @param provider The metadata provider.
+#' @param identifier The OAI-PMH identifier for the record. Optional.
+#' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
 #' @author Scott Chamberlain \link{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
-#' md_listmetadataformats()
+#' # List metadata formats for a provider
+#' md_listmetadataformats(provider = "dryad")
+#' 
+#' # List metadata formats for a provider
+#' md_listmetadataformats(provider = "pensoft", identifier = "10.3897/zookeys.1.10")
 #' }
 #' @export
-md_listmetadataformats <- function(provider = c("pmc","datacite","hindawi","dryad"), 
-	id = NULL)
+md_listmetadataformats <- function(provider = NULL, identifier = NULL, fuzzy = FALSE)
 { 
-	providers <- match.arg(provider, choices=c("pmc","datacite","hindawi","dryad"), several.ok=T)
-	foo <- function(x) {
-		if(x == "datacite" ){
-			tt <- data.frame(dc_listmetadataformats())
-			data.frame(id = rep(x,nrow(tt)), tt)
+	if(exists(as.character(substitute(providers)))==TRUE){ NULL } else
+		{ data(providers); message("loaded providers") }
+	
+	doit <- function(provider, identifier) {
+		args <- compact(list(verb = 'ListMetadataFormats', identifier = identifier))
+		if(fuzzy){ get_ <- providers[ agrep(provider, providers[,1], ...), ] } else
+			{ get_ <- providers[ grep(provider, providers[,1]), ] }
+		if(nrow(get_) == 0){
+			data.frame(x="no match found")
 		} else
-			if(x == "pmc" ){
-				tt <- data.frame(pmc_listmetadataformats())
-				data.frame(id = rep(x,nrow(tt)), tt)
+			if(nrow(get_) > 1){ 
+				data.frame(repo_name = get_[,1])
 			} else
-				if(x == "dryad" ){
-					y <- t(dr_listmetadataformats())
-					row.names(y) <- NULL
-					tt <- data.frame(y)
-					data.frame(id = rep(x,nrow(tt)), tt)
-				} else
-					if(x == "hindawi" ){
-						tt <- data.frame(hw_listmetadataformats())
-						data.frame(id = rep(x,nrow(tt)), tt)
+				{
+					url <- get_[,"base_url"]
+					crr <- xmlToList(xmlParse(content(GET(url, query=args), as="text")))
+					if(!is.null(identifier)) { 
+						id <- crr$request$.attrs[[2]] 
+						df_ <- ldply(crr$ListMetadataFormats, function(x) data.frame(x))[,-1]
+						data.frame(identifier = rep(id, nrow(df_)), df_)
 					} else
-						stop("Must be one of datacite, pmc, dryad, or hindawi")
-	}
-	ldply(providers, foo)
+						{ 
+							ldply(crr$ListMetadataFormats, function(x) data.frame(x))[,-1]
+						}
+				}
+	}	
+
+	if(!is.null(identifier)) {
+		ldply(identifier, function(x) doit(provider, x) )
+	} else
+		{
+			doit(provider, NULL)
+		}
 }

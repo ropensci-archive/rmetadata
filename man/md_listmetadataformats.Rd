@@ -2,18 +2,30 @@
 \alias{md_listmetadataformats}
 \title{List available metadata formats from various providers.}
 \usage{
-  md_listmetadataformats(provider = c("pmc", "datacite", "hindawi", "dryad"),
-    id = NULL)
+  md_listmetadataformats(provider = NULL,
+    identifier = NULL, fuzzy = FALSE)
 }
 \arguments{
-  \item{id}{ID for the article/dataset.}
+  \item{provider}{The metadata provider.}
+
+  \item{identifier}{The OAI-PMH identifier for the record.
+  Optional.}
+
+  \item{fuzzy}{Do fuzzy search or not (default FALSE).
+  Fuzzy uses agrep.}
 }
 \description{
-  List available metadata formats from various providers.
+  List metadata formats for the data sources from the
+  OAI-PMH list, and others not on that list, including PMC,
+  DataCite, Hindawi Journals, Dryad, and Pensoft Journals.
 }
 \examples{
 \dontrun{
-md_listmetadataformats()
+# List metadata formats for a provider
+md_listmetadataformats(provider = "dryad")
+
+# List metadata formats for a provider
+md_listmetadataformats(provider = "pensoft", identifier = "10.3897/zookeys.1.10")
 }
 }
 \author{

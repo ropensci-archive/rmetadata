@@ -1,64 +1,65 @@
-#' Get a record via OAI-PMH from a data provider.
+#' List records of an OAI-PMH from a data provider.
 #' 
-#' @import OAIHarvester XML rpmc rdatacite rdryad rhindawi rpensoft
-#' @param df A data.frame of two columns, named "datasource" and "id". 
-#' 		df does not have to be supplied. 
-#' @param datasource Datasource, currently one of: "datacite", "pmc", "dryad", 
-#' 		"hindawi", or "pensoft".
-#' @param id ID for the article/dataset. 
-#' @param todf Convert output to a data.frame (logical). 
-#' @details The function takes a data.frame as input, or just one set of 
-#' 		datasource and id specified in the function call. So the function can be used 
-#' 		to do more than one call by supplying a data.frame or by supplying one 
-#' 		pair of datasource and id at a time in a lapply type call.
+#' List records for the data sources from the OAI-PMH list, and others not 
+#' 		on that list, including PMC, DataCite, Hindawi Journals, Dryad, and 
+#' 		Pensoft Journals.
+#' 
+#' @import XML httr plyr
+#' @param provider The metadata provider.
+#' @param from Specifies that records returned must have been 
+#' 		created/update/deleted on or after this date.
+#' @param until Specifies that records returned must have been 
+#' 		created/update/deleted on or before this date.
+#' @param set Optional argument with a setSpec value, which specifies set 
+#' 		criteria for selective harvesting.
+#' @param metadataPrefix Specifies the metadata format that the records will be 
+#'     returned in. 
+#' @param token A token previously provided by the server to resume a request
+#'     where it last left off.
+#' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
 #' @author Scott Chamberlain \link{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' # Single source
-#' md_listrecords(datasource = "pensoft", id = "10.3897/zookeys.1.10")
-#' 
-#' # Many sources. Submit a data.frame to the function:
-#' df <- data.frame(datasource = c('datacite','pmc','pensoft'), id = c(56225, 152494, "10.3897/zookeys.1.10"))
-#' md_listrecords(df = df, todf=F) # list output
-#' md_listrecords(df = df) # data.frame output
+#' md_listrecords(provider = "datacite")
 #' }
 #' @export
-md_listrecords <- function(datasource = NULL, id = NULL, df = NULL, 
-	todf = TRUE)
+md_listrecords <- function(provider = NULL, from = NULL, until = NULL, 
+	set = NULL, metadataPrefix = 'oai_dc', token = NULL, fuzzy = FALSE)
 { 
-	if(is.null(df) == TRUE){
-		df2 <- data.frame(datasource, id)
-	} else
-		{ df2 <- df }
+	if(exists(as.character(substitute(providers)))==TRUE){ NULL } else
+		{ data(providers); message("loaded providers") }
 	
-	getrecord_ <- function(x) {
-		datasource2 <- match.arg(as.character(x$datasource), choices = c("datacite","dryad","pmc","hindawi","pensoft"))
-		if(datasource2 == "datacite" ){
-			rdatacite::getrecord(x$id, TRUE)
+	args <- compact(list(verb = 'ListRecords', set = set, metadataPrefix = metadataPrefix,
+											 from = from, until=until, token=token))
+
+	doit <- function(x, args) {
+		if(fuzzy){ get_ <- providers[ agrep(x, providers[,1], ...), ] } else
+			{ get_ <- providers[ grep(x, providers[,1]), ] }
+		if(nrow(get_) == 0){
+			data.frame(x="no match found")
 		} else
-			if(datasource2 == "pmc" ){
-				rpmc::getrecord(x$id, TRUE)
+			if(nrow(get_) > 1){ 
+				data.frame(repo_name = get_[,1])
 			} else
-				if(datasource2 == "dryad" ){
-					rdryad::getrecord(x$id, TRUE)
-				} else
-					if(datasource2 == "hindawi" ){
-						rhindawi::getrecord(x$id, TRUE)
-					} else
-						if(datasource2 == "pensoft" ){
-							rpensoft::getrecord(x$id, TRUE)
-						} else
-						stop("Must be one of datacite, pmc, dryad, hindawi, or pensoft")
-	}
-	if(nrow(df2) > 1){
-		tt <- llply(split(df2, row.names(df2)), getrecord_)
-	} else
-	 { tt <- getrecord_(df2) }
-	
-	if(todf == TRUE){
-		if(nrow(df2) > 1){
-			do.call(rbind.fill, llply(tt, function(x) data.frame(xmlToList(x$metadata))))
-		} else
-		{ data.frame(xmlToList(tt$metadata)) }
-	} else
-	 { tt }
+			{
+				url <- get_[,"base_url"]
+				iter <- 0
+				token <- "characters" # define a iterator, also used for gettingn the resumptionToken
+				nameslist <- list() # define empty list to put joural titles in to
+				while(is.character(token) == TRUE) # while token is class "character", keep going
+				{
+					iter <- iter + 1 
+					args2 <- args
+					if(token == "characters"){NULL} else {args2$resumptionToken <- token}
+					crr <- xmlToList(xmlParse(content(GET(url, query=args2), as="text")))
+					names <- llply(crr$ListRecords)
+					nameslist[[iter]] <- ldply(names, function(x) cbind(data.frame(x$header), data.frame(x$metadata$dc)))
+					if( class( try(crr$ListRecords$resumptionToken$text) ) == "try-error") {
+						token <- 1
+					} else { token <- crr$ListRecords$resumptionToken$text }
+				}
+				do.call(rbind, nameslist) # concatenate
+			}
+	}	
+	llply(provider, function(x) doit(x, args) )
 }

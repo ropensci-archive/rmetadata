@@ -30,27 +30,4 @@ oaipmh_providers <- function()
 	table <- table[,-c(1,2)] # remove first two columns
 	names(table) <- c("repo_name", "base_url", "oai_identifier")
 	table
-# 	out <- content(GET("http://www.openarchives.org/Register/ListFriends"), as="text")
-# 	out2 <- xmlParse(out)
-# 	vals <- xpathApply(out2, "//baseURL")
-# 	urls <- sapply(vals, xmlValue, USE.NAMES=F)
-# 	ids <- sapply(vals, xmlGetAttr, name="id", USE.NAMES=F)
-# 	ids <- sapply(ids, function(x) if(is.null(x) == TRUE) {"none"} else{x})
-# 	df <- data.frame(oai_identifier = ids, baseURL = urls)
-# 	
-# 	if(attachnames){
-# 		attachname_ <- function(x) {
-# 			tt <- try(content(GET(paste(x, "?verb=Identify", sep=""), config = timeout(6))))
-# 			if(class(tt)[[1]] == "try-error"){ "no_name_found" } else
-# 				{
-# 					if( any(grepl("<buffer>", asdf[[1]][[1]])) == TRUE ){ 
-# 						"access_forbidden"
-# 					} else
-# 						{ xmlToList(tt$doc$children[[1]])$Identify$repositoryName }
-# 				}
-# 		}
-# 		df$name <- sapply(df[,2], attachname_)
-# 		df
-# 	} else
-# 		{ df }
 }

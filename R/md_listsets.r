@@ -1,45 +1,52 @@
 #' List the OAI-PMH sets for each data provider.
 #' 
-#' List sets for the data sources: PMC, DataCite, Hindawi Journals, 
-#' 		Dryad, and Pensoft Journals.
+#' List sets for the data sources from the OAI-PMH list, and others not 
+#' 		on that list, including PMC, DataCite, Hindawi Journals, Dryad, and 
+#' 		Pensoft Journals.
 #' 
-#' @import OAIHarvester rpmc rdatacite rdryad rhindawi XML plyr
+#' @import plyr httr XML
+#' @param provider The metadata provider.
+#' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
 #' @examples \dontrun{
-#' # All providers
-#' out <- md_listsets()
-#' head(out); str(out) # details
-#' out[out$datasource == "dryad",] # just dryad
-#' 
-#' # Select providers
-#' out <- md_listsets(provider = c("hindawi", "dryad"))
-#' head(out)
+#' md_listsets(provider = "datacite") # DataCite
+#' md_listsets(provider = "arXiv") # arXiv
+#' md_listsets(provider = c("datacite","pensoft","Aston University Research Archive")) # many providers
 #' }
 #' @export
-md_listsets <- function(provider = c("pmc","datacite","hindawi","dryad","pensoft")) 
+md_listsets <- function(provider = NULL, fuzzy = FALSE) 
 { 
-	providers <- match.arg(provider, choices=c("pmc","datacite","hindawi","dryad","pensoft"), several.ok=T)
-	foo <- function(x) {
-		if(x == "datacite" ){
-			temp <- dc_listsets()
-			temp$datsource <- as.factor(rep("datacite", nrow(temp)))
-			temp
+	if(exists(as.character(substitute(providers)))==TRUE){ NULL } else
+		{ data(providers); message("loaded providers") }
+	
+	doit <- function(x, args) {
+		if(fuzzy){ get_ <- providers[ agrep(x, providers[,1], ...), ] } else
+			{ get_ <- providers[ grep(x, providers[,1]), ] }
+		if(nrow(get_) == 0){
+			data.frame(x="no match found")
 		} else
-			if(x == "pmc" ){
-				temp <- pmc_listsets()
-				temp$datsource <- as.factor(rep("pmc", nrow(temp)))
-				temp
+			if(nrow(get_) > 1){ 
+				data.frame(repo_name = get_[,1])
 			} else
-				if(x == "dryad" ){
-					temp <- dr_listsets()
-					temp$datsource <- as.factor(rep("dryad", nrow(temp)))
-					temp
-				} else
-					if(x == "hindawi" ){
-						temp <- hw_listsets()
-						temp$datsource <- as.factor(rep("hindawi", nrow(temp)))
-						temp
-					} else
-							stop("Must be one of datacite, pmc, dryad, or hindawi")
+				{
+					url <- get_[,"base_url"]
+					args <- list(verb = "ListSets")
+					iter <- 0
+					token <- "characters" # define a iterator, also used for gettingn the resumptionToken
+					nameslist <- list() # define empty list to put joural titles in to
+					while(is.character(token) == TRUE) # while token is class "character", keep going
+					{
+						iter <- iter + 1 
+						args2 <- args
+						if(token == "characters"){NULL} else {args2$resumptionToken <- token}
+						crr <- xmlToList(xmlParse(content(GET(url, query=args2), as="text")))
+						out <- ldply(crr$ListSets, function(x) c(setName=x[["setName"]], setSpec=x[["setSpec"]]))[,-1]
+						nameslist[[iter]] <- out
+						if( class( try(crr$ListSets$resumptionToken$text) ) == "try-error") {
+							token <- 1
+						} else { token <- crr$ListIdentifiers$resumptionToken$text }
+					}
+					do.call(rbind, nameslist) # concatenate
+				}
 	}
-	ldply(providers, foo)	
+	llply(provider, function(x) doit(x, args) )
 }

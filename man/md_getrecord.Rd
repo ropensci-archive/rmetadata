@@ -1,40 +1,40 @@
 \name{md_getrecord}
 \alias{md_getrecord}
-\title{Get a record via OAI-PMH from a data provider.}
+\title{Get a record from a OAI-PMH data provider.}
 \usage{
-  md_getrecord(datasource = NULL, id = NULL, df = NULL,
-    todf = TRUE)
+  md_getrecord(provider = NULL, identifier = NULL,
+    metadataPrefix = "oai_dc", fuzzy = FALSE)
 }
 \arguments{
-  \item{df}{A data.frame of two columns, named "datasource"
-  and "id".  df does not have to be supplied.}
+  \item{provider}{The metadata provider.}
 
-  \item{datasource}{Datasource, currently one of:
-  "datacite", "pmc", "dryad", "hindawi", or "pensoft".}
+  \item{identifier}{The OAI-PMH identifier for the record.}
 
-  \item{id}{ID for the article/dataset.}
+  \item{metadataPrefix}{Specifies the metadata format that
+  the records will be returned in.}
 
-  \item{todf}{Convert output to a data.frame (logical).}
+  \item{fuzzy}{Do fuzzy search or not (default FALSE).
+  Fuzzy uses agrep.}
 }
 \description{
-  Get a record via OAI-PMH from a data provider.
+  Get records for the data sources from the OAI-PMH list,
+  and others not on that list, including PMC, DataCite,
+  Hindawi Journals, Dryad, and Pensoft Journals.
 }
 \details{
-  The function takes a data.frame as input, or just one set
-  of datasource and id specified in the function call. So
-  the function can be used to do more than one call by
-  supplying a data.frame or by supplying one pair of
-  datasource and id at a time in a lapply type call.
+  To query multiple different identifier's from a single
+  provider, just pass in multiple identifiers like
+  c("identifier1", "identifier2").  To query identifiers
+  from different providers, just use separate calls to
+  md_getrecord.
 }
 \examples{
 \dontrun{
-# Single source
-md_getrecord(datasource = "pensoft", id = "10.3897/zookeys.1.10")
+# Single provider, one identifier
+md_getrecord(provider = "pensoft", identifier = "10.3897/zookeys.1.10")
 
-# Many sources. Submit a data.frame to the function:
-df <- data.frame(datasource = c('datacite','pmc','pensoft'), id = c(56225, 152494, "10.3897/zookeys.1.10"))
-md_getrecord(df = df, todf=F) # list output
-md_getrecord(df = df) # data.frame output
+# Single provider, multiple identifiers
+md_getrecord(provider = "pensoft", identifier = c("10.3897/zookeys.1.10","10.3897/zookeys.4.57"))
 }
 }
 \author{

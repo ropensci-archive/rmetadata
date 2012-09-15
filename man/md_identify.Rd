@@ -2,25 +2,30 @@
 \alias{md_identify}
 \title{Identify the OAI-PMH service for each data provider.}
 \usage{
-  md_identify(provider = NULL, url = NULL)
+  md_identify(provider = NULL, fuzzy = FALSE, ...)
+}
+\arguments{
+  \item{provider}{The metadata provider to identify.}
+
+  \item{fuzzy}{Do fuzzy search or not (default FALSE).
+  Fuzzy uses agrep.}
+
+  \item{...}{further arguments passed on to agrep (only
+  used when fuzzy equals TRUE).}
 }
 \description{
-  Identifies the data sources: PMC, DataCite, Hindawi
+  Identifies the data sources from the OAI-PMH list, and
+  others not on that list, including PMC, DataCite, Hindawi
   Journals, Dryad, and Pensoft Journals.
 }
 \examples{
 \dontrun{
-# All providers
-data(providers) # or load from local machine
-
-# Just the providers you want to identify
 md_identify(provider = "datacite")
-md_identify(provider = "da") # abbreviating the provider works too
 md_identify(provider = c("datacite","pensoft")) # many providers
-
-# From the Open Archives list
-df <- oaipmh_providers()
-md_identify(provider = "openarchive", url = as.character(df[1,2]))
+md_identify(provider = "arXiv") # arXiv
+md_identify(provider = c("harvard", "journal")) # no match for one, two matches for other
+md_identify(provider = c("data", "theory", "biology"))
+md_identify(provider = "Takasu database") # refine previous for data
 }
 }
 

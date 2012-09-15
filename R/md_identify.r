@@ -1,46 +1,47 @@
 #' Identify the OAI-PMH service for each data provider.
 #' 
-#' Identifies the data sources: PMC, DataCite, Hindawi Journals, 
-#' 		Dryad, and Pensoft Journals.
+#' Identifies the data sources from the OAI-PMH list, and others not on that list, 
+#' 		including PMC, DataCite, Hindawi Journals, Dryad, and Pensoft Journals.
 #' 
-#' @import OAIHarvester rpmc rdatacite rhindawi rdryad rpensoft plyr
+#' @import plyr httr XML
+#' @param provider The metadata provider to identify.
+#' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
+#' @param ... further arguments passed on to agrep (only used when fuzzy
+#' 		 equals TRUE). 
 #' @examples \dontrun{
-#' # All providers
-#' data(providers) # or load from local machine
-#' 
-#' # Just the providers you want to identify
 #' md_identify(provider = "datacite")
-#' md_identify(provider = "da") # abbreviating the provider works too
 #' md_identify(provider = c("datacite","pensoft")) # many providers
-#' 
-#' # From the Open Archives list
-#' df <- oaipmh_providers()
-#' md_identify(provider = "openarchive", url = as.character(df[1,2]))
+#' md_identify(provider = "arXiv") # arXiv
+#' md_identify(provider = c("harvard", "journal")) # no match for one, two matches for other
+#' md_identify(provider = c("data", "theory", "biology"))
+#' md_identify(provider = "Takasu database") # refine previous for data
 #' }
 #' @export
-md_identify <- function(provider = NULL, url = NULL) 
-{ 	
-# 	url_pmc <- "http://www.pubmedcentral.gov/oai/oai.cgi"
-# 	url_pensoft <- "http://oai.pensoft.eu"
-# 	url_dryad <- "http://www.datadryad.org/oai/request"
-# 	url_datacite <- "http://oai.datacite.org/oai"
-# 	url_hindawi <- "http://www.hindawi.com/oai-pmh/oai.aspx"		
-	if(provider_ == "datacite" ){ url <- url_datacite } else
-		if(provider_ == "pmc" ){ url <- url_datacite } else
-			if(provider_ == "hindawi" ){ url <- url_datacite } else
-				if(provider_ == "dryad" ){ url <- url_datacite } else
-					if(provider_ == "pensoft" ){ url <- url_datacite } else
-						if(provider_ == "openarchive" ){ url <- url } else
-							stop("error, something wrong with the provided URL")
-	
-	provider_ <- match.arg(provider, 
-			choices=c("pmc","datacite","hindawi","dryad","pensoft","openarchive"), several.ok=T)
+md_identify <- function(provider = NULL, fuzzy = FALSE, ...) 
+{
+	if(exists(as.character(substitute(providers)))==TRUE){ NULL } else
+		{ data(providers); message("loaded providers") }
 	
 	doit <- function(x) {
-		args <- compact(list(verb = 'Identify'))
-		xmlToList(xmlParse(content(GET(x, query=args), as="text")))$Identify
+		if(fuzzy){ get_ <- providers[ agrep(x, providers[,1], ...), ] } else
+			{ get_ <- providers[ grep(x, providers[,1]), ] }
+		if(nrow(get_) == 0){
+			data.frame(x="no match found")
+		} else
+			if(nrow(get_) > 1){ 
+				data.frame(repo_name = get_[,1])
+			} else
+				{
+					url <- get_[,"base_url"]
+					args <- list(verb = "Identify")
+					xmlToList(xmlParse(content(GET(url, query=args), as="text")))$Identify
+				}
 	}
 	
-	tt <- llply(url, doit)
-	ldply(tt, function(x) data.frame(t(as.matrix(x))))
+	tt <- llply(provider, doit)
+	if(class(tt[[1]])=="data.frame"){ 
+		names(tt) <- provider
+		tt
+	} else 
+		{ ldply(tt, function(x) data.frame(t(as.matrix(x)))) }	
 }

@@ -1,40 +1,41 @@
 \name{md_listrecords}
 \alias{md_listrecords}
-\title{Get a record via OAI-PMH from a data provider.}
+\title{List records of an OAI-PMH from a data provider.}
 \usage{
-  md_listrecords(datasource = NULL, id = NULL, df = NULL,
-    todf = TRUE)
+  md_listrecords(provider = NULL, from = NULL,
+    until = NULL, set = NULL, metadataPrefix = "oai_dc",
+    token = NULL, fuzzy = FALSE)
 }
 \arguments{
-  \item{df}{A data.frame of two columns, named "datasource"
-  and "id".  df does not have to be supplied.}
+  \item{provider}{The metadata provider.}
 
-  \item{datasource}{Datasource, currently one of:
-  "datacite", "pmc", "dryad", "hindawi", or "pensoft".}
+  \item{from}{Specifies that records returned must have
+  been created/update/deleted on or after this date.}
 
-  \item{id}{ID for the article/dataset.}
+  \item{until}{Specifies that records returned must have
+  been created/update/deleted on or before this date.}
 
-  \item{todf}{Convert output to a data.frame (logical).}
+  \item{set}{Optional argument with a setSpec value, which
+  specifies set criteria for selective harvesting.}
+
+  \item{metadataPrefix}{Specifies the metadata format that
+  the records will be returned in.}
+
+  \item{token}{A token previously provided by the server to
+  resume a request where it last left off.}
+
+  \item{fuzzy}{Do fuzzy search or not (default FALSE).
+  Fuzzy uses agrep.}
 }
 \description{
-  Get a record via OAI-PMH from a data provider.
-}
-\details{
-  The function takes a data.frame as input, or just one set
-  of datasource and id specified in the function call. So
-  the function can be used to do more than one call by
-  supplying a data.frame or by supplying one pair of
-  datasource and id at a time in a lapply type call.
+  List records for the data sources from the OAI-PMH list,
+  and others not on that list, including PMC, DataCite,
+  Hindawi Journals, Dryad, and Pensoft Journals.
 }
 \examples{
 \dontrun{
 # Single source
-md_listrecords(datasource = "pensoft", id = "10.3897/zookeys.1.10")
-
-# Many sources. Submit a data.frame to the function:
-df <- data.frame(datasource = c('datacite','pmc','pensoft'), id = c(56225, 152494, "10.3897/zookeys.1.10"))
-md_listrecords(df = df, todf=F) # list output
-md_listrecords(df = df) # data.frame output
+md_listrecords(provider = "datacite")
 }
 }
 \author{

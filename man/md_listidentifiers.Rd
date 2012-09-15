@@ -2,11 +2,13 @@
 \alias{md_listidentifiers}
 \title{List OAI-PMH identifiers for a data provider.}
 \usage{
-  md_listidentifiers(from = NULL, until = NULL, set = NULL,
-    metadataPrefix = "oai_dc", token = NULL, url = NULL,
-    provider = NULL)
+  md_listidentifiers(provider = NULL, from = NULL,
+    until = NULL, set = NULL, metadataPrefix = "oai_dc",
+    token = NULL, fuzzy = FALSE)
 }
 \arguments{
+  \item{provider}{The metadata provider.}
+
   \item{from}{Specifies that records returned must have
   been created/update/deleted on or after this date.}
 
@@ -16,24 +18,28 @@
   \item{set}{Optional argument with a setSpec value, which
   specifies set criteria for selective harvesting.}
 
-  \item{prefix}{Specifies the metadata format that the
-  records will be returned in.}
+  \item{metadataPrefix}{Specifies the metadata format that
+  the records will be returned in.}
 
   \item{token}{A token previously provided by the server to
   resume a request where it last left off.}
+
+  \item{fuzzy}{Do fuzzy search or not (default FALSE).
+  Fuzzy uses agrep.}
 }
 \description{
-  List OAI-PMH identifiers for a data provider.
+  List identifiers for the data sources from the OAI-PMH
+  list, and others not on that list, including PMC,
+  DataCite, Hindawi Journals, Dryad, and Pensoft Journals.
 }
 \examples{
 \dontrun{
 md_listidentifiers(provider = "datacite", set = "REFQUALITY")
-md_listidentifiers(provider = "dryad")
+md_listidentifiers(provider = "dryad", from = "2012-07-15")
+md_listidentifiers(provider = c("datacite","pensoft"), from = "2012-07-15") # many providers
 
 # From the Open Archives list
-providers <- oaipmh_providers() # get from the web
-data(providers) # or load from local machine
-md_listidentifiers(provider = "openarchive", url = as.character(providers[1,2]), from='2008-01-15', until = '2008-03-15')
+md_listidentifiers("arXiv", from='2008-01-15', until = '2008-01-30')
 }
 }
 \author{
