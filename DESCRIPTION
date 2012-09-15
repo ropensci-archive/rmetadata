@@ -21,3 +21,5 @@ Collate:
     'md_identify.r'
     'md_listsets.r'
     'oaipmh_providers.r'
+    'md_listidentifiers.r'
+    'md_listmetadataformats.r'
