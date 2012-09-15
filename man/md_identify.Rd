@@ -11,7 +11,7 @@
 \examples{
 \dontrun{
 # All providers
-md_identify()
+data(providers) # or load from local machine
 
 # Just the providers you want to identify
 md_identify(provider = "datacite")

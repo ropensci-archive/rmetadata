@@ -1,8 +1,8 @@
-\name{md_getrecord}
-\alias{md_getrecord}
+\name{md_listrecords}
+\alias{md_listrecords}
 \title{Get a record via OAI-PMH from a data provider.}
 \usage{
-  md_getrecord(datasource = NULL, id = NULL, df = NULL,
+  md_listrecords(datasource = NULL, id = NULL, df = NULL,
     todf = TRUE)
 }
 \arguments{
@@ -29,12 +29,12 @@
 \examples{
 \dontrun{
 # Single source
-md_getrecord(datasource = "pensoft", id = "10.3897/zookeys.1.10")
+md_listrecords(datasource = "pensoft", id = "10.3897/zookeys.1.10")
 
 # Many sources. Submit a data.frame to the function:
 df <- data.frame(datasource = c('datacite','pmc','pensoft'), id = c(56225, 152494, "10.3897/zookeys.1.10"))
-md_getrecord(df = df, todf=F) # list output
-md_getrecord(df = df) # data.frame output
+md_listrecords(df = df, todf=F) # list output
+md_listrecords(df = df) # data.frame output
 }
 }
 \author{
