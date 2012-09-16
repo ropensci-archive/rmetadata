@@ -24,7 +24,7 @@
 # List metadata formats for a provider
 md_listmetadataformats(provider = "dryad")
 
-# List metadata formats for a provider
+# List metadata formats for a specific identifier for a provider
 md_listmetadataformats(provider = "pensoft", identifier = "10.3897/zookeys.1.10")
 }
 }

@@ -19,7 +19,7 @@ install_github("rmetadata", "ropensci")
 require(rmetadata)
 ```
 
-# The following data sources are incorporated thus far:
+# You can access all the data sources in the [OAI-PMH list of metadata providers](http://www.openarchives.org/Register/BrowseSites), in addition to some sources not on that list (more will be added later): 
 + [DataCite](http://datacite.org/)
 + [PubMed Central](http://www.ncbi.nlm.nih.gov/pmc/)
 + [Hindawi Journals](http://www.hindawi.com/journals/)
