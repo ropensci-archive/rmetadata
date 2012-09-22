@@ -14,8 +14,6 @@
 #' 		criteria for selective harvesting.
 #' @param metadataPrefix Specifies the metadata format that the records will be 
 #'     returned in. 
-#' @param token A token previously provided by the server to resume a request
-#'     where it last left off.
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
 #' @author Scott Chamberlain \link{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
@@ -28,13 +26,13 @@
 #' }
 #' @export
 md_listidentifiers <- function(provider = NULL, from = NULL, until = NULL, 
-	set = NULL, metadataPrefix = 'oai_dc', token = NULL, fuzzy = FALSE)
+	set = NULL, metadataPrefix = 'oai_dc', fuzzy = FALSE)
 { 
 	if(exists(as.character(substitute(providers)))==TRUE){ NULL } else
 		{ data(providers); message("loaded providers") }
 	
 	args <- compact(list(verb = 'ListIdentifiers', set = set, metadataPrefix = metadataPrefix,
-											from = from, until=until, token=token))
+											from = from, until=until))
 	
 	doit <- function(x, args) {
 		if(fuzzy){ get_ <- providers[ agrep(x, providers[,1], ...), ] } else

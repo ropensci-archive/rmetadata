@@ -4,7 +4,7 @@
 \usage{
   md_listidentifiers(provider = NULL, from = NULL,
     until = NULL, set = NULL, metadataPrefix = "oai_dc",
-    token = NULL, fuzzy = FALSE)
+    fuzzy = FALSE)
 }
 \arguments{
   \item{provider}{The metadata provider.}
@@ -20,9 +20,6 @@
 
   \item{metadataPrefix}{Specifies the metadata format that
   the records will be returned in.}
-
-  \item{token}{A token previously provided by the server to
-  resume a request where it last left off.}
 
   \item{fuzzy}{Do fuzzy search or not (default FALSE).
   Fuzzy uses agrep.}

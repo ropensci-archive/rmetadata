@@ -10,12 +10,9 @@ Description: A wrapper to get article metatdata for a number of databases,
     including PubMed Central, DataCite, Pensoft, and Hindawi journals.
 URL: https://github.com/ropensci/rmetadata
 Imports:
-    OAIHarvester,
-    rpmc,
-    rdatacite,
-    rpensoft,
-    rdryad,
-    rhindawi
+    XML,
+    httr,
+    plyr
 Collate:
     'md_getrecord.r'
     'md_identify.r'
@@ -24,3 +21,4 @@ Collate:
     'md_listidentifiers.r'
     'md_listmetadataformats.r'
     'md_listrecords.r'
+    'count_identifiers.r'
