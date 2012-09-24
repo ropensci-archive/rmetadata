@@ -4,7 +4,7 @@
 \usage{
   count_identifiers(provider = NULL,
     metadataPrefix = "oai_dc", fuzzy = FALSE,
-    useurl = FALSE)
+    useurl = FALSE, seconds = 3)
 }
 \arguments{
   \item{provider}{The metadata provider.}
@@ -22,11 +22,17 @@
 }
 \examples{
 \dontrun{
-# Select a few
-count_identifiers(provider = c("datacite","Academic Commons","pensoft","arXiv"))
+# Select one
+count_identifiers("datacite")
 
-# Provide a vector
-out <- count_identifiers(provider = providers[1:40,2], useurl = T)
+# Select a few
+ldply(c("datacite","Academic Commons","pensoft","arXiv"), count_identifiers)
+
+# All of them, takes a while, run on AWS AMI if you can
+out <- llply(providers[,2], function(x) count_identifiers(x, useurl = T), .inform=T)
+outdf <- ldply(out)
+str(outdf)
+outdf_ <- outdf[!is.na(as.numeric(as.character(outdf$count))), ]  # just those with counts
 }
 }
 \author{
