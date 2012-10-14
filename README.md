@@ -19,6 +19,9 @@ install_github("rmetadata", "ropensci")
 require(rmetadata)
 ```
 
+## For Windows users, you can get an installable Windows binary development version of `rmetadata` at the Downloads page
++ [get a windows binary here](https://github.com/ropensci/rmetadata/downloads)
+
 ### You can access all the data sources in the [OAI-PMH list of metadata providers](http://www.openarchives.org/Register/BrowseSites), in addition to some sources not on that list (more will be added later): 
 
 + [DataCite](http://datacite.org/)
