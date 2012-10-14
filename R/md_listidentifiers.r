@@ -16,10 +16,8 @@
 #'     returned in. 
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
-#' @examples \dontrun{
-#' md_listidentifiers(provider = "datacite", set = "REFQUALITY")
+#' @examples \donttest{
 #' md_listidentifiers(provider = "dryad", from = "2012-07-15")
-#' md_listidentifiers(provider = c("datacite","pensoft"), from = "2012-07-15") # many providers
 #' 
 #' # From the Open Archives list
 #' md_listidentifiers("arXiv", from='2008-01-15', until = '2008-01-30')
@@ -34,6 +32,7 @@ md_listidentifiers <- function(provider = NULL, from = NULL, until = NULL,
 	args <- compact(list(verb = 'ListIdentifiers', set = set, metadataPrefix = metadataPrefix,
 											from = from, until=until))
 	
+# 	x <- provider
 	doit <- function(x, args) {
 		if(fuzzy){ get_ <- providers[ agrep(x, providers[,1], ...), ] } else
 			{ get_ <- providers[ grep(x, providers[,1]), ] }
@@ -50,7 +49,7 @@ md_listidentifiers <- function(provider = NULL, from = NULL, until = NULL,
 					nameslist <- list() # define empty list to put joural titles in to
 					while(is.character(token) == TRUE) # while token is class "character", keep going
 					{
-						iter <- iter + 1 
+						iter <- iter + 1
 						args2 <- args
 						if(token == "characters"){NULL} else {args2$resumptionToken <- token}
 						crr <- xmlToList(xmlParse(content(GET(url, query=args2), as="text")))

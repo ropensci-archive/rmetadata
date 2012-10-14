@@ -30,10 +30,8 @@
   DataCite, Hindawi Journals, Dryad, and Pensoft Journals.
 }
 \examples{
-\dontrun{
-md_listidentifiers(provider = "datacite", set = "REFQUALITY")
+\donttest{
 md_listidentifiers(provider = "dryad", from = "2012-07-15")
-md_listidentifiers(provider = c("datacite","pensoft"), from = "2012-07-15") # many providers
 
 # From the Open Archives list
 md_listidentifiers("arXiv", from='2008-01-15', until = '2008-01-30')
