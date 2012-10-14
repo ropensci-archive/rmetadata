@@ -17,7 +17,7 @@
 #' @param token A token previously provided by the server to resume a request
 #'     where it last left off.
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
-#' @author Scott Chamberlain \link{myrmecocystus@@gmail.com}
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' # Single source
 #' md_listrecords(provider = "datacite")

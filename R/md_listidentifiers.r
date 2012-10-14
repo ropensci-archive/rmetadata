@@ -15,7 +15,7 @@
 #' @param metadataPrefix Specifies the metadata format that the records will be 
 #'     returned in. 
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
-#' @author Scott Chamberlain \link{myrmecocystus@@gmail.com}
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' md_listidentifiers(provider = "datacite", set = "REFQUALITY")
 #' md_listidentifiers(provider = "dryad", from = "2012-07-15")
@@ -54,11 +54,13 @@ md_listidentifiers <- function(provider = NULL, from = NULL, until = NULL,
 						args2 <- args
 						if(token == "characters"){NULL} else {args2$resumptionToken <- token}
 						crr <- xmlToList(xmlParse(content(GET(url, query=args2), as="text")))
-						names <- as.character(sapply(crr$ListIdentifiers, function(x) x[["identifier"]]))
-						nameslist[[iter]] <- names
-						if( class( try(crr$ListIdentifiers$resumptionToken$text) ) == "try-error") {
-							token <- 1
-						} else { token <- crr$ListIdentifiers$resumptionToken$text }
+						names <- tryCatch(as.character(sapply(crr$ListIdentifiers, function(x) x[["identifier"]])))
+						if(identical(names, character(0))) {nameslist <- names} else {
+							nameslist[[iter]] <- names
+							if( class( try(crr$ListIdentifiers$resumptionToken$text) ) == "try-error") {
+								token <- 1
+							} else { token <- crr$ListIdentifiers$resumptionToken$text }
+						}
 					}
 					out <- do.call(c, nameslist) # concatenate
 					out[!out == "NULL"] # remove NULLs

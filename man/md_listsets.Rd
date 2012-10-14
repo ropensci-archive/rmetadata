@@ -22,4 +22,7 @@ md_listsets(provider = "arXiv") # arXiv
 md_listsets(provider = c("datacite","pensoft","Aston University Research Archive")) # many providers
 }
 }
+\author{
+  Scott Chamberlain \email{myrmecocystus@gmail.com}
+}
 

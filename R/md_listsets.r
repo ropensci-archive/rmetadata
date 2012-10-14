@@ -7,6 +7,7 @@
 #' @import plyr httr XML
 #' @param provider The metadata provider.
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' md_listsets(provider = "datacite") # DataCite
 #' md_listsets(provider = "arXiv") # arXiv

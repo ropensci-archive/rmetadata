@@ -22,3 +22,5 @@ Collate:
     'md_listmetadataformats.r'
     'md_listrecords.r'
     'count_identifiers.r'
+    'providers.r'
+    'crossref_search.r'

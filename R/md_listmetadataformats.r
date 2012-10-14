@@ -8,7 +8,7 @@
 #' @param provider The metadata provider.
 #' @param identifier The OAI-PMH identifier for the record. Optional.
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
-#' @author Scott Chamberlain \link{myrmecocystus@@gmail.com}
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' # List metadata formats for a provider
 #' md_listmetadataformats(provider = "dryad")

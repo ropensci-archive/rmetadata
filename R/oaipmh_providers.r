@@ -1,15 +1,16 @@
 #' Get information on each OAI-PMH data providers. 
 #' 
-#' Data comes from \link{http://www.openarchives.org/Register/BrowseSites}. Data
-#' 		includes oai-identifier (if they have one) and baes URL. The website has
+#' Data comes from \url{http://www.openarchives.org/Register/BrowseSites}. 
+#' 		Data includes oai-identifier (if they have one) and baes URL. The website has
 #' 		the name of the data provider too, but not provided in the data pulled 
 #' 		down here, but you can grab the name using example below.
 #' 
 #' @import httr XML 
-#' @details This table is scraped from \link{http://www.openarchives.org/Register/BrowseSites}.
-#' 		I would get it from \link{http://www.openarchives.org/Register/ListFriends}, 
+#' @details This table is scraped from 
+#' 		\url{http://www.openarchives.org/Register/BrowseSites}.
+#' 		I would get it from \url{http://www.openarchives.org/Register/ListFriends}, 
 #' 		but it does not include repository names. 
-#' @author Scott Chamberlain \link{myrmecocystus@@gmail.com}
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' df <- oaipmh_providers()
 #' str(df) # wow, that's a lot of OAI-PMH data providers

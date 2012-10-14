@@ -14,7 +14,7 @@
 #' 		just pass in multiple identifiers like c("identifier1", "identifier2").
 #' 		To query identifiers from different providers, just use separate calls to
 #' 		md_getrecord.
-#' @author Scott Chamberlain \link{myrmecocystus@@gmail.com}
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' # Single provider, one identifier
 #' md_getrecord(provider = "pensoft", identifier = "10.3897/zookeys.1.10")

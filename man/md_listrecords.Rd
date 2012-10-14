@@ -39,6 +39,6 @@ md_listrecords(provider = "datacite")
 }
 }
 \author{
-  Scott Chamberlain \link{myrmecocystus@gmail.com}
+  Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 

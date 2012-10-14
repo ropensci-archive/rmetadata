@@ -40,6 +40,6 @@ md_listidentifiers("arXiv", from='2008-01-15', until = '2008-01-30')
 }
 }
 \author{
-  Scott Chamberlain \link{myrmecocystus@gmail.com}
+  Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 

@@ -29,6 +29,6 @@ md_listmetadataformats(provider = "pensoft", identifier = "10.3897/zookeys.1.10"
 }
 }
 \author{
-  Scott Chamberlain \link{myrmecocystus@gmail.com}
+  Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 

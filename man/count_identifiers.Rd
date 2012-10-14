@@ -14,6 +14,14 @@
 
   \item{fuzzy}{Do fuzzy search or not (default FALSE).
   Fuzzy uses agrep.}
+
+  \item{useurl}{Setting to TRUE allows you to just provide
+  the metadata provider name, and any matches found the
+  function will just use the url to query their OAI-PMH
+  API.}
+
+  \item{seconds}{Number of seconds by which to timeout an
+  API call to one of the data providers.}
 }
 \description{
   Count identifiers for the data sources from the OAI-PMH
@@ -27,15 +35,9 @@ count_identifiers("datacite")
 
 # Select a few
 ldply(c("datacite","Academic Commons","pensoft","arXiv"), count_identifiers)
-
-# All of them, takes a while, run on AWS AMI if you can
-out <- llply(providers[,2], function(x) count_identifiers(x, useurl = T), .inform=T)
-outdf <- ldply(out)
-str(outdf)
-outdf_ <- outdf[!is.na(as.numeric(as.character(outdf$count))), ]  # just those with counts
 }
 }
 \author{
-  Scott Chamberlain \link{myrmecocystus@gmail.com}
+  Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 

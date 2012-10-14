@@ -25,3 +25,6 @@ require(rmetadata)
 + [PubMed Central](http://www.ncbi.nlm.nih.gov/pmc/)
 + [Hindawi Journals](http://www.hindawi.com/journals/)
 + [Pensoft Journals](http://www.pensoft.net/index.php)
++ CrossRef API
+	+ [API help](http://search.labs.crossref.org/help/api)
+	+ [Example call: http://search.labs.crossref.org/dois?q=renear+palmer](http://search.labs.crossref.org/dois?q=renear+palmer)

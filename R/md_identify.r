@@ -8,6 +8,7 @@
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
 #' @param ... further arguments passed on to agrep (only used when fuzzy
 #' 		 equals TRUE). 
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' md_identify(provider = "datacite")
 #' md_identify(provider = c("datacite","pensoft")) # many providers

@@ -6,7 +6,7 @@
 }
 \description{
   Data comes from
-  \link{http://www.openarchives.org/Register/BrowseSites}.
+  \url{http://www.openarchives.org/Register/BrowseSites}.
   Data includes oai-identifier (if they have one) and baes
   URL. The website has the name of the data provider too,
   but not provided in the data pulled down here, but you
@@ -14,9 +14,9 @@
 }
 \details{
   This table is scraped from
-  \link{http://www.openarchives.org/Register/BrowseSites}.
+  \url{http://www.openarchives.org/Register/BrowseSites}.
   I would get it from
-  \link{http://www.openarchives.org/Register/ListFriends},
+  \url{http://www.openarchives.org/Register/ListFriends},
   but it does not include repository names.
 }
 \examples{
@@ -33,6 +33,6 @@ qplot(nchars, data = nchars, geom="histogram")
 }
 }
 \author{
-  Scott Chamberlain \link{myrmecocystus@gmail.com}
+  Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 

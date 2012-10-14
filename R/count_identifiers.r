@@ -9,15 +9,21 @@
 #' @param metadataPrefix Specifies the metadata format that the records will be 
 #'     returned in. 
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
-#' @author Scott Chamberlain \link{myrmecocystus@@gmail.com}
+#' @param useurl Setting to TRUE allows you to just provide the metadata
+#' 		provider name, and any matches found the function will just use the url
+#' 		to query their OAI-PMH API.
+#' @param seconds Number of seconds by which to timeout an API call to one of
+#' 		the data providers.
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' # Select one
 #' count_identifiers("datacite")
 #' 
 #' # Select a few
 #' ldply(c("datacite","Academic Commons","pensoft","arXiv"), count_identifiers)
-#' 
-#' # All of them, takes a while, run on AWS AMI if you can
+#' }
+#' @examples \donttest{
+#' # All of them, takes a while, run in parallel, e.g. on AWS RStudio AMI
 #' out <- llply(providers[,2], function(x) count_identifiers(x, useurl = T), .inform=T)
 #' outdf <- ldply(out)
 #' str(outdf)

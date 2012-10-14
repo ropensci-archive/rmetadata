@@ -28,4 +28,7 @@ md_identify(provider = c("data", "theory", "biology"))
 md_identify(provider = "Takasu database") # refine previous for data
 }
 }
+\author{
+  Scott Chamberlain \email{myrmecocystus@gmail.com}
+}
 
