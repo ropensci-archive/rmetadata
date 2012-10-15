@@ -1,8 +1,8 @@
-\name{crossref_matchcite}
-\alias{crossref_matchcite}
+\name{crossref_search_free}
+\alias{crossref_search_free}
 \title{Search the CrossRef Metatdata for DOIs using free form references.}
 \usage{
-  crossref_matchcite(query,
+  crossref_search_free(query,
     url = "http://search.labs.crossref.org/links")
 }
 \arguments{
@@ -20,23 +20,23 @@
 }
 \examples{
 \dontrun{
-crossref_matchcite(query="Renear 2012") # too few words, need at least 3
+crossref_search_free(query="Renear 2012") # too few words, need at least 3
 
-crossref_matchcite(query=c("Renear 2012","Piwowar sharing data PLOS one")) # multiple queries
+crossref_search_free(query=c("Renear 2012","Piwowar sharing data PLOS one")) # multiple queries
 
 # Get a DOI and get the citation using \\code{crossref_search}
-doi <- crossref_matchcite(query="Piwowar sharing data PLOS one")$doi
+doi <- crossref_search_free(query="Piwowar sharing data PLOS one")$doi
 crossref_search(doi = doi)
 
 # Queries can be quite complex too
-crossref_matchcite("M. Henrion, D. J. Mortlock, D. J. Hand, and A. Gandy, \\"A Bayesian approach to star-galaxy classification,\\" Monthly Notices of the Royal Astronomical Society, vol. 412, no. 4, pp. 2286-2302, Apr. 2011.")
+crossref_search_free("M. Henrion, D. J. Mortlock, D. J. Hand, and A. Gandy, \\"A Bayesian approach to star-galaxy classification,\\" Monthly Notices of the Royal Astronomical Society, vol. 412, no. 4, pp. 2286-2302, Apr. 2011.")
 
 # Lots of queries
 queries <- c("Piwowar sharing data PLOS one",
 						 "Priem Scientometrics 2.0 social web",
 						 "William Gunn A Crosstalk Between Myeloma Cells",
 						 "karthik ram Metapopulation dynamics override local limits")
-crossref_matchcite(queries)
+crossref_search_free(queries)
 }
 }
 \author{

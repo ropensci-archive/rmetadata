@@ -1,6 +1,6 @@
 export(count_identifiers)
-export(crossref_matchcite)
 export(crossref_search)
+export(crossref_search_free)
 export(md_getrecord)
 export(md_identify)
 export(md_listidentifiers)
