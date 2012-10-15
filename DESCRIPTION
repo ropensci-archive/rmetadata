@@ -25,4 +25,4 @@ Collate:
     'count_identifiers.r'
     'providers.r'
     'crossref_search.r'
-    'crossref_matchcite.r'
+    'crossref_search_free.r'
