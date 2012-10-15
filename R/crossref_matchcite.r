@@ -1,0 +1,39 @@
+#' Search the CrossRef Metatdata for DOIs using free form references.
+#' 
+#' @import httr plyr RJSONIO
+#' @param query Reference query; a character vector of length 1 or greater, 
+#' 		comma-separated of course.
+#' @param url Base url for the Crossref metadata API.
+#' @details Have to have at least three terms in each search query.
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
+#' @examples \dontrun{
+#' crossref_matchcite(query="Renear 2012") # too few words, need at least 3
+#' 
+#' crossref_matchcite(query=c("Renear 2012","Piwowar sharing data PLOS one")) # multiple queries
+#' 
+#' # Get a DOI and get the citation using \code{crossref_search}
+#' doi <- crossref_matchcite(query="Piwowar sharing data PLOS one")$doi
+#' crossref_search(doi = doi)
+#' 
+#' # Queries can be quite complex too
+#' crossref_matchcite("M. Henrion, D. J. Mortlock, D. J. Hand, and A. Gandy, \"A Bayesian approach to star-galaxy classification,\" Monthly Notices of the Royal Astronomical Society, vol. 412, no. 4, pp. 2286-2302, Apr. 2011.")
+#' 
+#' # Lots of queries
+#' queries <- c("Piwowar sharing data PLOS one",
+#'						 "Priem Scientometrics 2.0 social web",
+#'						 "William Gunn A Crosstalk Between Myeloma Cells",
+#'						 "karthik ram Metapopulation dynamics override local limits")
+#' crossref_matchcite(queries)
+#' }
+#' @export
+crossref_matchcite <- function(query, 
+		url = "http://search.labs.crossref.org/links")
+{
+	query2 <- RJSONIO::toJSON(c(query))
+	out <- content(POST(url, body=query2))$results
+	if(length(out)==1){ data.frame(out) } else
+		{
+			temp <- llply(out, data.frame)
+			rbind.fill(temp)
+		}
+}

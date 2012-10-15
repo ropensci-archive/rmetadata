@@ -31,10 +31,10 @@
 }
 \examples{
 \donttest{
-md_listidentifiers(provider = "dryad", from = "2012-07-15")
+# md_listidentifiers(provider = "dryad", from = "2012-07-15")
 
 # From the Open Archives list
-md_listidentifiers("arXiv", from='2008-01-15', until = '2008-01-30')
+# md_listidentifiers("arXiv", from='2008-01-15', until = '2008-01-30')
 }
 }
 \author{

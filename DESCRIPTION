@@ -2,17 +2,18 @@ Package: rmetadata
 Type: Package
 Title: Interface via OAI-PMH methods to article metadata for various databases.
 Version: 0.0.1
-License: C00
-Date: 2012-09-03
+License: CC0
+Date: 2012-10-14
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 Description: A wrapper to get article metatdata for a number of databases,
-    including PubMed Central, DataCite, Pensoft, and Hindawi journals.
+    including CrossRef, PubMed Central, DataCite, Pensoft, and Hindawi journals.
 URL: https://github.com/ropensci/rmetadata
 Imports:
     XML,
     httr,
-    plyr
+    plyr,
+    RJSONIO
 Collate:
     'md_getrecord.r'
     'md_identify.r'
@@ -24,3 +25,4 @@ Collate:
     'count_identifiers.r'
     'providers.r'
     'crossref_search.r'
+    'crossref_matchcite.r'

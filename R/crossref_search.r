@@ -41,6 +41,7 @@ crossref_search <- function(query, doi = NULL, page = NULL, rows = NULL,
 		x[sapply(x, is.null)] <- NA
 		x
 	}
+	if(!is.null(doi)){ doi <- as.character(doi) } else {doi <- doi}
 	if(is.null(doi)){
 		args <- compact(list(q=query, page=page, rows=rows, sort=sort, year=year))
 		out <- content(GET(url, query=args))

@@ -17,10 +17,10 @@
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \donttest{
-#' md_listidentifiers(provider = "dryad", from = "2012-07-15")
+#' # md_listidentifiers(provider = "dryad", from = "2012-07-15")
 #' 
 #' # From the Open Archives list
-#' md_listidentifiers("arXiv", from='2008-01-15', until = '2008-01-30')
+#' # md_listidentifiers("arXiv", from='2008-01-15', until = '2008-01-30')
 #' }
 #' @export
 md_listidentifiers <- function(provider = NULL, from = NULL, until = NULL, 
