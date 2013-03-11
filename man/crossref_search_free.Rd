@@ -20,6 +20,9 @@
 }
 \examples{
 \dontrun{
+# search with title, author, year, and journal
+crossref_search_free(query = "Piwowar Sharing Detailed Research Data Is Associated with Increased Citation Rate PLOS one 2007")
+
 crossref_search_free(query="Renear 2012") # too few words, need at least 3
 
 crossref_search_free(query=c("Renear 2012","Piwowar sharing data PLOS one")) # multiple queries
