@@ -1,26 +1,26 @@
-# rmetadata #
+# rmd #
 
 
-`rmetadata` accesses article metadata using the OAI-PMH harvester across many sources. 
+`rmd` accesses article metadata using the OAI-PMH harvester across many sources. 
 
 You do not need an API key. 
 
 Documentation for OAI-PMH in general [here](http://www.openarchives.org/OAI/openarchivesprotocol.html).
 
 
-`rmetadata` is part of the rOpenSci project, visit http://ropensci.org to learn more.
+`rmd` is part of the rOpenSci project, visit http://ropensci.org to learn more.
 
-## Install `rmetadata` from GitHub:
+## Install `rmd` from GitHub:
 
-```R 
+```r
 install.packages("devtools")
 require(devtools)
-install_github("rmetadata", "ropensci")
-require(rmetadata)
+install_github("rmd", "ropensci")
+require(rmd)
 ```
 
-## For Windows users, you can get an installable Windows binary development version of `rmetadata` at the Downloads page
-+ [get a windows binary here](https://github.com/ropensci/rmetadata/downloads)
+## For Windows users, you can get an installable Windows binary development version of `rmd` at the Downloads page
++ [get a windows binary here](https://github.com/ropensci/rmd/downloads)
 
 ### You can access all the data sources in the [OAI-PMH list of metadata providers](http://www.openarchives.org/Register/BrowseSites), in addition to some sources not on that list (more will be added later): 
 
@@ -28,6 +28,9 @@ require(rmetadata)
 + [PubMed Central](http://www.ncbi.nlm.nih.gov/pmc/)
 + [Hindawi Journals](http://www.hindawi.com/journals/)
 + [Pensoft Journals](http://www.pensoft.net/index.php)
-+ CrossRef API
-	+ [API help](http://search.labs.crossref.org/help/api)
-	+ [Example call: http://search.labs.crossref.org/dois?q=renear+palmer](http://search.labs.crossref.org/dois?q=renear+palmer)
++ CrossRef API's
+	+ [General](http://search.labs.crossref.org/help/api)
+		+ [Example call: http://search.labs.crossref.org/dois?q=renear+palmer](http://search.labs.crossref.org/dois?q=renear+palmer)
+	+ [OpenURL](http://labs.crossref.org/openurl/)
+	+ [Metadata search](http://search.labs.crossref.org/help/api)
+	+ [ranDOIm](http://random.labs.crossref.org/)

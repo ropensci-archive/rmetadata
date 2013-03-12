@@ -45,4 +45,8 @@ crossref_search_free(queries)
 \author{
   Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
+\seealso{
+  \code{\link{crossref_search}}, \code{\link{crossref_r}},
+  \code{\link{crossref_citation}}
+}
 

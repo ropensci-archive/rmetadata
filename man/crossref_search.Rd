@@ -3,8 +3,7 @@
 \title{Search the CrossRef Metatdata API.}
 \usage{
   crossref_search(query, doi = NULL, page = NULL,
-    rows = NULL, sort = NULL, year = NULL,
-    url = "http://search.labs.crossref.org/dois")
+    rows = NULL, sort = NULL, year = NULL)
 }
 \arguments{
   \item{query}{Query terms.}
@@ -18,11 +17,13 @@
   \item{sort}{Sort either by "score" or "year".}
 
   \item{year}{Year to search.}
-
-  \item{url}{Base url for the Crossref metadata API.}
 }
 \description{
   Search the CrossRef Metatdata API.
+}
+\details{
+  See \link{http://search.labs.crossref.org/help/api} for
+  more info on this Crossref API service.
 }
 \examples{
 \dontrun{
@@ -52,5 +53,10 @@ crossref_search(doi = c("10.1890/10-0340.1","10.1016/j.fbr.2012.01.001","10.1111
 }
 \author{
   Scott Chamberlain \email{myrmecocystus@gmail.com}
+}
+\seealso{
+  \code{\link{crossref_r}},
+  \code{\link{crossref_citation}},
+  \code{\link{crossref_search_free}}
 }
 

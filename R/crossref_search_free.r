@@ -5,6 +5,7 @@
 #' 		comma-separated of course.
 #' @param url Base url for the Crossref metadata API.
 #' @details Have to have at least three terms in each search query.
+#' @seealso \code{\link{crossref_search}}, \code{\link{crossref_r}}, \code{\link{crossref_citation}}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' # search with title, author, year, and journal

@@ -7,7 +7,9 @@
 #' @param rows Number of records to return.
 #' @param sort Sort either by "score" or "year".
 #' @param year Year to search.
-#' @param url Base url for the Crossref metadata API.
+#' @details See \link{http://search.labs.crossref.org/help/api} for more info on this 
+#' 		Crossref API service.
+#' @seealso \code{\link{crossref_r}}, \code{\link{crossref_citation}}, \code{\link{crossref_search_free}}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' crossref_search(query = c("renear", "palmer"))
@@ -35,8 +37,10 @@
 #' }
 #' @export
 crossref_search <- function(query, doi = NULL, page = NULL, rows = NULL,
-	sort = NULL, year = NULL, url = "http://search.labs.crossref.org/dois")
+	sort = NULL, year = NULL)
 {
+	url = "http://search.labs.crossref.org/dois"
+	
 	replacenull <- function(x){
 		x[sapply(x, is.null)] <- NA
 		x
