@@ -1,4 +1,4 @@
-Package: rmd
+Package: rmeta
 Type: Package
 Title: Scholarly metadata in R.
 Version: 0.0.1
@@ -8,7 +8,7 @@ Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 Description: A wrapper to get article metatdata for a number of databases,
     including CrossRef, PubMed Central, DataCite, Pensoft, and Hindawi journals.
-URL: https://github.com/ropensci/rmd
+URL: https://github.com/ropensci/rmeta
 Imports:
     XML,
     httr,
