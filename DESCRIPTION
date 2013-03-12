@@ -1,14 +1,14 @@
-Package: rmeta
+Package: rmetadata
 Type: Package
 Title: Scholarly metadata in R.
-Version: 0.0.1
+Version: 0.1
 License: CC0
 Date: 2013-03-21
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 Description: A wrapper to get article metatdata for a number of databases,
     including CrossRef, PubMed Central, DataCite, Pensoft, and Hindawi journals.
-URL: https://github.com/ropensci/rmeta
+URL: https://github.com/ropensci/rmetadata
 Imports:
     XML,
     httr,
