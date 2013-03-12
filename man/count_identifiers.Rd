@@ -40,4 +40,11 @@ ldply(c("datacite","Academic Commons","pensoft","arXiv"), count_identifiers)
 \author{
   Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
+\seealso{
+  \code{\link{md_identify}},
+  \code{\link{md_listidentifiers}},
+  \code{\link{md_listmetadataformats}},
+  \code{\link{md_listrecords}}, \code{\link{md_listsets}},
+  \code{\link{md_getrecord}}
+}
 

@@ -19,10 +19,22 @@
 \dontrun{
 md_listsets(provider = "datacite") # DataCite
 md_listsets(provider = "arXiv") # arXiv
-md_listsets(provider = c("datacite","pensoft","Aston University Research Archive")) # many providers
+
+# Many providers
+md_listsets(provider = c("datacite","pensoft","Aston University Research Archive"))
+
+# Fuzzy search
+md_listsets(provider = "biology", fuzzy=TRUE)
 }
 }
 \author{
   Scott Chamberlain \email{myrmecocystus@gmail.com}
+}
+\seealso{
+  \code{\link{md_identify}},
+  \code{\link{md_listidentifiers}},
+  \code{\link{md_listmetadataformats}},
+  \code{\link{md_listrecords}}, \code{\link{md_getrecord}},
+  \code{\link{count_identifiers}}
 }
 

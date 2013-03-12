@@ -3,7 +3,7 @@
 \title{Get a record from a OAI-PMH data provider.}
 \usage{
   md_getrecord(provider = NULL, identifier = NULL,
-    metadataPrefix = "oai_dc", fuzzy = FALSE)
+    metadataPrefix = "oai_dc", fuzzy = FALSE, brief = TRUE)
 }
 \arguments{
   \item{provider}{The metadata provider.}
@@ -35,9 +35,19 @@ md_getrecord(provider = "pensoft", identifier = "10.3897/zookeys.1.10")
 
 # Single provider, multiple identifiers
 md_getrecord(provider = "pensoft", identifier = c("10.3897/zookeys.1.10","10.3897/zookeys.4.57"))
+
+# More than one provider found - or just easier than typing in the whole provider name
+md_getrecord(provider = "advances", identifier = "oai:ojs.worldsciencepublisher.org:article/90", fuzzy=TRUE)
 }
 }
 \author{
   Scott Chamberlain \email{myrmecocystus@gmail.com}
+}
+\seealso{
+  \code{\link{md_identify}},
+  \code{\link{md_listidentifiers}},
+  \code{\link{md_listmetadataformats}},
+  \code{\link{md_listrecords}}, \code{\link{md_listsets}},
+  \code{\link{count_identifiers}}
 }
 

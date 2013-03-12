@@ -17,10 +17,16 @@
 #' @param token A token previously provided by the server to resume a request
 #'     where it last left off.
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
+#' @seealso \code{\link{md_identify}}, \code{\link{md_listidentifiers}}, 
+#' 		\code{\link{md_listmetadataformats}}, \code{\link{md_getrecord}}, 
+#' 		\code{\link{md_listsets}}, \code{\link{count_identifiers}}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' # Single source
 #' md_listrecords(provider = "datacite")
+#' 
+#' # Fuzzy seaerch
+#' md_listrecords(provider = "biology", fuzzy=TRUE)
 #' }
 #' @export
 md_listrecords <- function(provider = NULL, from = NULL, until = NULL, 
@@ -33,16 +39,35 @@ md_listrecords <- function(provider = NULL, from = NULL, until = NULL,
 											 from = from, until=until, token=token))
 
 	doit <- function(x, args) {
-		if(fuzzy){ get_ <- providers[ agrep(x, providers[,1], ...), ] } else
+		if(fuzzy){ get_ <- providers[ agrep(x, providers[,1]), ] } else
 			{ get_ <- providers[ grep(x, providers[,1]), ] }
 		if(nrow(get_) == 0){
 			data.frame(x="no match found")
 		} else
 			if(nrow(get_) > 1){ 
-				data.frame(repo_name = get_[,1])
+				# user prompt
+					# sort alphabetically
+					get_df <- get_[order(get_$repo_name), ]
+					rownames(get_df) <- 1:nrow(get_df)
+					
+					# prompt
+					cat("\n\n")
+					print(data.frame(get_df$repo_name))
+					cat("\nMore than one match found for provider '", provider, "'!\n
+          Enter row number of provider (other inputs will return 'NA'):\n") # prompt
+					take <- scan(n = 1, quiet = TRUE, what = 'raw')
+					
+					# Get base url to use
+					if(length(take) == 0)
+						stop(paste("\nYou need to type in a number from 1 to ",nrow(get_df),'\n',sep=''))
+					if(take %in% seq_len(nrow(get_df))){
+						take <- as.numeric(take)
+						cat("Input accepted, took provider '", as.character(get_df$repo_name[take]), "'.\n")
+						url <-  get_df$base_url[take]
+					} else { stop("\nNo match found!\n") }
 			} else
-			{
-				url <- get_[,"base_url"]
+			{ url <- get_[,"base_url"] }
+				
 				iter <- 0
 				token <- "characters" # define a iterator, also used for gettingn the resumptionToken
 				nameslist <- list() # define empty list to put joural titles in to
@@ -59,7 +84,6 @@ md_listrecords <- function(provider = NULL, from = NULL, until = NULL,
 					} else { token <- crr$ListRecords$resumptionToken$text }
 				}
 				do.call(rbind, nameslist) # concatenate
-			}
 	}	
 	llply(provider, function(x) doit(x, args) )
 }

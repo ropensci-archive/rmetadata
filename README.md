@@ -19,7 +19,7 @@ install_github("rmd", "ropensci")
 require(rmd)
 ```
 
-## For Windows users, you can get an installable Windows binary development version of `rmd` at the Downloads page
+## Windows binary at the Downloads page
 + [get a windows binary here](https://github.com/ropensci/rmd/downloads)
 
 ### You can access all the data sources in the [OAI-PMH list of metadata providers](http://www.openarchives.org/Register/BrowseSites), in addition to some sources not on that list (more will be added later): 

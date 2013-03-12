@@ -36,9 +36,19 @@
 \dontrun{
 # Single source
 md_listrecords(provider = "datacite")
+
+# Fuzzy seaerch
+md_listrecords(provider = "biology", fuzzy=TRUE)
 }
 }
 \author{
   Scott Chamberlain \email{myrmecocystus@gmail.com}
+}
+\seealso{
+  \code{\link{md_identify}},
+  \code{\link{md_listidentifiers}},
+  \code{\link{md_listmetadataformats}},
+  \code{\link{md_getrecord}}, \code{\link{md_listsets}},
+  \code{\link{count_identifiers}}
 }
 

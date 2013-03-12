@@ -3,7 +3,7 @@
 \title{List available metadata formats from various providers.}
 \usage{
   md_listmetadataformats(provider = NULL,
-    identifier = NULL, fuzzy = FALSE)
+    identifier = NULL, fuzzy = FALSE, seconds = 3)
 }
 \arguments{
   \item{provider}{The metadata provider.}
@@ -26,9 +26,20 @@ md_listmetadataformats(provider = "dryad")
 
 # List metadata formats for a specific identifier for a provider
 md_listmetadataformats(provider = "pensoft", identifier = "10.3897/zookeys.1.10")
+
+# Fuzzy search
+md_listmetadataformats(provider = "biology", fuzzy=TRUE)
+md_listmetadataformats(provider = "AnimalPhysiology-LivestockSystems")
 }
 }
 \author{
   Scott Chamberlain \email{myrmecocystus@gmail.com}
+}
+\seealso{
+  \code{\link{md_identify}},
+  \code{\link{md_listidentifiers}},
+  \code{\link{md_getrecord}}, \code{\link{md_listrecords}},
+  \code{\link{md_listsets}},
+  \code{\link{count_identifiers}}
 }
 

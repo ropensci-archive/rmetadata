@@ -4,7 +4,7 @@
 \usage{
   md_listidentifiers(provider = NULL, from = NULL,
     until = NULL, set = NULL, metadataPrefix = "oai_dc",
-    fuzzy = FALSE)
+    fuzzy = FALSE, ...)
 }
 \arguments{
   \item{provider}{The metadata provider.}
@@ -30,14 +30,23 @@
   DataCite, Hindawi Journals, Dryad, and Pensoft Journals.
 }
 \examples{
-\donttest{
-# md_listidentifiers(provider = "dryad", from = "2012-07-15")
+\dontrun{
+md_listidentifiers(provider = "dryad", from = "2012-12-15")
 
 # From the Open Archives list
-# md_listidentifiers("arXiv", from='2008-01-15', until = '2008-01-30')
+md_listidentifiers(provider = "arXiv", from='2008-01-15', until = '2008-01-19', fuzzy=TRUE)
+
+# Fuzzy search
+md_listidentifiers(provider = "biology", from='2008-01-15', until = '2008-01-30', fuzzy=TRUE)
 }
 }
 \author{
   Scott Chamberlain \email{myrmecocystus@gmail.com}
+}
+\seealso{
+  \code{\link{md_identify}}, \code{\link{md_getrecord}},
+  \code{\link{md_listmetadataformats}},
+  \code{\link{md_listrecords}}, \code{\link{md_listsets}},
+  \code{\link{count_identifiers}}
 }
 

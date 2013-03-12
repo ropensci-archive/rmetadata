@@ -26,9 +26,19 @@ md_identify(provider = "arXiv") # arXiv
 md_identify(provider = c("harvard", "journal")) # no match for one, two matches for other
 md_identify(provider = c("data", "theory", "biology"))
 md_identify(provider = "Takasu database") # refine previous for data
+
+# Using fuzzy match
+md_identify(provider = "biology", fuzzy=TRUE)
 }
 }
 \author{
   Scott Chamberlain \email{myrmecocystus@gmail.com}
+}
+\seealso{
+  \code{\link{md_getrecord}},
+  \code{\link{md_listidentifiers}},
+  \code{\link{md_listmetadataformats}},
+  \code{\link{md_listrecords}}, \code{\link{md_listsets}},
+  \code{\link{count_identifiers}}
 }
 

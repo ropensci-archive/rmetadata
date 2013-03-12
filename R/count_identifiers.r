@@ -14,6 +14,9 @@
 #' 		to query their OAI-PMH API.
 #' @param seconds Number of seconds by which to timeout an API call to one of
 #' 		the data providers.
+#' @seealso \code{\link{md_identify}}, \code{\link{md_listidentifiers}}, 
+#' 		\code{\link{md_listmetadataformats}}, \code{\link{md_listrecords}}, 
+#' 		\code{\link{md_listsets}}, \code{\link{md_getrecord}}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' # Select one
