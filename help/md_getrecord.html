@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>md_getrecord. rmetadata 0.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+  Scott Chamberlain &lt;a href='mailto:myrmecocystus@gmail.com'&gt;myrmecocystus@gmail.com&lt;/a&gt;
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rmetadata 0.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Get a record from a OAI-PMH data provider.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='md_getrecord.html'>md_getrecord</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">identifier</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">metadataPrefix</span> <span class="argument">=</span> <span class="string">"oai_dc"</span><span class="keyword">,</span> <span class="argument">fuzzy</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span>
+  <span class="argument">brief</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>provider</dt>
+      <dd>The metadata provider.</dd>
+      <dt>identifier</dt>
+      <dd>The OAI-PMH identifier for the record.</dd>
+      <dt>metadataPrefix</dt>
+      <dd>Specifies the metadata format that
+  the records will be returned in.</dd>
+      <dt>fuzzy</dt>
+      <dd>Do fuzzy search or not (default FALSE).
+  Fuzzy uses agrep.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Get records for the data sources from the OAI-PMH list,
+  and others not on that list, including PMC, DataCite,
+  Hindawi Journals, Dryad, and Pensoft Journals.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>To query multiple different identifier's from a single
+  provider, just pass in multiple identifiers like
+  c("identifier1", "identifier2").  To query identifiers
+  from different providers, just use separate calls to
+  md_getrecord.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># Single provider, one identifier</span>
+<span class="functioncall"><a href='md_getrecord.html'>md_getrecord</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> <span class="string">"pensoft"</span><span class="keyword">,</span> <span class="argument">identifier</span> <span class="argument">=</span> <span class="string">"10.3897/zookeys.1.10"</span><span class="keyword">)</span></div>
+<div class='output'>                                                                                                title     creator date
+1 A new candidate for a Gondwanaland distribution in the Zodariidae (Araneae): Australutica in Africa Jocqué,Rudy 2008
+              type
+1 Research Article
+</div>
+<div class='input'>
+<span class="comment"># Single provider, multiple identifiers</span>
+<span class="functioncall"><a href='md_getrecord.html'>md_getrecord</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> <span class="string">"pensoft"</span><span class="keyword">,</span> <span class="argument">identifier</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"10.3897/zookeys.1.10"</span><span class="keyword">,</span><span class="string">"10.3897/zookeys.4.57"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>                                                                                                   title       creator date
+1    A new candidate for a Gondwanaland distribution in the Zodariidae (Araneae): Australutica in Africa   Jocqué,Rudy 2008
+2 Studies of Tiger Beetles. CLXXVIII. A new Lophyra (Lophyra) from Somaliland (Coleoptera, Cicindelidae) Cassola,Fabio 2008
+              type
+1 Research Article
+2 Research Article
+</div>
+<div class='input'>
+<span class="comment"># More than one provider found - or just easier than typing in the whole provider name</span>
+<span class="functioncall"><a href='md_getrecord.html'>md_getrecord</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> <span class="string">"advances"</span><span class="keyword">,</span> <span class="argument">identifier</span> <span class="argument">=</span> <span class="string">"oai:ojs.worldsciencepublisher.org:article/90"</span><span class="keyword">,</span> <span class="argument">fuzzy</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span></div>
+<div class='output'>
+
+                                                            get_df.repo_name
+1                                  Advances in Applied Economics and Finance
+2                                           Advances in Asian Social Science
+3                 Advances in Computational Mathematics and its Applications
+4                          Advances in Computer Science and its Applications
+5                                             Advances in Digital Multimedia
+6                                 Advances in Electrical Engineering Systems
+7                          Advances in Information Technology and Management
+8                             Advances in Intelligent Transportation Systems
+9                    Advances in Mechanical Engineering and its Applications
+10 International Journal of Advances in Computing and Information Researches
+11                 International Journal of Advances in Engineering Sciences
+
+More than one match found for provider ' advances '!
+
+          Enter row number of provider (other inputs will return 'NA'):
+Input accepted, took provider ' Advances in Asian Social Science '.
+</div>
+<strong class='error'>Error in temp[sapply(temp, is.null)] <- "none": invalid subscript type 'list'</strong></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>md_getrecord</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='md_identify.html'>md_identify</a></code>,
+  <code><a href='md_listidentifiers.html'>md_listidentifiers</a></code>,
+  <code><a href='md_listmetadataformats.html'>md_listmetadataformats</a></code>,
+  <code><a href='md_listrecords.html'>md_listrecords</a></code>, <code><a href='md_listsets.html'>md_listsets</a></code>,
+  <code><a href='count_identifiers.html'>count_identifiers</a></code>
+
+    
+    <h2>Author</h2>
+    
+  Scott Chamberlain <a href='mailto:myrmecocystus@gmail.com'>myrmecocystus@gmail.com</a>
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

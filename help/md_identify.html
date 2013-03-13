@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>md_identify. rmetadata 0.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+  Scott Chamberlain &lt;a href='mailto:myrmecocystus@gmail.com'&gt;myrmecocystus@gmail.com&lt;/a&gt;
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rmetadata 0.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Identify the OAI-PMH service for each data provider.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='md_identify.html'>md_identify</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">fuzzy</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>provider</dt>
+      <dd>The metadata provider to identify.</dd>
+      <dt>fuzzy</dt>
+      <dd>Do fuzzy search or not (default FALSE).
+  Fuzzy uses agrep.</dd>
+      <dt>...</dt>
+      <dd>further arguments passed on to agrep (only
+  used when fuzzy equals TRUE).</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Identifies the data sources from the OAI-PMH list, and
+  others not on that list, including PMC, DataCite, Hindawi
+  Journals, Dryad, and Pensoft Journals.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='md_identify.html'>md_identify</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> <span class="string">"datacite"</span><span class="keyword">)</span></div>
+<div class='output'>  repositoryName                     baseURL protocolVersion         adminEmail    earliestDatestamp deletedRecord
+1   DataCite MDS http://oai.datacite.org/oai             2.0 admin@datacite.org 2011-01-01T00:00:00Z            no
+           granularity compression compression.1
+1 YYYY-MM-DDThh:mm:ssZ        gzip       deflate
+                                                                                                                                                      description
+1 oai, oai.datacite.org, :, oai:oai.datacite.org:12425, http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd
+</div>
+<div class='input'><span class="functioncall"><a href='md_identify.html'>md_identify</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"datacite"</span><span class="keyword">,</span><span class="string">"pensoft"</span><span class="keyword">)</span><span class="keyword">)</span> <span class="comment"># many providers</span></div>
+<div class='output'>      repositoryName                     baseURL protocolVersion         adminEmail    earliestDatestamp deletedRecord
+1       DataCite MDS http://oai.datacite.org/oai             2.0 admin@datacite.org 2011-01-01T00:00:00Z            no
+2 Pensoft Publishers       http://oai.pensoft.eu             2.0   info@pensoft.net           2008-07-04            no
+           granularity compression compression.1
+1 YYYY-MM-DDThh:mm:ssZ        gzip       deflate
+2           YYYY-MM-DD        NULL          NULL
+                                                                                                                                                      description
+1 oai, oai.datacite.org, :, oai:oai.datacite.org:12425, http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd
+2                                                                                                                                                            NULL
+</div>
+<div class='input'><span class="functioncall"><a href='md_identify.html'>md_identify</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> <span class="string">"arXiv"</span><span class="keyword">)</span> <span class="comment"># arXiv</span></div>
+<div class='output'>  repositoryName                      baseURL protocolVersion          adminEmail earliestDatestamp deletedRecord granularity
+1          arXiv http://export.arxiv.org/oai2             2.0 www-admin@arxiv.org        2007-05-23    persistent  YYYY-MM-DD
+                                                                                                                                                                                                                                                                                                                                                                                                                                      description
+1 Author self-archived e-prints, Metadata harvesting permitted through OAI interface, http://arxiv.org/help/oa/metadataPolicy, Full-content harvesting not permitted (except by special arrangement), http://arxiv.org/help/oa/dataPolicy, Author self-submission preferred, submissions screened for appropriateness., http://arxiv.org/help/submit, http://www.openarchives.org/OAI/1.1/eprints http://www.openarchives.org/OAI/1.1/eprints.xsd
+                                                                                                                                                                                                                                                                        description.1
+1 http://arxiv.org/OAI/arXivLogo.png, http://arxiv.org/, arXiv e-print archive, 88, 31, http://arxiv.org/OAI/arXivMetadata.xsl, http://www.openarchives.org/OAI/2.0/oai_dc/, text/xsl, http://www.openarchives.org/OAI/2.0/branding/ http://www.openarchives.org/OAI/2.0/branding.xsd
+</div>
+<div class='input'><span class="functioncall"><a href='md_identify.html'>md_identify</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"harvard"</span><span class="keyword">,</span> <span class="string">"journal"</span><span class="keyword">)</span><span class="keyword">)</span> <span class="comment"># no match for one, two matches for other</span></div>
+<strong class='error'>Error in FUN(X[[1L]], ...): 
+No match found!
+</strong>
+<div class='input'><span class="functioncall"><a href='md_identify.html'>md_identify</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"data"</span><span class="keyword">,</span> <span class="string">"theory"</span><span class="keyword">,</span> <span class="string">"biology"</span><span class="keyword">)</span><span class="keyword">)</span></div>
+<div class='output'>
+
+                                            get_df.repo_name
+1 FOREX - Research- and Expertdatabase, University of Bremen
+2        National Institute of Informatics Metadata Database
+3                Nature Publishing Group Metadata Repository
+4                                            Takasu database
+5                                            Theses database
+6          Western Waters Digital Library OAI data provider.
+7                                                   datacite
+
+More than one match found for provider ' data theory biology '!
+
+          Enter row number of provider (other inputs will return 'NA'):
+Input accepted, took provider ' National Institute of Informatics Metadata Database '.
+Space required after the Public Identifier
+SystemLiteral " or ' expected
+SYSTEM or PUBLIC, the URI is missing
+</div>
+<strong class='error'>Error: 1: Space required after the Public Identifier
+2: SystemLiteral " or ' expected
+3: SYSTEM or PUBLIC, the URI is missing
+</strong>
+<div class='input'><span class="functioncall"><a href='md_identify.html'>md_identify</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> <span class="string">"Takasu database"</span><span class="keyword">)</span> <span class="comment"># refine previous for data</span></div>
+<div class='output'>                         repositoryName                                           baseURL protocolVersion         adminEmail
+1 InfoLib OAI-PMH Repository EDITVer4.0 http://dasgfs01/infolib/repository/oai-repository             2.0 test@infocom.co.jp
+     earliestDatestamp deletedRecord          granularity
+1 0000-01-01T00:00:00Z    persistent YYYY-MM-DDThh:mm:ssZ
+                                                                                                                                                             description
+1 oai, infocom.co.jp, :, oai:infocom.co.jp:M20030612121200001, http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd
+</div>
+<div class='input'>
+<span class="comment"># Using fuzzy match</span>
+<span class="functioncall"><a href='md_identify.html'>md_identify</a></span><span class="keyword">(</span><span class="argument">provider</span> <span class="argument">=</span> <span class="string">"biology"</span><span class="keyword">,</span> <span class="argument">fuzzy</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span></div>
+<div class='output'>
+
+                                   get_df.repo_name
+1                 AnimalPhysiology-LivestockSystems
+2                                       Aphasiology
+3                 Archives of Clinical Microbiology
+4 International Journal of Cell & Molecular Biology
+5                         Wildlife Biology Practice
+
+More than one match found for provider ' biology '!
+
+          Enter row number of provider (other inputs will return 'NA'):
+Input accepted, took provider ' Aphasiology '.
+</div>
+<div class='output'>  repositoryName                               baseURL protocolVersion                       adminEmail earliestDatestamp
+1    Aphasiology http://aphasiology.pitt.edu/perl/oai2             2.0 mailto:aphasiology@mail.pitt.edu        0001-01-01
+  deletedRecord granularity
+1    persistent  YYYY-MM-DD
+                                                                                                                                                         description
+1 oai, GenericEPrints.OAI2, :, oai:GenericEPrints.OAI2:23, http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       description.1
+1 The Aphasiology Archive is a repository of papers presented at the annual Clinical Aphasiology Conference (CAC). Since 1971, the CAC has provided an important forum for the exchange of information related to the diagnosis, assessment, and treatment of persons with communication impairments - primarily those of aphasia but also including a restricted range of related disorders. \nThe archive contains information about papers presented at the annual conference from 1972 to the present. Three types of records are included in the archive:\nRecords with full-text abstracts of conference presentations.\nRecords with links to full-text articles based on conference presentations. Each year a select number of conference papers are expanded and published in a special conference issue of a professional journal. Permission to view the full-text article is subject to the publisher's access restrictions. \nRecords containing only metadata about the conference presentation. For these records, no abstracts or links to full-text articles are provided.\n\n, Metadata may be freely harvested through the OAI interface.\n, Full-content harvesting of the documents in this archive is not permitted. All documents available from this server may be protected under U.S. and foreign copyright laws. Except for single copies for personal use, documents in the Aphasiology Archive may not be reproduced without permission from the author or copyright owner. URL: http://aphasiology.pitt.edu/information.html\n, The Aphasiology Archive does not solicit or accept direct submissions from scholars. Deposits to the Aphasiology Archive are made annually by the University Library System, University of Pittsburgh, based on papers accepted for presentation at the annual Clinical Aphasiology Conference. Information about submitting a paper to the Clinical Aphasiology Conference is available from the CAC website, http://cac.library.pitt.edu.\n, This system is running eprints server software (EPrints 2.2.1 (pepper) [Born on 2002-11-14]) developed at the University of Southampton. For more information see http://www.eprints.org/, http://www.openarchives.org/OAI/1.1/eprints http://www.openarchives.org/OAI/1.1/eprints.xsd
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>md_identify</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='md_getrecord.html'>md_getrecord</a></code>,
+  <code><a href='md_listidentifiers.html'>md_listidentifiers</a></code>,
+  <code><a href='md_listmetadataformats.html'>md_listmetadataformats</a></code>,
+  <code><a href='md_listrecords.html'>md_listrecords</a></code>, <code><a href='md_listsets.html'>md_listsets</a></code>,
+  <code><a href='count_identifiers.html'>count_identifiers</a></code>
+
+    
+    <h2>Author</h2>
+    
+  Scott Chamberlain <a href='mailto:myrmecocystus@gmail.com'>myrmecocystus@gmail.com</a>
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

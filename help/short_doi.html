@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>short_doi. rmetadata 0.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+  Scott Chamberlain &lt;a href='mailto:myrmecocystus@gmail.com'&gt;myrmecocystus@gmail.com&lt;/a&gt;
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rmetadata 0.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Get a random set of DOI's through CrossRef.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='short_doi.html'>short_doi</a></span><span class="keyword">(</span><span class="argument">doi</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">justshort</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>doi</dt>
+      <dd>A long-form DOI.</dd>
+      <dt>justshort</dt>
+      <dd>If TRUE, return just the short DOI. If
+  false, the short DOI, the submitted long-form DOI, and
+  whether the short DOI is new.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>Either the short DOI or the submitted DOI, the short DOI,
+  and whether it is a new short DOI or not.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Get a random set of DOI's through CrossRef.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>See here <a href = 'http://shortdoi.org/'>http://shortdoi.org/</a> for more information.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># Geta a short DOI, just the short DOI returned</span>
+<span class="functioncall"><a href='short_doi.html'>short_doi</a></span><span class="keyword">(</span><span class="argument">doi</span> <span class="argument">=</span> <span class="string">"10.1371/journal.pone.0042793"</span><span class="keyword">)</span></div>
+<div class='output'>[1] "10/f2bfz9"
+</div>
+<div class='input'><span class="functioncall"><a href='short_doi.html'>short_doi</a></span><span class="keyword">(</span><span class="argument">doi</span> <span class="argument">=</span> <span class="string">"10.1890/10-0340.1"</span><span class="keyword">)</span></div>
+<div class='output'>[1] "10/fhxmb2"
+</div>
+<div class='input'>
+<span class="comment"># Geta a short DOI, all data returned</span>
+<span class="functioncall"><a href='short_doi.html'>short_doi</a></span><span class="keyword">(</span><span class="argument">doi</span> <span class="argument">=</span> <span class="string">"10.1371/journal.pone.0042793"</span><span class="keyword">,</span> <span class="argument">justshort</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">)</span></div>
+<div class='output'>$DOI
+[1] "10.1371/journal.pone.0042793"
+
+$ShortDOI
+[1] "10/f2bfz9"
+
+$IsNew
+[1] FALSE
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>short_doi</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='crossref_search.html'>crossref_search</a></code>,
+  <code><a href='crossref_citation.html'>crossref_citation</a></code>,
+  <code><a href='crossref_search_free.html'>crossref_search_free</a></code>
+
+    
+    <h2>Author</h2>
+    
+  Scott Chamberlain <a href='mailto:myrmecocystus@gmail.com'>myrmecocystus@gmail.com</a>
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

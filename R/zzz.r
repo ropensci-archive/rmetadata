@@ -1,1 +1,0 @@
-rmdCache <- new.env(hash=TRUE)

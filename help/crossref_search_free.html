@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>crossref_search_free. rmetadata 0.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+  Scott Chamberlain &lt;a href='mailto:myrmecocystus@gmail.com'&gt;myrmecocystus@gmail.com&lt;/a&gt;
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rmetadata 0.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Search the CrossRef Metatdata for DOIs using free form references.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='crossref_search_free.html'>crossref_search_free</a></span><span class="keyword">(</span><span class="symbol">query</span><span class="keyword">,</span> <span class="argument">url</span> <span class="argument">=</span> <span class="string">"http://search.labs.crossref.org/links"</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>query</dt>
+      <dd>Reference query; a character vector of
+  length 1 or greater, comma-separated of course.</dd>
+      <dt>url</dt>
+      <dd>Base url for the Crossref metadata API.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Search the CrossRef Metatdata for DOIs using free form
+  references.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>Have to have at least three terms in each search query.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># search with title, author, year, and journal</span>
+<span class="functioncall"><a href='crossref_search_free.html'>crossref_search_free</a></span><span class="keyword">(</span><span class="argument">query</span> <span class="argument">=</span> <span class="string">"Piwowar Sharing Detailed Research Data Is Associated with Increased Citation Rate PLOS one 2007"</span><span class="keyword">)</span></div>
+<div class='output'>                                                                                             text match                   doi
+1 Piwowar Sharing Detailed Research Data Is Associated with Increased Citation Rate PLOS one 2007  TRUE 10.1038/npre.2007.361
+     score
+1 4.908581
+</div>
+<div class='input'>
+<span class="functioncall"><a href='crossref_search_free.html'>crossref_search_free</a></span><span class="keyword">(</span><span class="argument">query</span><span class="argument">=</span><span class="string">"Renear 2012"</span><span class="keyword">)</span> <span class="comment"># too few words, need at least 3</span></div>
+<div class='output'>         text        reason match
+1 Renear 2012 Too few terms FALSE
+</div>
+<div class='input'>
+<span class="functioncall"><a href='crossref_search_free.html'>crossref_search_free</a></span><span class="keyword">(</span><span class="argument">query</span><span class="argument">=</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"Renear 2012"</span><span class="keyword">,</span><span class="string">"Piwowar sharing data PLOS one"</span><span class="keyword">)</span><span class="keyword">)</span> <span class="comment"># multiple queries</span></div>
+<div class='output'>                           text        reason match                          doi    score
+1                   Renear 2012 Too few terms FALSE                         <NA>       NA
+2 Piwowar sharing data PLOS one          <NA>  TRUE 10.1371/journal.pone.0000308 3.424497
+</div>
+<div class='input'>
+<span class="comment"># Get a DOI and get the citation using \code{crossref_search}</span>
+<span class="symbol">doi</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='crossref_search_free.html'>crossref_search_free</a></span><span class="keyword">(</span><span class="argument">query</span><span class="argument">=</span><span class="string">"Piwowar sharing data PLOS one"</span><span class="keyword">)</span><span class="keyword">$</span><span class="symbol">doi</span>
+<span class="functioncall"><a href='crossref_search.html'>crossref_search</a></span><span class="keyword">(</span><span class="argument">doi</span> <span class="argument">=</span> <span class="symbol">doi</span><span class="keyword">)</span></div>
+<div class='output'>                           doi    score normalizedScore                                                                     title
+1 10.1371/journal.pone.0000308 18.08944             100 Sharing Detailed Research Data Is Associated with Increased Citation Rate
+                                                                                                                                                                                      fullCitation
+1 Heather A. Piwowar, Roger S. Day, Douglas B. Fridsma, John Ioannidis, 2007, 'Sharing Detailed Research Data Is Associated with Increased Citation Rate', <i>PLoS ONE</i>, vol. 2, no. 3, p. e308
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            coins
+1 ctx_ver=Z39.88-2004&amp;rft_id=info%3Adoi%2F10.1371%2Fjournal.pone.0000308&amp;rfr_id=info%3Asid%2Fcrossref.org%3Asearch&amp;rft.atitle=Sharing+Detailed+Research+Data+Is+Associated+with+Increased+Citation+Rate&amp;rft.jtitle=PLoS+ONE&amp;rft.date=2007&amp;rft.volume=2&amp;rft.issue=3&amp;rft.spage=e308&amp;rft.aufirst=Heather+A.&amp;rft.aulast=Piwowar&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.au=Heather+A.+Piwowar&amp;rft.au=+Roger+S.+Day&amp;rft.au=+Douglas+B.+Fridsma&amp;rft.au=+John+Ioannidis
+  year
+1 2007
+</div>
+<div class='input'>
+<span class="comment"># Queries can be quite complex too</span>
+<span class="functioncall"><a href='crossref_search_free.html'>crossref_search_free</a></span><span class="keyword">(</span><span class="string">"M. Henrion, D. J. Mortlock, D. J. Hand, and A. Gandy, \"A Bayesian approach to star-galaxy classification,\" Monthly Notices of the Royal Astronomical Society, vol. 412, no. 4, pp. 2286-2302, Apr. 2011."</span><span class="keyword">)</span></div>
+<div class='output'>                                                                                                                                                                                                      text
+1 M. Henrion, D. J. Mortlock, D. J. Hand, and A. Gandy, "A Bayesian approach to star-galaxy classification," Monthly Notices of the Royal Astronomical Society, vol. 412, no. 4, pp. 2286-2302, Apr. 2011.
+  match                              doi    score
+1  TRUE 10.1111/j.1365-2966.2010.18055.x 4.508922
+</div>
+<div class='input'>
+<span class="comment"># Lots of queries</span>
+<span class="symbol">queries</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/c'>c</a></span><span class="keyword">(</span><span class="string">"Piwowar sharing data PLOS one"</span><span class="keyword">,</span>
+                                                 <span class="string">"Priem Scientometrics 2.0 social web"</span><span class="keyword">,</span>
+                                                 <span class="string">"William Gunn A Crosstalk Between Myeloma Cells"</span><span class="keyword">,</span>
+                                                 <span class="string">"karthik ram Metapopulation dynamics override local limits"</span><span class="keyword">)</span>
+<span class="functioncall"><a href='crossref_search_free.html'>crossref_search_free</a></span><span class="keyword">(</span><span class="symbol">queries</span><span class="keyword">)</span></div>
+<div class='output'>                                                       text match                          doi    score
+1                             Piwowar sharing data PLOS one  TRUE 10.1371/journal.pone.0000308 3.424497
+2                       Priem Scientometrics 2.0 social web  TRUE    10.1007/s11192-012-0738-1 2.046859
+3            William Gunn A Crosstalk Between Myeloma Cells  TRUE  10.1634/stemcells.2005-0220 2.812324
+4 karthik ram Metapopulation dynamics override local limits  TRUE            10.1890/08-0228.1 4.812638
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>crossref_search_free</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='crossref_search.html'>crossref_search</a></code>, <code><a href='crossref_r.html'>crossref_r</a></code>,
+  <code><a href='crossref_citation.html'>crossref_citation</a></code>
+
+    
+    <h2>Author</h2>
+    
+  Scott Chamberlain <a href='mailto:myrmecocystus@gmail.com'>myrmecocystus@gmail.com</a>
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

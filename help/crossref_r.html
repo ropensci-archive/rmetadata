@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>crossref_r. rmetadata 0.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+  Scott Chamberlain &lt;a href='mailto:myrmecocystus@gmail.com'&gt;myrmecocystus@gmail.com&lt;/a&gt;
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">rmetadata 0.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Get a random set of DOI's through CrossRef.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='crossref_r.html'>crossref_r</a></span><span class="keyword">(</span><span class="argument">count</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">to</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">from</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">type</span> <span class="argument">=</span> NULL<span class="keyword">,</span> <span class="argument">issn</span> <span class="argument">=</span> NULL<span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>count</dt>
+      <dd>The number of returned random DOIs. Maximum
+  is 1000, default 20.  Note that a request for 1000 random
+  DOIs will take a few seconds to complete, whereas a
+  request for 20 will take ~1 second.</dd>
+      <dt>to</dt>
+      <dd>Return only DOIs published before and including
+  the given year.</dd>
+      <dt>from</dt>
+      <dd>Return only DOIs published after and
+  including the given year.  Specifiying a long time period
+  with to and from will cause multi-second response times
+  since the service will try to provide DOIs distributed
+  throughout the time period.</dd>
+      <dt>type</dt>
+      <dd>Return DOIs of a certain type. Must be one of
+  these unixref derived types: journal_article,
+  conference_paper, report_paper, journal_issue, journal,
+  book, book_series, book_set, dissertation, content_item,
+  series, or standard.</dd>
+      <dt>issn</dt>
+      <dd>Return only journal article DOIs published in
+  a journal with given ISSN. Provide ISSNs in the form
+  xxxx-xxxx . However, sometimes this form won't match
+  because of how metadata has been submitted to CrossRef.
+  If it doesn't, try the form xxxxxxxx .</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>Ten DOI's in R's bibentry format.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>From CrossRef website: "It [this API] might be useful to
+  anybody doing research on scholarly publications."</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>From the Crossref documentation: A random distribution of
+  values, 0 to 1, has been assigned to our DOI records. We
+  use this as an index to look up a random values between 0
+  and 1 on each request, and take a series of DOIs from
+  that point in randomised order. Selection on year, title
+  and ISSN filters out records before a lookup on the
+  random index.  See <a href = 'http://random.labs.crossref.org/'>http://random.labs.crossref.org/</a>
+  for more info on this Crossref API service.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment"># Default search gets 20 random DOIs</span>
+<span class="functioncall"><a href='crossref_r.html'>crossref_r</a></span><span class="keyword">(</span><span class="keyword">)</span></div>
+<div class='output'> [1] "10.1023/A:1015940811827"            "10.1080/01621459.1975.10479894"     "10.1016/0032-3861(76)90165-8"      
+ [4] "10.1016/S0140-6736(01)56309-6"      "10.1029/2010GC003409"               "10.1016/S0924-0136(99)00145-4"     
+ [7] "10.1016/j.matdes.2003.10.015"       "10.1111/j.1365-2621.1992.tb06860.x" "10.1016/j.fsi.2010.07.035"         
+[10] "10.1109/TIP.2004.826096"            "10.1271/nogeikagaku1924.72.sup_286" "10.1186/1752-0509-1-5"             
+[13] "10.1007/978-3-540-72816-0_5121"     "10.2143/BAB.80.0.630014"            "10.1038/jid.1964.193"              
+[16] "10.1159/000206416"                  "10.1049/ep.1983.0251"               "10.1080/02699930902927664"         
+[19] "10.1136/bmj.287.6393.649"           "10.2307/1992604"                   
+</div>
+<div class='input'>
+<span class="comment"># limit to certain dates</span>
+<span class="functioncall"><a href='crossref_r.html'>crossref_r</a></span><span class="keyword">(</span><span class="argument">from</span><span class="argument">=</span><span class="number">1990</span><span class="keyword">,</span> <span class="argument">to</span><span class="argument">=</span><span class="number">1999</span><span class="keyword">)</span></div>
+<div class='output'> [1] "10.1080/10884600801897106"                  "10.1093/res/50.198.188"                    
+ [3] "10.1007/BF02505285"                         "10.4028/www.scientific.net/MSF.185-188.465"
+ [5] "10.1111/j.1600-0587.2010.06141.x"           "10.1238/Physica.Topical.115a00390"         
+ [7] "10.1213/ANE.0b013e3181b1286b"               "10.1046/j.1365-2567.1999.00844.x"          
+ [9] "10.1016/S0161-5890(02)00068-8"              "10.1007/978-3-642-71974-5_104"             
+[11] "10.1016/j.combustflame.2008.09.011"         "10.1177/1477835105053512"                  
+[13] "10.1209/0295-5075/98/21002"                 "10.1002/bit.10837"                         
+[15] "10.1109/IFITA.2009.286"                     "10.1074/jbc.M404934200"                    
+[17] "10.1016/S0221-0363(08)75644-0"              "10.1007/bf02361006"                        
+[19] "10.1046/j.1442-9993.2001.01139.x"           "10.1034/j.1399-6576.2002.460727.x"         
+</div>
+<div class='input'>
+<span class="comment"># Specify you want journal articles only</span>
+<span class="functioncall"><a href='crossref_r.html'>crossref_r</a></span><span class="keyword">(</span><span class="argument">type</span> <span class="argument">=</span> <span class="string">'journal_article'</span><span class="keyword">)</span></div>
+<div class='output'> [1] "10.1016/j.sna.2010.10.002"            "10.1038/200407a0"                     "10.1002/prac.19943360801"            
+ [4] "10.1557/PROC-390-189"                 "10.1136/adc.65.10.1192-b"             "10.1021/j100886a518"                 
+ [7] "10.1016/j.oraloncology.2005.06.021"   "10.1109/C-M.1976.218379"              "10.1111/j.1365-2958.1996.tb02566.x"  
+[10] "10.1080/01619568509538479"            "10.1016/0044-8486(91)90205-L"         "10.1016/S0959-8049(11)71605-7"       
+[13] "10.1001/archotol.1958.00730010276002" "10.1016/0378-4371(82)90099-1"         "10.1001/jama.1963.03700050119026"    
+[16] "10.1080/01638530802070015"            "10.1136/bmj.c1631"                    "10.1117/12.7972069"                  
+[19] "10.1021/je00055a028"                  "10.1074/mcp.M400112-MCP200"          
+</div>
+<div class='input'>
+<span class="comment"># This doesn't seem to work</span>
+<span class="functioncall"><a href='crossref_r.html'>crossref_r</a></span><span class="keyword">(</span><span class="argument">issn</span> <span class="argument">=</span> <span class="string">'1932-6203'</span><span class="keyword">)</span></div>
+<div class='output'>list()
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>crossref_r</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='crossref_search.html'>crossref_search</a></code>,
+  <code><a href='crossref_citation.html'>crossref_citation</a></code>,
+  <code><a href='crossref_search_free.html'>crossref_search_free</a></code>
+
+    
+    <h2>Author</h2>
+    
+  Scott Chamberlain <a href='mailto:myrmecocystus@gmail.com'>myrmecocystus@gmail.com</a>
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
