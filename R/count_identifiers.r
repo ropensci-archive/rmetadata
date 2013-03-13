@@ -43,7 +43,7 @@ count_identifiers <- function(provider = NULL, metadataPrefix = 'oai_dc',
   
   if(useurl == TRUE){ url <- provider } else
   {
-    if(fuzzy){ get_ <- providers[ agrep(provider, providers[,1], ...), ] } else
+    if(fuzzy){ get_ <- providers[ agrep(provider, providers[,1]), ] } else
     { get_ <- providers[ grep(provider, providers[,1]), ] }
     if(nrow(get_) == 0){ data.frame(x="no match found") } else
       if(nrow(get_) > 1){  data.frame(repo_name = get_[,1]) } else 

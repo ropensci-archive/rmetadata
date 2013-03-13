@@ -13,6 +13,9 @@
 
   \item{fuzzy}{Do fuzzy search or not (default FALSE).
   Fuzzy uses agrep.}
+
+  \item{seconds}{Number of seconds to wait for call to
+  complete.}
 }
 \description{
   List metadata formats for the data sources from the

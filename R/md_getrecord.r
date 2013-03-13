@@ -10,6 +10,7 @@
 #' @param metadataPrefix Specifies the metadata format that the records will be 
 #'     returned in. 
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
+#' @param brief Give brief results (just a subset of columns)
 #' @details To query multiple different identifier's from a single provider, 
 #' 		just pass in multiple identifiers like c("identifier1", "identifier2").
 #' 		To query identifiers from different providers, just use separate calls to

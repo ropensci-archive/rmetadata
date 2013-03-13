@@ -13,6 +13,7 @@
 #' 		
 #' 		This function updates the table for you. Does take a while though, so 
 #' 		go get a coffee.
+#' @param path Path to put data in.
 #' @seealso \code{\link{load_providers}}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \donttest{

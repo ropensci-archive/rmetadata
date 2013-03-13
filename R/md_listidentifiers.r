@@ -29,7 +29,7 @@
 #' }
 #' @export
 md_listidentifiers <- function(provider = NULL, from = NULL, until = NULL, 
-	set = NULL, metadataPrefix = 'oai_dc', fuzzy = FALSE, ...)
+	set = NULL, metadataPrefix = 'oai_dc', fuzzy = FALSE)
 { 
 	if(exists(as.character(substitute(providers)))==TRUE){ NULL } else
 		{ data(providers); message("loaded providers") }

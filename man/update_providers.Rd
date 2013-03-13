@@ -4,6 +4,9 @@
 \usage{
   update_providers(path = ".")
 }
+\arguments{
+  \item{path}{Path to put data in.}
+}
 \description{
   Data comes from
   \url{http://www.openarchives.org/Register/BrowseSites}.

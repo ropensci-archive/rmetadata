@@ -8,6 +8,7 @@
 #' @param provider The metadata provider.
 #' @param identifier The OAI-PMH identifier for the record. Optional.
 #' @param fuzzy Do fuzzy search or not (default FALSE). Fuzzy uses agrep.
+#' @param seconds Number of seconds to wait for call to complete. 
 #' @seealso \code{\link{md_identify}}, \code{\link{md_listidentifiers}}, 
 #' 		\code{\link{md_getrecord}}, \code{\link{md_listrecords}}, 
 #' 		\code{\link{md_listsets}}, \code{\link{count_identifiers}}

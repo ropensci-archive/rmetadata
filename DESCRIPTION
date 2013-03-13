@@ -15,7 +15,8 @@ Imports:
     XML,
     httr,
     plyr,
-    RJSONIO
+    RJSONIO,
+    RCurl
 Collate:
     'md_getrecord.r'
     'md_identify.r'

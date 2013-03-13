@@ -7,6 +7,8 @@
 \arguments{
   \item{path}{location where cache is located. Leaving to
   NULL loads the version in the installed package.}
+
+  \item{envir}{R environment to load data in to.}
 }
 \value{
   loads the object providers into the working space.

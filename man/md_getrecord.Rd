@@ -15,6 +15,9 @@
 
   \item{fuzzy}{Do fuzzy search or not (default FALSE).
   Fuzzy uses agrep.}
+
+  \item{brief}{Give brief results (just a subset of
+  columns)}
 }
 \description{
   Get records for the data sources from the OAI-PMH list,

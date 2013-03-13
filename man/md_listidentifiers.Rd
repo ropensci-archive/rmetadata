@@ -4,7 +4,7 @@
 \usage{
   md_listidentifiers(provider = NULL, from = NULL,
     until = NULL, set = NULL, metadataPrefix = "oai_dc",
-    fuzzy = FALSE, ...)
+    fuzzy = FALSE)
 }
 \arguments{
   \item{provider}{The metadata provider.}
