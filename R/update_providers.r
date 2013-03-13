@@ -15,7 +15,7 @@
 #' 		go get a coffee.
 #' @seealso \code{\link{load_providers}}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
-#' @examples \dontrun{
+#' @examples \donttest{
 #' update_providers()
 #' load_providers()
 #' }

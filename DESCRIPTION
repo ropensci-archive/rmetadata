@@ -9,6 +9,8 @@ Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
 Description: A wrapper to get article metatdata for a number of databases,
     including CrossRef, PubMed Central, DataCite, Pensoft, and Hindawi journals.
 URL: https://github.com/ropensci/rmetadata
+LazyLoad: yes
+LazyData: yes
 Imports:
     XML,
     httr,

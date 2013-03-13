@@ -6,7 +6,7 @@
 #' @return loads the object providers into the working space. 
 #' @seealso \code{\link{update_providers}}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
-#' @examples \dontrun{
+#' @examples \donttest{
 #' # By default the new providers table goes to directory ".", so just load from there
 #' update_providers() 
 #' load_providers(path=".")

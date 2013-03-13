@@ -35,8 +35,8 @@
   text.
 }
 \details{
-  See \link{http://labs.crossref.org/openurl/} for more
-  info on this Crossref API service.
+  See \url{http://labs.crossref.org/openurl/} for more info
+  on this Crossref API service.
 }
 \examples{
 \dontrun{

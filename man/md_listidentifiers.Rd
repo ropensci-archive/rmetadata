@@ -32,12 +32,6 @@
 \examples{
 \dontrun{
 md_listidentifiers(provider = "dryad", from = "2012-12-15")
-
-# From the Open Archives list
-md_listidentifiers(provider = "arXiv", from='2008-01-15', until = '2008-01-19', fuzzy=TRUE)
-
-# Fuzzy search
-md_listidentifiers(provider = "biology", from='2008-01-15', until = '2008-01-30', fuzzy=TRUE)
 }
 }
 \author{

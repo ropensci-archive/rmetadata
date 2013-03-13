@@ -22,7 +22,7 @@
   Search the CrossRef Metatdata API.
 }
 \details{
-  See \link{http://search.labs.crossref.org/help/api} for
+  See \url{http://search.labs.crossref.org/help/api} for
   more info on this Crossref API service.
 }
 \examples{

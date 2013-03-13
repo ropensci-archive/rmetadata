@@ -7,7 +7,7 @@
 #' @param rows Number of records to return.
 #' @param sort Sort either by "score" or "year".
 #' @param year Year to search.
-#' @details See \link{http://search.labs.crossref.org/help/api} for more info on this 
+#' @details See \url{http://search.labs.crossref.org/help/api} for more info on this 
 #' 		Crossref API service.
 #' @seealso \code{\link{crossref_r}}, \code{\link{crossref_citation}}, \code{\link{crossref_search_free}}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}

@@ -11,7 +11,7 @@
 #' @param curl If using in a loop, call getCurlHandle() first and pass 
 #'  the returned value in here (avoids unnecessary footprint)
 #' @return Metadata from DOI in R's bibentry format.
-#' @details See \link{http://labs.crossref.org/openurl/} for more info on this 
+#' @details See \url{http://labs.crossref.org/openurl/} for more info on this 
 #' 		Crossref API service.
 #' @seealso \code{\link{crossref_search}}, \code{\link{crossref_r}}, \code{\link{crossref_search_free}}
 #' @author Carl Boettiger \email{cboettig@@gmail.com}

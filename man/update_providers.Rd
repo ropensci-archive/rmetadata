@@ -23,7 +23,7 @@
   while though, so go get a coffee.
 }
 \examples{
-\dontrun{
+\donttest{
 update_providers()
 load_providers()
 }

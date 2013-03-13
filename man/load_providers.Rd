@@ -19,7 +19,7 @@
   workspace.
 }
 \examples{
-\dontrun{
+\donttest{
 # By default the new providers table goes to directory ".", so just load from there
 update_providers()
 load_providers(path=".")

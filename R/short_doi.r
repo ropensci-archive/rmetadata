@@ -6,7 +6,7 @@
 #' 		the submitted long-form DOI, and whether the short DOI is new. 
 #' @return Either the short DOI or the submitted DOI, the short DOI, and whether 
 #' 		it is a new short DOI or not.
-#' @details See here \link{http://shortdoi.org/} for more information.
+#' @details See here \url{http://shortdoi.org/} for more information.
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @seealso \code{\link{crossref_search}}, \code{\link{crossref_citation}}, \code{\link{crossref_search_free}}
 #' @examples \dontrun{

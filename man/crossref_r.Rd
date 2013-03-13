@@ -46,9 +46,8 @@
   and 1 on each request, and take a series of DOIs from
   that point in randomised order. Selection on year, title
   and ISSN filters out records before a lookup on the
-  random index.  See
-  \link{http://random.labs.crossref.org/} for more info on
-  this Crossref API service.
+  random index.  See \url{http://random.labs.crossref.org/}
+  for more info on this Crossref API service.
 }
 \examples{
 \dontrun{

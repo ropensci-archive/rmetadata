@@ -19,8 +19,7 @@
   Get a random set of DOI's through CrossRef.
 }
 \details{
-  See here \link{http://shortdoi.org/} for more
-  information.
+  See here \url{http://shortdoi.org/} for more information.
 }
 \examples{
 \dontrun{
