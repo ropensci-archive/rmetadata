@@ -19,7 +19,7 @@
   <div class="span11 offset1">
   <div class="row">
   <br><br>
-   <h1>rmetadata, v0.0.3</h1>
+   <h1>rmetadata, v0.1</h1>
   </div>
 
   <div class"row"><a href="http://altmetric.com/">rmetadata</a> does all things metadata in R. rmetadata hits many web APIs for scholarly metadata - if we don' have it, just let us know <a href="https://github.com/ropensci/rmetadata/issues">on our issues page</a>.
@@ -40,6 +40,7 @@
           <li><a href="#installation"><i class="icon-chevron-right"></i> Installation</a></li>
           <li><a href="#count"><i class="icon-chevron-right"></i> Count OAI-PMH identifiers</a></li>
           <li><a href="#crossref_citation"><i class="icon-chevron-right"></i> Get a ciation via Crossref</a></li>
+          <li><a href="#crossref_freeform"><i class="icon-chevron-right"></i> Free form Crossref search</a></li>
           <li><a href="#crossref_random"><i class="icon-chevron-right"></i> Get random DOIs via Crossref</a></li>
           <li><a href="#crossref_metadata"><i class="icon-chevron-right"></i> Search Crossref metadata API</a></li>
           <li><a href="#shortdoi"><i class="icon-chevron-right"></i> Get short DOIs from a long DOI</a></li>
@@ -120,6 +121,11 @@ count_identifiers(&quot;datacite&quot;)
  Publishing_, *9*. &lt;URL:
  http://dx.doi.org/10.3998/3336451.0009.101&gt;.</code></pre>
 
+</section>
+
+<br><br><br>
+
+ <section id="crossref_freeform">
 <h2>Search the CrossRef Metatdata for DOIs using free form references.</h2>
 
 <h3>Search with title, author, year, and journal</h3>
@@ -221,7 +227,7 @@ crossref_r(type = &quot;journal_article&quot;)
 
   </section>
 
-  <br><br><br>
+<br><br><br>
 
     <section id="crossref_metadata">
 
