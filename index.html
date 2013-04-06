@@ -19,15 +19,17 @@
   <div class="span11 offset1">
   <div class="row">
   <br><br>
-   <h1>rmetadata, v0.1</h1>
-  </div>
+  <h1>rmetadata, v0.1</h1>
 
-  <div class"row"><a href="http://altmetric.com/">rmetadata</a> does all things metadata in R. rmetadata hits many web APIs for scholarly metadata - if we don' have it, just let us know <a href="https://github.com/ropensci/rmetadata/issues">on our issues page</a>.
-
-  <br><br>
+  <!-- <div class="row"> -->
+    <iframe src="http://ghbtns.com/github-btn.html?user=ropensci&repo=rmetadata&type=watch&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30" align="right"></iframe>
+   <iframe src="http://ghbtns.com/github-btn.html?user=ropensci&repo=rmetadata&type=fork&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30" align="right"></iframe>
+   <a href="http://altmetric.com/">rmetadata</a> does all things metadata in R. rmetadata hits many web APIs for scholarly metadata - <br>if we don' have it, just let us know <a href="https://github.com/ropensci/rmetadata/issues">on our issues page</a>.
+ <!-- </div> -->
+  <br><br> 
   <div>
    <a href="https://github.com/ropensci/rmetadata/" style="color:#ffffff"> <button class="btn btn-success btn-large" style="display: block; width: 100%;"><i class="icon-white icon-download"></i>Download from GitHub</button></a>
-</div>
+  </div>
 
   <hr class="soften">
   </div>
@@ -88,7 +90,7 @@ library(rmetadata)</code></pre>
 
     <section id="count">
    <h2>Count OAI-PMH identifiers for a data provider.</h2>
-<pre><code lang="r">> # For DataCite.
+<pre><code lang="r"> # For DataCite.
 count_identifiers(&quot;datacite&quot;)
 
    provider   count
@@ -102,7 +104,7 @@ count_identifiers(&quot;datacite&quot;)
    <h2>Lookup article info via CrossRef with DOI and get a citation.</h2>
    
    <h3>As Bibtex</h3>
-  <pre><code lang="r">> print(crossref_citation(&quot;10.3998/3336451.0009.101&quot;), style = &quot;Bibtex&quot;)
+  <pre><code lang="r"> print(crossref_citation(&quot;10.3998/3336451.0009.101&quot;), style = &quot;Bibtex&quot;)
 
  @Article{,
    title = {In Google We Trust?},
@@ -115,7 +117,7 @@ count_identifiers(&quot;datacite&quot;)
  }</code></pre>
 
   <h3>As regular text</h3>
-<pre><code lang="r">> print(crossref_citation(&quot;10.3998/3336451.0009.101&quot;), style = &quot;text&quot;)
+<pre><code lang="r"> print(crossref_citation(&quot;10.3998/3336451.0009.101&quot;), style = &quot;text&quot;)
 
  Bilder G (2006). &quot;In Google We Trust?&quot; _The Journal of Electronic
  Publishing_, *9*. &lt;URL:
@@ -129,7 +131,7 @@ count_identifiers(&quot;datacite&quot;)
 <h2>Search the CrossRef Metatdata for DOIs using free form references.</h2>
 
 <h3>Search with title, author, year, and journal</h3>
-<pre><code lang="r">> crossref_search_free(query = &quot;Piwowar Sharing Detailed Research Data Is Associated with Increased Citation Rate PLOS one 2007&quot;)
+<pre><code lang="r"> crossref_search_free(query = &quot;Piwowar Sharing Detailed Research Data Is Associated with Increased Citation Rate PLOS one 2007&quot;)
 
                                                                                               text
  1 Piwowar Sharing Detailed Research Data Is Associated with Increased Citation Rate PLOS one 2007
@@ -277,7 +279,7 @@ crossref_search(query = c(&quot;renear&quot;, &quot;palmer&quot;), year = 2010)[
 <section id="shortdoi">
 <h2>Get a short DOI from shortdoi.org</h2>
 
-<pre><code lang="r">> # Geta a short DOI, just the short DOI returned
+<pre><code lang="r"> # Geta a short DOI, just the short DOI returned
 short_doi(doi = &quot;10.1371/journal.pone.0042793&quot;)
 
  [1] &quot;10/f2bfz9&quot;</code></pre>
@@ -303,7 +305,7 @@ short_doi(doi = &quot;10.1371/journal.pone.0042793&quot;, justshort = FALSE)
 <section id="get_record">
   <h2>Get a record from a OAI-PMH data provider</h2>
 
-<pre><code lang="r">> # Single provider, one identifier
+<pre><code lang="r"> # Single provider, one identifier
 md_getrecord(provider = &quot;pensoft&quot;, identifier = &quot;10.3897/zookeys.1.10&quot;)
 
                                                                                                  title
@@ -311,7 +313,7 @@ md_getrecord(provider = &quot;pensoft&quot;, identifier = &quot;10.3897/zookeys.
        creator date             type
  1 Jocqué,Rudy 2008 Research Article</code></pre>
 
-<pre><code lang="r">> # Single provider, multiple identifiers
+<pre><code lang="r"> # Single provider, multiple identifiers
 md_getrecord(provider = &quot;pensoft&quot;, identifier = c(&quot;10.3897/zookeys.1.10&quot;, &quot;10.3897/zookeys.4.57&quot;))
 
                                                                                                     title
