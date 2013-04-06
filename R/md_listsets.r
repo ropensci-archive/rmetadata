@@ -31,7 +31,7 @@ md_listsets <- function(provider = NULL, fuzzy = FALSE)
 		if(fuzzy){ get_ <- providers[ agrep(x, providers[,1]), ] } else
 			{ get_ <- providers[ grep(x, providers[,1]), ] }
 		if(nrow(get_) == 0){
-			data.frame(x="no match found")
+			stop("\nNo match found!\n")
 		} else
 			if(nrow(get_) > 1){ 
 				# user prompt

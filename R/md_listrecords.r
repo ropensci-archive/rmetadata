@@ -42,7 +42,7 @@ md_listrecords <- function(provider = NULL, from = NULL, until = NULL,
 		if(fuzzy){ get_ <- providers[ agrep(x, providers[,1]), ] } else
 			{ get_ <- providers[ grep(x, providers[,1]), ] }
 		if(nrow(get_) == 0){
-			data.frame(x="no match found")
+			stop("\nNo match found!\n")
 		} else
 			if(nrow(get_) > 1){ 
 				# user prompt
@@ -77,8 +77,26 @@ md_listrecords <- function(provider = NULL, from = NULL, until = NULL,
 					args2 <- args
 					if(token == "characters"){NULL} else {args2$resumptionToken <- token}
 					crr <- xmlToList(xmlParse(content(GET(url, query=args2), as="text")))
-					names <- llply(crr$ListRecords)
-					nameslist[[iter]] <- ldply(names, function(x) cbind(data.frame(x$header), data.frame(x$metadata$dc)))
+					names2 <- llply(crr$ListRecords)
+					names2 <- names2[!names(names2) %in% "resumptionToken"]
+# 					nameslist[[iter]] <- ldply(names, function(x) cbind(data.frame(x$header), data.frame(x$metadata$dc)))					
+# 					tt <- sapply(llply(names, function(x) x$metadata$dc)[[1]], function(x) length(nchar(x)))
+					
+					shit <- function(x){
+						tt = x$metadata$dc
+						uu = sapply(tt, function(x) length(nchar(x)))
+						tt[uu %in% 0] <- "none"
+						xx = tt[names(tt) %in% c('title','creator','publisher','date','type','identifier')]
+						yy = xx[-length(xx)]
+						singlecre <- paste0(yy[names(yy) %in% "creator"],collapse=";")
+						yytemp <- yy[!names(yy) %in% "creator"]
+						yytemp$creator <- singlecre
+						data.frame(yytemp)
+					}
+					
+					out <- ldply(names2, shit)
+					nameslist[[iter]] <- out
+# 					nameslist[[iter]] <- ldply(names, function(x) data.frame(x$metadata$dc))
 					if( class( try(crr$ListRecords$resumptionToken$text) ) == "try-error") {
 						token <- 1
 					} else { token <- crr$ListRecords$resumptionToken$text }

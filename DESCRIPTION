@@ -30,7 +30,7 @@ Collate:
     'crossref_citation.r'
     'crossref_r.r'
     'short_doi.r'
-    'rmd-package.r'
     'zzz.r'
     'load_providers.r'
     'update_providers.r'
+    'rmetadata-package.r'
