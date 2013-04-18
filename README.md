@@ -85,3 +85,53 @@ short_doi(doi = "10.1371/journal.pone.0042793")
 
 [1] "10/f2bfz9"
 ```
+
+
+### Search metadata from the Digital Public Library of America (DPLA).
+```r
+out <- dpla_fields(c("fruit,title","basket,description"))
+out[[4]][[1]]
+
+$ingestDate
+[1] "2013-04-16T19:19:49.412900"
+
+$`_rev`
+[1] "2-62f1c1081d402c1a545465b0fdcadebe"
+
+$id
+[1] "959b4a5c4a5da5c5509cee1ab1f31550"
+
+$`@context`
+$`@context`$edm
+[1] "http://www.europeana.eu/schemas/edm/"
+
+$`@context`$isShownAt
+[1] "edm:isShownAt"
+
+$`@context`$dpla
+[1] "http://dp.la/terms/"
+
+$`@context`$dataProvider
+[1] "edm:dataProvider"
+
+$`@context`$aggregatedDigitalResource
+[1] "dpla:aggregatedDigitalResource"
+
+$`@context`$state
+[1] "dpla:state"
+
+$`@context`$hasView
+[1] "edm:hasView"
+
+$`@context`$provider
+[1] "edm:provider"
+
+$`@context`$collection
+[1] "dpla:aggregation"
+
+$`@context`$object
+[1] "edm:object"
+
+$`@context`$stateLocatedIn
+[1] "dpla:stateLocatedIn"
+```
