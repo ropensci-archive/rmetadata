@@ -116,10 +116,8 @@ dpla_basic(q="fruit", verbose=TRUE, fields=c("publisher","format"))
 
 #### Visualize metadata from the DPLA - histogram of number of subjects per record
 ```r
-# Plot results from basic search
+# GEt results from searching on the terme ecology
 out <- dpla_basic(q="ecology", fields=c("publisher","subject"), page_size=90)
-
-# lets summarise subjects by number of subjects listed
 dpla_plot(input=out, plottype = "subjectsum")
 ```
 
@@ -128,11 +126,9 @@ dpla_plot(input=out, plottype = "subjectsum")
 
 #### Visualize metadata from the DPLA - timeline plot of the top 10 encountered subjects
 ```r
-# Plot results from basic search
-out <- dpla_basic(q="ecology", fields=c("publisher","subject"), page_size=90)
-
-# lets summarise subjects by number of subjects listed
-dpla_plot(input=out, plottype = "subjectsum")
+# Serching for the term science from before the year 1900
+out <- dpla_basic(q="science", date.before=1900, limit=200)
+dpla_plot(input=out, plottype="subjectsbydate")
 ```
 
 ![](inst/img/dpla_subjects_through_time.png)
