@@ -114,7 +114,7 @@ dpla_basic(q="fruit", verbose=TRUE, fields=c("publisher","format"))
 10    Book             New York :J. Wiley,1870 [c1869]
 ```
 
-#### Visualize metadata from the DPLA.
+#### Visualize metadata from the DPLA - histogram of number of subjects per record
 ```r
 # Plot results from basic search
 out <- dpla_basic(q="ecology", fields=c("publisher","subject"), page_size=90)
@@ -123,4 +123,16 @@ out <- dpla_basic(q="ecology", fields=c("publisher","subject"), page_size=90)
 dpla_plot(input=out, plottype = "subjectsum")
 ```
 
-![](dpla_subjects_barplot.png)
+![](inst/img/dpla_subjects_barplot.png)
+
+
+#### Visualize metadata from the DPLA - timeline plot of the top 10 encountered subjects
+```r
+# Plot results from basic search
+out <- dpla_basic(q="ecology", fields=c("publisher","subject"), page_size=90)
+
+# lets summarise subjects by number of subjects listed
+dpla_plot(input=out, plottype = "subjectsum")
+```
+
+![](inst/img/dpla_subjects_through_time.png)

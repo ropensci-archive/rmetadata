@@ -44,7 +44,7 @@
   sourceResource.publisher The publisher of the object
   \item sourceResource.format The format of the object
   \item sourceResource.rights The rights for the object
-  \item sourceResource.contibutor The contributor of the
+  \item sourceResource.contributor The contributor of the
   object \item sourceResource.spatial The spatial of the
   object \item isPartOf The isPartOf thing, not sure what
   this is \item provider The provider of the object }
@@ -55,11 +55,12 @@
 dpla_basic(q="fruit")
 
 # Some verbosity
-dpla_basic(q="fruit", verbose=TRUE)
+dpla_basic(q="fruit", verbose=TRUE, page_size=2)
 
 # Return certain fields
-dpla_basic(q="fruit", fields=c("format","publisher"))
-dpla_basic(q="fruit", fields=c("rights","subject"))
+dpla_basic(q="fruit", verbose=TRUE, fields=c("publisher","format"))
+dpla_basic(q="fruit", fields="subject")
+dpla_basic(q="fruit", fields=c("rights","subject","title","description","creator","type","publisher","format","contributor"))
 }
 }
 
