@@ -3,15 +3,16 @@
 \title{Search metadata from the Digital Public Library of America (DPLA).}
 \usage{
   dpla_basic(q = NULL, verbose = FALSE, fields = NULL,
-    page_size = 10, page = NULL, sort_by = NULL)
+    limit = 10, page = NULL, sort_by = NULL,
+    date.before = NULL, date.after = NULL)
 }
 \arguments{
   \item{q}{Query terms.}
 
   \item{verbose}{If TRUE, the console talks to you :/}
 
-  \item{page_size}{Number of items to return, defaults to
-  10. Max of 100.}
+  \item{limit}{Number of items to return, defaults to 10.
+  Max of 100.}
 
   \item{page}{Page number to return, defaults to NULL.}
 
@@ -47,7 +48,8 @@
   \item sourceResource.contributor The contributor of the
   object \item sourceResource.spatial The spatial of the
   object \item isPartOf The isPartOf thing, not sure what
-  this is \item provider The provider of the object }
+  this is \item provider The provider of the object \item
+  id The item id }
 }
 \examples{
 \dontrun{
@@ -55,12 +57,21 @@
 dpla_basic(q="fruit")
 
 # Some verbosity
-dpla_basic(q="fruit", verbose=TRUE, page_size=2)
+dpla_basic(q="fruit", verbose=TRUE, limit=2)
 
 # Return certain fields
 dpla_basic(q="fruit", verbose=TRUE, fields=c("publisher","format"))
 dpla_basic(q="fruit", fields="subject")
 dpla_basic(q="fruit", fields=c("rights","subject","title","description","creator","type","publisher","format","contributor"))
+
+# Max is 100 per call, but the function handles larger numbers by looping
+dpla_basic(q="fruit", fields="id", limit=200)
+dpla_basic(q="fruit", fields=c("id","provider"), limit=200)
+dpla_basic(q="fruit", fields=c("id","provider"), limit=200)
+out <- dpla_basic(q="science", fields=c("id","subject"), limit=400)
+
+# Search by date
+dpla_basic(q="science", date.before=1900, limit=200)
 }
 }
 

@@ -22,12 +22,12 @@
 \examples{
 \dontrun{
 # Plot results, summarising subjects by number of subjects listed
-out <- dpla_basic(q="ecology", fields=c("publisher","subject"), page_size=90)
+out <- dpla_basic(q="ecology", fields=c("publisher","subject"), limit=90)
 dpla_plot(input=out)
 
-# By XXX
-out <- dpla_basic(q="ecology", fields="date", page_size=90)
-dpla_plot(input=out)
+#
+out <- dpla_basic(q="science", date.before=1900, limit=200)
+dpla_plot(input=out, plottype="subjectsbydate")
 }
 }
 

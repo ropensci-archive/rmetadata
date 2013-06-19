@@ -22,13 +22,13 @@
 #' @return A list for now...
 #' @examples \dontrun{
 #' # Search by specific fields
-#' dpla_fields(c("fruit,title","basket,description"))
+#' dpla_by_fields(queries=c("fruit,title","basket,description"))
 #' 
 #' # Items from before 1900
-#' dpla_fields("1900,date.before")
+#' dpla_by_fields("1900,date.before")
 #' }
 #' @export
-dpla_fields <- function(queries = NULL)
+dpla_by_fields <- function(queries = NULL)
 {
   url = "http://api.dp.la/v2/items"
   key <- getOption("dplakey")

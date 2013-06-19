@@ -1,8 +1,8 @@
-\name{dpla_fields}
-\alias{dpla_fields}
+\name{dpla_by_fields}
+\alias{dpla_by_fields}
 \title{Search metadata from the Digital Public Library of America (DPLA).}
 \usage{
-  dpla_fields(queries = NULL)
+  dpla_by_fields(queries = NULL)
 }
 \arguments{
   \item{queries}{A list of query terms paired with the
@@ -32,10 +32,10 @@
 \examples{
 \dontrun{
 # Search by specific fields
-dpla_fields(c("fruit,title","basket,description"))
+dpla_by_fields(queries=c("fruit,title","basket,description"))
 
 # Items from before 1900
-dpla_fields("1900,date.before")
+dpla_by_fields("1900,date.before")
 }
 }
 

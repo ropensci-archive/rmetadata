@@ -115,10 +115,11 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10,
       provider <- data.frame(t(y$provider))
       names(provider) <- c("provider_url","provider_name")
       score <- y$score
+      url <- y$isShownAt
       sourceResource <- y$sourceResource
       sourceResource_df <- process_res(sourceResource)
       sourceResource_df <- sourceResource_df[,!names(sourceResource_df) %in% c("id","provider")]
-      data.frame(id, sourceResource_df, provider, score)
+      data.frame(id, sourceResource_df, provider, score, url)
     } else
       { 
         names(y) <- str_replace_all(names(y), "sourceResource.", "")
