@@ -37,3 +37,4 @@ Collate:
     'dpla_basic.r'
     'dpla_fields.r'
     'dpla_plot.r'
+    'crossref_openurl.r'

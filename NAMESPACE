@@ -1,5 +1,6 @@
 export(count_identifiers)
 export(crossref_citation)
+export(crossref_openurl)
 export(crossref_r)
 export(crossref_search_free)
 export(crossref_search)
