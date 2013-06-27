@@ -34,3 +34,6 @@ Collate:
     'load_providers.r'
     'update_providers.r'
     'rmetadata-package.r'
+    'dpla_basic.r'
+    'dpla_fields.r'
+    'dpla_plot.r'
