@@ -1,0 +1,41 @@
+\name{dpla_by_fields}
+\alias{dpla_by_fields}
+\title{Search metadata from the Digital Public Library of America (DPLA).}
+\usage{
+  dpla_by_fields(queries = NULL)
+}
+\arguments{
+  \item{queries}{A list of query terms paired with the
+  fields you want to search them in. You can search on
+  specific fields, see details below.}
+}
+\value{
+  A list for now...
+}
+\description{
+  Search metadata from the Digital Public Library of
+  America (DPLA).
+}
+\details{
+  You can search on a vector of the fields to return in the
+  output.  The default is all fields. Options are:
+  \itemize{ \item{title}{Object title}
+  \item{description}{Description} \item{subject}{Subjects,
+  semicolon separated} \item{language}{Language}
+  \item{format}{Format, one of X, Y.}
+  \item{collection}{Collection name} \item{type}{Type of
+  object} \item{publisher}{Publisher name}
+  \item{creator}{Creator} \item{provider}{Data provider}
+  \item{score}{Matching score on your query}
+  \item{creator}{Creator} }
+}
+\examples{
+\dontrun{
+# Search by specific fields
+dpla_by_fields(queries=c("fruit,title","basket,description"))
+
+# Items from before 1900
+dpla_by_fields("1900,date.before")
+}
+}
+
