@@ -28,7 +28,7 @@ You can access all the data sources in the [OAI-PMH list of metadata providers](
 	+ [Metadata search](http://search.labs.crossref.org/help/api)
 	+ [ranDOIm](http://random.labs.crossref.org/)
 
-You can also access metadata from the Digital Public Library of America ([DPLA](http://dp.la/)). They have [a great API](https://github.com/dpla/platform) with good documentation - a rare thing in this world. 
+You can also access metadata from the Digital Public Library of America ([DPLA](http://dp.la/)). They have [a great API](https://github.com/dpla/platform) with good documentation - a rare thing in this world. Further documentation on their API can be found on their [search fields](http://dp.la/info/developers/codex/responses/field-reference/) and [examples of queries](http://dp.la/info/developers/codex/requests/).
 
 See below for examples...
 
