@@ -38,3 +38,5 @@ Collate:
     'dpla_fields.r'
     'dpla_plot.r'
     'crossref_openurl.r'
+    'dc_data.r'
+    'dc_search.r'

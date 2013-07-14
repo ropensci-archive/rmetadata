@@ -31,7 +31,7 @@
 }
 \examples{
 \dontrun{
-crossref(doi="10.1371/journal.pone.0042793")
+crossref_openurl(doi="10.1371/journal.pone.0042793")
 print(crossref_openurl("10.3998/3336451.0009.101"), style="Bibtex")
 print(crossref_openurl("10.3998/3336451.0009.101"), style="text")
 }
