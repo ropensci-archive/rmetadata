@@ -1,12 +1,6 @@
 # rmetadata #
 
-
-`rmetadata` accesses article metadata using the OAI-PMH harvester across many sources. 
-
-You do not need an API key. 
-
-Documentation for OAI-PMH in general [here](http://www.openarchives.org/OAI/openarchivesprotocol.html).
-
+`rmetadata` gives you access to scholarly metadata around the web.
 
 `rmetadata` is part of the rOpenSci project, visit http://ropensci.org to learn more.
 
@@ -15,22 +9,42 @@ Documentation for OAI-PMH in general [here](http://www.openarchives.org/OAI/open
 
 ### Data sources
 
-You can access all the data sources in the [OAI-PMH list of metadata providers](http://www.openarchives.org/Register/BrowseSites), in addition to some sources not on that list (more will be added later): 
+#### OAI-PMH
+You can access all the data sources in the [OAI-PMH list of metadata providers](http://www.openarchives.org/Register/BrowseSites), in addition to some sources not on that list (more are available): 
 
 + [DataCite](http://datacite.org/)
 + [PubMed Central](http://www.ncbi.nlm.nih.gov/pmc/)
 + [Hindawi Journals](http://www.hindawi.com/journals/)
 + [Pensoft Journals](http://www.pensoft.net/index.php)
-+ CrossRef API's
-	+ [General](http://search.labs.crossref.org/help/api)
-		+ [Example call: http://search.labs.crossref.org/dois?q=renear+palmer](http://search.labs.crossref.org/dois?q=renear+palmer)
-	+ [OpenURL](http://labs.crossref.org/openurl/)
-	+ [Metadata search](http://search.labs.crossref.org/help/api)
-	+ [ranDOIm](http://random.labs.crossref.org/)
 
-You can also access metadata from the Digital Public Library of America ([DPLA](http://dp.la/)). They have [a great API](https://github.com/dpla/platform) with good documentation - a rare thing in this world. Further documentation on their API can be found on their [search fields](http://dp.la/info/developers/codex/responses/field-reference/) and [examples of queries](http://dp.la/info/developers/codex/requests/).
+Documentation for OAI-PMH in general [here](http://www.openarchives.org/OAI/openarchivesprotocol.html).
+
+#### Datacite
+
+In addition to OAI-PMH access to Datacite metadata, they have a search API, which you can access using `dc_search`, and use `dc_data` to get data from the output of the search.
+
+#### CrossRef
+
++ [General](http://search.labs.crossref.org/help/api)
+	+ [Example call: http://search.labs.crossref.org/dois?q=renear+palmer](http://search.labs.crossref.org/dois?q=renear+palmer)
++ [OpenURL](http://labs.crossref.org/openurl/)
++ [Metadata search](http://search.labs.crossref.org/help/api)
++ [ranDOIm](http://random.labs.crossref.org/)
+
+#### Digital Public Library of America 
+
+Metadata from the Digital Public Library of America ([DPLA](http://dp.la/)). They have [a great API](https://github.com/dpla/platform) with good documentation - a rare thing in this world. Further documentation on their API can be found on their [search fields](http://dp.la/info/developers/codex/responses/field-reference/) and [examples of queries](http://dp.la/info/developers/codex/requests/).
 
 See below for examples...
+
+#### Microsoft Academic Search
+
+Get your Microsoft Academic Search API key [here](http://academic.research.microsoft.com/About/Help.htm#4). Put your API key in your .Rprofile file using exactly this: `options(MicAcaRes = "YOURAPIKEY")`. See [here](http://academic.research.microsoft.com/about/Microsoft%20Academic%20Search%20API%20User%20Manual.pdf) for API docs. Things to note:
+
++ The service, application, tool, website, or a feature in a product that you build can be for non-commercial use only or must be available in free version of the product.
++ All their APIs come with the standard 200 queries per minute.
++ Each API call returns only 100 items per call.
++ You can not use the API to crawl the entire corpus.
 
 ### Installation 
 

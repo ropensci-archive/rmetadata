@@ -39,7 +39,6 @@
 #' # Return certain fields
 #' dpla_basic(q="fruit", verbose=TRUE, fields=c("publisher","format"))
 #' dpla_basic(q="fruit", fields="subject")
-#' dpla_basic(q="fruit", fields=c("rights","subject","title","description","creator","type","publisher","format","contributor"))
 #' 
 #' # Max is 100 per call, but the function handles larger numbers by looping
 #' dpla_basic(q="fruit", fields="id", limit=200)

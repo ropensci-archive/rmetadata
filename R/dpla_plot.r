@@ -1,6 +1,6 @@
 #' Search metadata from the Digital Public Library of America (DPLA).
 #' 
-#' @import ggplot2 plyr
+#' @import ggplot2 plyr lubridate reshape
 #' @param input A data.frame from calling a variety of dpla_* functions.
 #' @param plottype One of a number of types. These are for convenience. You 
 #'    can of course create your own plots with more flexibility.
@@ -10,7 +10,7 @@
 #' out <- dpla_basic(q="ecology", fields=c("publisher","subject"), limit=90)
 #' dpla_plot(input=out)
 #' 
-#' # 
+#' # Another example
 #' out <- dpla_basic(q="science", date.before=1900, limit=200)
 #' dpla_plot(input=out, plottype="subjectsbydate")
 #' }

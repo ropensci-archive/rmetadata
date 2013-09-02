@@ -16,7 +16,9 @@ Imports:
     httr,
     plyr,
     RJSONIO,
-    RCurl
+    RCurl,
+    lubridate,
+    reshape
 Collate:
     'md_getrecord.r'
     'md_identify.r'
@@ -40,3 +42,5 @@ Collate:
     'crossref_openurl.r'
     'dc_data.r'
     'dc_search.r'
+    'mar_search.r'
+    'cambridge_search.r'

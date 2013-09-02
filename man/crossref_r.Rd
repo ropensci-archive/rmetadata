@@ -59,9 +59,6 @@ crossref_r(from=1990, to=1999)
 
 # Specify you want journal articles only
 crossref_r(type = 'journal_article')
-
-# This doesn't seem to work
-crossref_r(issn = '1932-6203')
 }
 }
 \author{

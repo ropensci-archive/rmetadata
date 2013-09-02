@@ -40,9 +40,6 @@
 #'  
 #' # Specify you want journal articles only
 #' crossref_r(type = 'journal_article')
-#' 
-#' # This doesn't seem to work
-#' crossref_r(issn = '1932-6203')
 #' }
 crossref_r <- function(count = NULL, to = NULL, from = NULL, type = NULL, issn = NULL)
 {

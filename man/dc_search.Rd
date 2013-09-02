@@ -59,10 +59,10 @@
 \examples{
 \dontrun{
 # Basic search, "fruit" in any fields
-out <- dc_search(q="wind", limit=2)
+out <- dc_search(q="wind", rows=2)
 dc_data(out) # summary of output
-dc_data(input=out, datatype="brief") # as a data.frame
-dc_data(input=out, datatype="details") # as a list
+dc_data(input=out, what="brief") # as a data.frame
+dc_data(input=out, what="details") # as a list
 
 # Request specific returned fields
 out <- dc_search('ecology', 'doi,title')

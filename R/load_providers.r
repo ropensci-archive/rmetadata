@@ -16,7 +16,8 @@
 #' load_providers()
 #' }
 #' @export
-load_providers <- function(path=NULL, envir=.GlobalEnv){
+load_providers <- function(path=NULL, envir=.GlobalEnv)
+{
   if(is.null(path))
   	file <- system.file("data", "providers.rda", package="rmd")
   else {

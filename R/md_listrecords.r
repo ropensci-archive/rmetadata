@@ -25,7 +25,7 @@
 #' # Single source
 #' md_listrecords(provider = "datacite")
 #' 
-#' # Fuzzy seaerch
+#' # Fuzzy seaerch, take 3
 #' md_listrecords(provider = "biology", fuzzy=TRUE)
 #' }
 #' @export

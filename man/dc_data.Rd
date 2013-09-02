@@ -31,7 +31,6 @@ out <- dc_search(q="ecology")
 class(out) # check for the correct class (should be "datacite")
 dc_data(out) # summary of output
 dc_data(input=out, what="brief") # just key columns as a data.frame
-dc_data(input=out, what="all") # all columns, as data.frame
 dc_data(input=out, what="doi,creator") # pick specific columns to return, as data.frame
 dc_data(input=out, what="brief", as='list')
 }

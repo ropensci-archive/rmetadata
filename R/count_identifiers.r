@@ -23,7 +23,7 @@
 #' count_identifiers("datacite")
 #' 
 #' # Select a few
-#' ldply(c("datacite","Academic Commons","pensoft","arXiv"), count_identifiers)
+#' ldply(c("datacite","pensoft","arXiv"), count_identifiers)
 #' }
 #' @examples \donttest{
 #' # All of them, takes a while, run in parallel, e.g. on AWS RStudio AMI

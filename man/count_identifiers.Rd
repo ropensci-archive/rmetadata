@@ -34,7 +34,7 @@
 count_identifiers("datacite")
 
 # Select a few
-ldply(c("datacite","Academic Commons","pensoft","arXiv"), count_identifiers)
+ldply(c("datacite","pensoft","arXiv"), count_identifiers)
 }
 }
 \author{

@@ -15,7 +15,7 @@
 #' 
 #' crossref_search_free(query=c("Renear 2012","Piwowar sharing data PLOS one")) # multiple queries
 #' 
-#' # Get a DOI and get the citation using \code{crossref_search}
+#' # Get a DOI and get the citation using crossref_search
 #' doi <- crossref_search_free(query="Piwowar sharing data PLOS one")$doi
 #' crossref_search(doi = doi)
 #' 

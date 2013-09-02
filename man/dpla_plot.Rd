@@ -25,7 +25,7 @@
 out <- dpla_basic(q="ecology", fields=c("publisher","subject"), limit=90)
 dpla_plot(input=out)
 
-#
+# Another example
 out <- dpla_basic(q="science", date.before=1900, limit=200)
 dpla_plot(input=out, plottype="subjectsbydate")
 }
