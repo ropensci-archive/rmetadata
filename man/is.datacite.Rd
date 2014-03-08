@@ -2,12 +2,12 @@
 \alias{is.datacite}
 \title{Check if object is of class datacite}
 \usage{
-  is.datacite(x)
+is.datacite(x)
 }
 \arguments{
   \item{x}{input}
 }
 \description{
-  Check if object is of class datacite
+Check if object is of class datacite
 }
 

@@ -2,7 +2,7 @@
 \alias{md_identify}
 \title{Identify the OAI-PMH service for each data provider.}
 \usage{
-  md_identify(provider = NULL, fuzzy = FALSE, ...)
+md_identify(provider = NULL, fuzzy = FALSE, ...)
 }
 \arguments{
   \item{provider}{The metadata provider to identify.}
@@ -14,9 +14,9 @@
   used when fuzzy equals TRUE).}
 }
 \description{
-  Identifies the data sources from the OAI-PMH list, and
-  others not on that list, including PMC, DataCite, Hindawi
-  Journals, Dryad, and Pensoft Journals.
+Identifies the data sources from the OAI-PMH list, and
+others not on that list, including PMC, DataCite, Hindawi
+Journals, Dryad, and Pensoft Journals.
 }
 \examples{
 \dontrun{
@@ -32,13 +32,13 @@ md_identify(provider = "biology", fuzzy=TRUE)
 }
 }
 \author{
-  Scott Chamberlain \email{myrmecocystus@gmail.com}
+Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 \seealso{
-  \code{\link{md_getrecord}},
-  \code{\link{md_listidentifiers}},
-  \code{\link{md_listmetadataformats}},
-  \code{\link{md_listrecords}}, \code{\link{md_listsets}},
-  \code{\link{count_identifiers}}
+\code{\link{md_getrecord}},
+\code{\link{md_listidentifiers}},
+\code{\link{md_listmetadataformats}},
+\code{\link{md_listrecords}}, \code{\link{md_listsets}},
+\code{\link{count_identifiers}}
 }
 

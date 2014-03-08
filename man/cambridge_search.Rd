@@ -2,7 +2,7 @@
 \alias{cambridge_search}
 \title{Search Cambridge journals metadata.}
 \usage{
-  cambridge_search(query = NULL, callopts = list())
+cambridge_search(query = NULL, callopts = list())
 }
 \arguments{
   \item{query}{Query string}
@@ -10,7 +10,7 @@
   \item{callopts}{curl options passed on to GET call}
 }
 \description{
-  Search Cambridge journals metadata.
+Search Cambridge journals metadata.
 }
 \examples{
 \dontrun{

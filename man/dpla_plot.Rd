@@ -2,7 +2,7 @@
 \alias{dpla_plot}
 \title{Search metadata from the Digital Public Library of America (DPLA).}
 \usage{
-  dpla_plot(input, plottype = "subjectsum")
+dpla_plot(input, plottype = "subjectsum")
 }
 \arguments{
   \item{input}{A data.frame from calling a variety of
@@ -13,11 +13,11 @@
   more flexibility.}
 }
 \value{
-  A ggplot2 object, a plot that is.
+A ggplot2 object, a plot that is.
 }
 \description{
-  Search metadata from the Digital Public Library of
-  America (DPLA).
+Search metadata from the Digital Public Library of America
+(DPLA).
 }
 \examples{
 \dontrun{

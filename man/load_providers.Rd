@@ -2,7 +2,7 @@
 \alias{load_providers}
 \title{Load an updated cache}
 \usage{
-  load_providers(path = NULL, envir = .GlobalEnv)
+load_providers(path = NULL, envir = .GlobalEnv)
 }
 \arguments{
   \item{path}{location where cache is located. Leaving to
@@ -11,14 +11,13 @@
   \item{envir}{R environment to load data in to.}
 }
 \value{
-  loads the object providers into the working space.
+loads the object providers into the working space.
 }
 \description{
-  Load an updated cache
+Load an updated cache
 }
 \details{
-  Loads the data object providers into the global
-  workspace.
+Loads the data object providers into the global workspace.
 }
 \examples{
 \donttest{
@@ -31,9 +30,9 @@ load_providers()
 }
 }
 \author{
-  Scott Chamberlain \email{myrmecocystus@gmail.com}
+Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 \seealso{
-  \code{\link{update_providers}}
+\code{\link{update_providers}}
 }
 

@@ -2,9 +2,8 @@
 \alias{count_identifiers}
 \title{Count OAI-PMH identifiers for a data provider.}
 \usage{
-  count_identifiers(provider = NULL,
-    metadataPrefix = "oai_dc", fuzzy = FALSE,
-    useurl = FALSE, seconds = 3)
+count_identifiers(provider = NULL, metadataPrefix = "oai_dc",
+  fuzzy = FALSE, useurl = FALSE, seconds = 3)
 }
 \arguments{
   \item{provider}{The metadata provider.}
@@ -24,9 +23,9 @@
   API call to one of the data providers.}
 }
 \description{
-  Count identifiers for the data sources from the OAI-PMH
-  list, and others not on that list, including PMC,
-  DataCite, Hindawi Journals, Dryad, and Pensoft Journals.
+Count identifiers for the data sources from the OAI-PMH
+list, and others not on that list, including PMC, DataCite,
+Hindawi Journals, Dryad, and Pensoft Journals.
 }
 \examples{
 \dontrun{
@@ -38,13 +37,13 @@ ldply(c("datacite","pensoft","arXiv"), count_identifiers)
 }
 }
 \author{
-  Scott Chamberlain \email{myrmecocystus@gmail.com}
+Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 \seealso{
-  \code{\link{md_identify}},
-  \code{\link{md_listidentifiers}},
-  \code{\link{md_listmetadataformats}},
-  \code{\link{md_listrecords}}, \code{\link{md_listsets}},
-  \code{\link{md_getrecord}}
+\code{\link{md_identify}},
+\code{\link{md_listidentifiers}},
+\code{\link{md_listmetadataformats}},
+\code{\link{md_listrecords}}, \code{\link{md_listsets}},
+\code{\link{md_getrecord}}
 }
 

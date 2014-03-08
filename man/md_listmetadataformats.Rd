@@ -2,8 +2,8 @@
 \alias{md_listmetadataformats}
 \title{List available metadata formats from various providers.}
 \usage{
-  md_listmetadataformats(provider = NULL,
-    identifier = NULL, fuzzy = FALSE, seconds = 3)
+md_listmetadataformats(provider = NULL, identifier = NULL, fuzzy = FALSE,
+  seconds = 3)
 }
 \arguments{
   \item{provider}{The metadata provider.}
@@ -18,9 +18,9 @@
   complete.}
 }
 \description{
-  List metadata formats for the data sources from the
-  OAI-PMH list, and others not on that list, including PMC,
-  DataCite, Hindawi Journals, Dryad, and Pensoft Journals.
+List metadata formats for the data sources from the OAI-PMH
+list, and others not on that list, including PMC, DataCite,
+Hindawi Journals, Dryad, and Pensoft Journals.
 }
 \examples{
 \dontrun{
@@ -36,13 +36,12 @@ md_listmetadataformats(provider = "AnimalPhysiology-LivestockSystems")
 }
 }
 \author{
-  Scott Chamberlain \email{myrmecocystus@gmail.com}
+Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 \seealso{
-  \code{\link{md_identify}},
-  \code{\link{md_listidentifiers}},
-  \code{\link{md_getrecord}}, \code{\link{md_listrecords}},
-  \code{\link{md_listsets}},
-  \code{\link{count_identifiers}}
+\code{\link{md_identify}},
+\code{\link{md_listidentifiers}},
+\code{\link{md_getrecord}}, \code{\link{md_listrecords}},
+\code{\link{md_listsets}}, \code{\link{count_identifiers}}
 }
 

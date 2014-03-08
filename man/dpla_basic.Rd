@@ -2,9 +2,8 @@
 \alias{dpla_basic}
 \title{Search metadata from the Digital Public Library of America (DPLA).}
 \usage{
-  dpla_basic(q = NULL, verbose = FALSE, fields = NULL,
-    limit = 10, page = NULL, sort_by = NULL,
-    date.before = NULL, date.after = NULL)
+dpla_basic(q = NULL, verbose = FALSE, fields = NULL, limit = 10,
+  page = NULL, sort_by = NULL, date.before = NULL, date.after = NULL)
 }
 \arguments{
   \item{q}{Query terms.}
@@ -29,27 +28,27 @@
   console to inform you of things.}
 }
 \value{
-  A data.frame of results.
+A data.frame of results.
 }
 \description{
-  Search metadata from the Digital Public Library of
-  America (DPLA).
+Search metadata from the Digital Public Library of America
+(DPLA).
 }
 \details{
-  Options for the fields argument are: \itemize{ \item
-  sourceResource.title The title of the object \item
-  sourceResource.decription The description of the object
-  \item sourceResource.subject The subjects of the object
-  \item sourceResource.creator The creator of the object
-  \item sourceResource.type The type of the object \item
-  sourceResource.publisher The publisher of the object
-  \item sourceResource.format The format of the object
-  \item sourceResource.rights The rights for the object
-  \item sourceResource.contributor The contributor of the
-  object \item sourceResource.spatial The spatial of the
-  object \item isPartOf The isPartOf thing, not sure what
-  this is \item provider The provider of the object \item
-  id The item id }
+Options for the fields argument are: \itemize{ \item
+sourceResource.title The title of the object \item
+sourceResource.decription The description of the object
+\item sourceResource.subject The subjects of the object
+\item sourceResource.creator The creator of the object
+\item sourceResource.type The type of the object \item
+sourceResource.publisher The publisher of the object \item
+sourceResource.format The format of the object \item
+sourceResource.rights The rights for the object \item
+sourceResource.contributor The contributor of the object
+\item sourceResource.spatial The spatial of the object
+\item isPartOf The isPartOf thing, not sure what this is
+\item provider The provider of the object \item id The item
+id }
 }
 \examples{
 \dontrun{

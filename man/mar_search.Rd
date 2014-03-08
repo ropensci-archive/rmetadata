@@ -2,13 +2,12 @@
 \alias{mar_search}
 \title{Search the Microsoft Academic Research API.}
 \usage{
-  mar_search(FullTextQuery = NULL, AuthorQuery = NULL,
-    TitleQuery = NULL, JournalQuery = NULL,
-    ConferenceQuery = NULL, ResultObjects = NULL,
-    PublicationContent = NULL, AuthorID = NULL,
-    StartIdx = 1, EndIdx = 10, YearStart = NULL,
-    YearEnd = NULL, return_ = "all",
-    key = getOption("MicAcaRes", stop("API key needed for Microsoft Academic Research API")))
+mar_search(FullTextQuery = NULL, AuthorQuery = NULL, TitleQuery = NULL,
+  JournalQuery = NULL, ConferenceQuery = NULL, ResultObjects = NULL,
+  PublicationContent = NULL, AuthorID = NULL, StartIdx = 1, EndIdx = 10,
+  YearStart = NULL, YearEnd = NULL, return_ = "all",
+  key = getOption("MicAcaRes",
+  stop("API key needed for Microsoft Academic Research API")))
 }
 \arguments{
   \item{FullTextQuery}{Search terms for a full text query
@@ -54,10 +53,10 @@
   API.}
 }
 \description{
-  Search the Microsoft Academic Research API.
+Search the Microsoft Academic Research API.
 }
 \details{
-  For more information, see the README for this package.
+For more information, see the README for this package.
 }
 \examples{
 \dontrun{

@@ -21,15 +21,19 @@ Documentation for OAI-PMH in general [here](http://www.openarchives.org/OAI/open
 
 #### Datacite
 
+**UPDATE**: We're working on a separate package for Datacite, called `rdatacite`. So we'll eventuall move the datacite functions out of this package and just import them as needed in this pacakge.
+
 In addition to OAI-PMH access to Datacite metadata, they have a search API, which you can access using `dc_search`, and use `dc_data` to get data from the output of the search.
 
 #### CrossRef
 
-+ [General](http://search.labs.crossref.org/help/api)
-	+ [Example call: http://search.labs.crossref.org/dois?q=renear+palmer](http://search.labs.crossref.org/dois?q=renear+palmer)
-+ [OpenURL](http://labs.crossref.org/openurl/)
-+ [Metadata search](http://search.labs.crossref.org/help/api)
-+ [ranDOIm](http://random.labs.crossref.org/)
+Accessed via the separate `rcrossref` package.
+
++ [General search and freeform search](http://search.labs.crossref.org/help/api) - `crossref_search`, `crossref_search_free`
++ [OpenURL](http://labs.crossref.org/openurl/) - `crossref_citation`
++ [Citation count] - `crossref_citation_count`
++ [Metadata search](http://search.labs.crossref.org/help/api) - `crossref_cn`
++ [Get random DOIs](http://random.labs.crossref.org/) - `crossref_r`
 
 #### Digital Public Library of America 
 
@@ -39,12 +43,14 @@ See below for examples...
 
 #### Microsoft Academic Search
 
-Get your Microsoft Academic Search API key [here](http://academic.research.microsoft.com/About/Help.htm#4). Put your API key in your .Rprofile file using exactly this: `options(MicAcaRes = "YOURAPIKEY")`. See [here](http://academic.research.microsoft.com/about/Microsoft%20Academic%20Search%20API%20User%20Manual.pdf) for API docs. Things to note:
+Microsoft is no longer supporting this service...
+
+<!-- Get your Microsoft Academic Search API key [here](http://academic.research.microsoft.com/About/Help.htm#4). Put your API key in your .Rprofile file using exactly this: `options(MicAcaRes = "YOURAPIKEY")`. See [here](http://academic.research.microsoft.com/about/Microsoft%20Academic%20Search%20API%20User%20Manual.pdf) for API docs. Things to note:
 
 + The service, application, tool, website, or a feature in a product that you build can be for non-commercial use only or must be available in free version of the product.
 + All their APIs come with the standard 200 queries per minute.
 + Each API call returns only 100 items per call.
-+ You can not use the API to crawl the entire corpus.
++ You can not use the API to crawl the entire corpus. -->
 
 ### Installation 
 
