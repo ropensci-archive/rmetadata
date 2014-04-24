@@ -31,9 +31,6 @@ specify the properties to be returned, for example, Title, Author, Abstract etc.
 
 \item{EndIdx}{Record to end at.}
 
-\item{OrderBy}{Order results by The sorting method of the result, for example,
-Year and CitationCount.}
-
 \item{YearStart}{The start year of the publication. Zero for no requirement.}
 
 \item{YearEnd}{The end year of the publication. Zero for no requirement.}

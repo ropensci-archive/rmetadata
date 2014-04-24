@@ -53,9 +53,10 @@
 #' @keywords datacite
 dc_search <- function(q=NULL, fl=NULL, rows=10, sort=NULL)
 {
-  url <- 'http://search.datacite.org/api'
-  args <- compact(list(q=q, fl=fl, rows=rows, sort=sort, wt='json'))
-  temp <- content(GET(url, query = args))
-  class(temp) <- "datacite"
-  return( temp )
+  message("Datacite functions moved to a new package rdatacite https://github.com/ropensci/rdatacite")
+#   url <- 'http://search.datacite.org/api'
+#   args <- compact(list(q=q, fl=fl, rows=rows, sort=sort, wt='json'))
+#   temp <- content(GET(url, query = args))
+#   class(temp) <- "datacite"
+#   return( temp )
 }

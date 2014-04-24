@@ -12,8 +12,6 @@
 #' 		specify the properties to be returned, for example, Title, Author, Abstract etc.
 #' @param StartIdx Record to start at.
 #' @param EndIdx Record to end at.
-#' @param OrderBy Order results by The sorting method of the result, for example,
-#' 		Year and CitationCount.
 #' @param YearStart The start year of the publication. Zero for no requirement.
 #' @param YearEnd The end year of the publication. Zero for no requirement.
 #' @param AuthorID Author id.
