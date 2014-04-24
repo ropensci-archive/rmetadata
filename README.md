@@ -10,7 +10,7 @@
 ### Data sources
 
 #### OAI-PMH
-You can access all the data sources in the [OAI-PMH list of metadata providers](http://www.openarchives.org/Register/BrowseSites), in addition to some sources not on that list (more are available): 
+You can access all the data sources in the [OAI-PMH list of metadata providers](http://www.openarchives.org/Register/BrowseSites), in addition to some sources not on that list (more are available):
 
 + [DataCite](http://datacite.org/)
 + [PubMed Central](http://www.ncbi.nlm.nih.gov/pmc/)
@@ -35,7 +35,7 @@ Accessed via the separate `rcrossref` package.
 + [Metadata search](http://search.labs.crossref.org/help/api) - `crossref_cn`
 + [Get random DOIs](http://random.labs.crossref.org/) - `crossref_r`
 
-#### Digital Public Library of America 
+#### Digital Public Library of America
 
 Metadata from the Digital Public Library of America ([DPLA](http://dp.la/)). They have [a great API](https://github.com/dpla/platform) with good documentation - a rare thing in this world. Further documentation on their API can be found on their [search fields](http://dp.la/info/developers/codex/responses/field-reference/) and [examples of queries](http://dp.la/info/developers/codex/requests/).
 
@@ -52,7 +52,7 @@ Microsoft is no longer supporting this service...
 + Each API call returns only 100 items per call.
 + You can not use the API to crawl the entire corpus. -->
 
-### Installation 
+### Installation
 
 Install `rmetadata` from GitHub:
 
@@ -85,25 +85,25 @@ print(crossref_citation("10.3998/3336451.0009.101"), style = "Bibtex")
 # Default search gets 20 random DOIs
 crossref_r()
 
-[1] "10.1038/171775d0"                   
-[2] "10.1017/CBO9780511707346.011"       
-[3] "10.1111/j.1749-6632.1972.tb16320.x" 
-[4] "10.1111/apha.1935.71.issue-1"       
-[5] "10.1007/s11431-008-0243-1"          
-[6] "10.1088/0305-4470/19/8/025"         
-[7] "10.1364/OL.35.002879"               
-[8] "10.1051/forest:198905ART0188"       
+[1] "10.1038/171775d0"
+[2] "10.1017/CBO9780511707346.011"
+[3] "10.1111/j.1749-6632.1972.tb16320.x"
+[4] "10.1111/apha.1935.71.issue-1"
+[5] "10.1007/s11431-008-0243-1"
+[6] "10.1088/0305-4470/19/8/025"
+[7] "10.1364/OL.35.002879"
+[8] "10.1051/forest:198905ART0188"
 [9] "10.1371/journal.pone.0056230.g002"  
-[10] "10.1079/9780851994437.0231"         
-[11] "10.1074/jbc.M313969200"             
+[10] "10.1079/9780851994437.0231"
+[11] "10.1074/jbc.M313969200"
 [12] "10.1016/j.freeradbiomed.2010.10.208"
-[13] "10.1007/978-1-4612-3660-3_21"       
-[14] "10.1016/j.msea.2010.06.064"         
-[15] "10.1016/B978-0-12-415795-8.00009-X" 
-[16] "10.1016/S0140-6736(01)57920-9"      
-[17] "10.1139/z77-087"                    
-[18] "10.2307/316344"                     
-[19] "10.1111/j.1365-2044.2012.07118.x"   
+[13] "10.1007/978-1-4612-3660-3_21"
+[14] "10.1016/j.msea.2010.06.064"
+[15] "10.1016/B978-0-12-415795-8.00009-X"
+[16] "10.1016/S0140-6736(01)57920-9"
+[17] "10.1139/z77-087"
+[18] "10.2307/316344"
+[19] "10.1111/j.1365-2044.2012.07118.x"
 [20] "10.1007/bf00692798"
 ```
 
@@ -136,8 +136,8 @@ dpla_basic(q="fruit", verbose=TRUE, fields=c("publisher","format"))
 
 #### Visualize metadata from the DPLA - histogram of number of subjects per record
 ```r
-# GEt results from searching on the terme ecology
-out <- dpla_basic(q="ecology", fields=c("publisher","subject"), page_size=90)
+# Get results from searching on the terme ecology
+out <- dpla_basic(q="ecology", fields=c("publisher","subject"), limit=90)
 dpla_plot(input=out, plottype = "subjectsum")
 ```
 

@@ -3,6 +3,7 @@
 #' @import ggplot2 lubridate stringr
 #' @importFrom plyr ldply ddply llply compact summarise
 #' @importFrom reshape sort_df
+#' @export
 #' @param input A data.frame from calling a variety of dpla_* functions.
 #' @param plottype One of a number of types. These are for convenience. You
 #'    can of course create your own plots with more flexibility.
@@ -16,7 +17,7 @@
 #' out <- dpla_basic(q="science", date.before=1900, limit=200)
 #' dpla_plot(input=out, plottype="subjectsbydate")
 #' }
-#' @export
+
 dpla_plot <- function(input, plottype = "subjectsum")
 {
   # subject summary
