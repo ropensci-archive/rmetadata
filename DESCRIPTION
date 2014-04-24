@@ -1,16 +1,18 @@
 Package: rmetadata
 Type: Package
 Title: Scholarly metadata in R.
-Version: 0.1
-License: CC0
-Date: 2013-03-21
+Version: 0.1.8
+License: MIT + file LICENSE
+Date: 2014-04-24
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
-Description: A wrapper to get article metatdata for a number of databases,
-    including CrossRef, PubMed Central, DataCite, Pensoft, and Hindawi journals.
+Description: A wrapper to get article metatdata from OAI-PMH servers, and a
+    number of databases, including Digital Public Library of America, PubMed
+    Central, DataCite, Pensoft, and Hindawi journals.
 URL: https://github.com/ropensci/rmetadata
 LazyLoad: yes
 LazyData: yes
+Roxygen: list(wrap = FALSE)
 Imports:
     XML,
     httr,
@@ -18,4 +20,5 @@ Imports:
     RJSONIO,
     RCurl,
     lubridate,
-    reshape
+    reshape,
+    stringr
