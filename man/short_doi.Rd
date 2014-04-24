@@ -35,6 +35,6 @@ short_doi(doi = "10.1371/journal.pone.0042793", justshort=FALSE)
 Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 \seealso{
-\code{\link{crossref_search}}, \code{\link{crossref_citation}}, \code{\link{crossref_search_free}}
+crossref_search, crossref_citation, crossref_search_free in the \code{rcrossref} package.
 }
 

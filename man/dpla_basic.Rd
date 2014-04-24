@@ -9,8 +9,6 @@ dpla_basic(q = NULL, verbose = FALSE, fields = NULL, limit = 10,
 \arguments{
 \item{q}{Query terms.}
 
-\item{verbose}{If TRUE, the console talks to you :/}
-
 \item{limit}{Number of items to return, defaults to 10. Max of 100.}
 
 \item{page}{Page number to return, defaults to NULL.}
@@ -21,6 +19,10 @@ the standard error structure with a HTTP 400 status code.}
 
 \item{fields}{A vector of the fields to return in the output. The default
 is all fields. See details for options.}
+
+\item{date.before}{Date before}
+
+\item{date.after}{Date after}
 
 \item{verbose}{If TRUE, fun little messages print to console to inform you
 of things.}

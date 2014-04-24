@@ -38,6 +38,8 @@ Year and CitationCount.}
 
 \item{YearEnd}{The end year of the publication. Zero for no requirement.}
 
+\item{AuthorID}{Author id.}
+
 \item{return_}{Content to return: one of all (journal info and authors),
 journal (journal information), or authors (author information).}
 

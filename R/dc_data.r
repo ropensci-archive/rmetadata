@@ -1,15 +1,14 @@
 #' Get Datacite data.
-#' 
+#'
 #' Get Datacite data from a search using dc_search.
 #' 
-#' @import plyr
 #' @param input Output from bison function.
 #' @param what One of summary, brielf, all, or list specific columns as comma
 #'    separated character string.
 #' @param as As a data.frame (df) or list (list)
 #' @return A message, data.frame or list.
-#' @description what=summary prints a message with summary of search, what=brief 
-#'    returns all data in a data.frame, what=all returns all data, 
+#' @description what=summary prints a message with summary of search, what=brief
+#'    returns all data in a data.frame, what=all returns all data,
 #'    what=<character string of column names> returns just those column names
 #' @examples \dontrun{
 #' # output data
@@ -24,12 +23,12 @@
 dc_data <- function(input = NULL, what='summary', as='df') UseMethod("dc_data")
 
 #' @S3method dc_data datacite
-#' 
+#'
 dc_data.datacite <- function(input = NULL, what = 'summary', as = 'df')
 {
   if(!is.datacite(input))
     stop("Input is not of class datacite")
-  
+
   if(!what=='summary'){
     dat <- input$response$docs
     if(any(names(dat[[1]]) %in% "creator")){
@@ -49,13 +48,13 @@ dc_data.datacite <- function(input = NULL, what = 'summary', as = 'df')
       dat <- llply(dat, cat_subject)
     }
   }
-  
+
   if(what=='summary'){
     temp <- input$response
     message(sprintf("%s objects found, started at %s and returned %s", temp$numFound, temp$start, length(temp$docs)))
   } else
     if(what=="brief"){
-      if(as=='df'){        
+      if(as=='df'){
         ldply(dat, function(x) data.frame(x[names(x) %in% c('dataset_id','doi','title','date','creator','publisher','subject')]))
       } else
       {

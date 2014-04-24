@@ -1,15 +1,16 @@
 #' Search metadata from the Digital Public Library of America (DPLA).
-#' 
-#' @import httr plyr
+#'
+#' @import httr
 #' @param q Query terms.
-#' @param verbose If TRUE, the console talks to you :/
 #' @param limit Number of items to return, defaults to 10. Max of 100.
 #' @param page Page number to return, defaults to NULL.
-#' @param sort_by The default sort order is ascending. Most, but not all fields 
-#'    can be sorted on. Attempts to sort on an un-sortable field will return 
+#' @param sort_by The default sort order is ascending. Most, but not all fields
+#'    can be sorted on. Attempts to sort on an un-sortable field will return
 #'    the standard error structure with a HTTP 400 status code.
-#' @param fields A vector of the fields to return in the output. The default 
-#'    is all fields. See details for options. 
+#' @param fields A vector of the fields to return in the output. The default
+#'    is all fields. See details for options.
+#' @param date.before Date before
+#' @param date.after Date after
 #' @param verbose If TRUE, fun little messages print to console to inform you
 #'    of things.
 #' @details Options for the fields argument are:
@@ -32,44 +33,44 @@
 #' @examples \dontrun{
 #' # Basic search, "fruit" in any fields
 #' dpla_basic(q="fruit")
-#' 
+#'
 #' # Some verbosity
 #' dpla_basic(q="fruit", verbose=TRUE, limit=2)
-#' 
+#'
 #' # Return certain fields
 #' dpla_basic(q="fruit", verbose=TRUE, fields=c("publisher","format"))
 #' dpla_basic(q="fruit", fields="subject")
-#' 
+#'
 #' # Max is 100 per call, but the function handles larger numbers by looping
 #' dpla_basic(q="fruit", fields="id", limit=200)
 #' dpla_basic(q="fruit", fields=c("id","provider"), limit=200)
 #' dpla_basic(q="fruit", fields=c("id","provider"), limit=200)
 #' out <- dpla_basic(q="science", fields=c("id","subject"), limit=400)
-#' 
+#'
 #' # Search by date
 #' dpla_basic(q="science", date.before=1900, limit=200)
 #' }
 #' @export
-dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10, 
+dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10,
                        page=NULL, sort_by=NULL, date.before=NULL, date.after=NULL)
 {
   fields2 <- fields
-  
+
   if(!is.null(fields)){
     fieldsfunc <- function(x){
       if(x %in% c("title","description","subject","creator","type","publisher",
-                  "format","rights","contributor","spatial")) { 
+                  "format","rights","contributor","spatial")) {
         paste("sourceResource.", x, sep="") } else { x }
-    } 
+    }
     fields <- paste(sapply(fields, fieldsfunc, USE.NAMES=FALSE), collapse=",")
   } else {NULL}
-  
+
   url = "http://api.dp.la/v2/items"
   key <- getOption("dplakey")
 
-  if(!limit > 100){ 
+  if(!limit > 100){
     args <- compact(list(api_key=key, q=q, page_size=limit, page=page, fields=fields, sourceResource.date.before=date.before, sourceResource.date.after=date.after))
-    temp <- content(GET(url, query = args))    
+    temp <- content(GET(url, query = args))
     hi <- data.frame(temp[1:3])
     if(verbose)
       message(paste(hi$count, " objects found, started at ", hi$start, ", and returned ", hi$limit, sep=""))
@@ -85,9 +86,9 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10,
       message(paste(hi$count, " objects found, started at ", hi$start, ", and returned ", sum(hi[,c(5,6)]), sep=""))
     dat <- do.call(c, llply(out, function(x) x[[4]])) # collect data
   }
-  
+
   # function to process data for each element
-  getdata <- function(y){ 
+  getdata <- function(y){
     process_res <- function(x){
       id <- x$id
       title <- x$title
@@ -102,14 +103,14 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10,
       provider <- x$provider[["name"]]
       creator <- if(length(x$creator)>1){paste(as.character(x$creator), collapse=";")} else {x$creator}
       rights <- x$rights
-      
+
       replacenull <- function(y){ ifelse(is.null(y), "no content", y) }
       ents <- list(id,title,description,subject,language,format,collection,type,provider,publisher,creator,rights,date)
       names(ents) <- c("id","title","description","subject","language","format","collection","type","provider","publisher","creator","rights","date")
       ents <- llply(ents, replacenull)
       data.frame(ents)
     }
-    if(is.null(fields)){ 
+    if(is.null(fields)){
       id <- y$id
       provider <- data.frame(t(y$provider))
       names(provider) <- c("provider_url","provider_name")
@@ -120,9 +121,9 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10,
       sourceResource_df <- sourceResource_df[,!names(sourceResource_df) %in% c("id","provider")]
       data.frame(id, sourceResource_df, provider, score, url)
     } else
-      { 
+      {
         names(y) <- str_replace_all(names(y), "sourceResource.", "")
-        if(length(y)==1) { 
+        if(length(y)==1) {
           onetemp <- list(y[[1]])
           onename <- names(y)
           names(onetemp) <- eval(onename)
@@ -131,15 +132,15 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10,
         { process_res(y) }
       }
   }
-  
+
   output <- ldply(dat, getdata)
-  
+
   if(is.null(fields)){ output  } else
-    { 
-      output2 <- output[,names(output) %in% fields2]  
+    {
+      output2 <- output[,names(output) %in% fields2]
       # convert one column factor string to data.frame (happens when only one field is requested)
-      if(class(output2) %in% "factor"){ 
-        output3 <- data.frame(output2) 
+      if(class(output2) %in% "factor"){
+        output3 <- data.frame(output2)
         names(output3) <- fields2
         output3
       } else { output2 }
