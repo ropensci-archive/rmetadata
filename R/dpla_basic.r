@@ -1,6 +1,7 @@
 #' Search metadata from the Digital Public Library of America (DPLA).
 #'
 #' @import httr
+#' @export
 #' @param q Query terms.
 #' @param limit Number of items to return, defaults to 10. Max of 100.
 #' @param page Page number to return, defaults to NULL.
@@ -49,10 +50,13 @@
 #'
 #' # Search by date
 #' dpla_basic(q="science", date.before=1900, limit=200)
+#' 
+#' # Spatial search
+#' dpla_basic(q='Boston', fields='spatial')
 #' }
-#' @export
-dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10,
-                       page=NULL, sort_by=NULL, date.before=NULL, date.after=NULL)
+
+dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10, page=NULL, 
+  sort_by=NULL, date.before=NULL, date.after=NULL, callopts=list())
 {
   fields2 <- fields
 
@@ -65,12 +69,18 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10,
     fields <- paste(sapply(fields, fieldsfunc, USE.NAMES=FALSE), collapse=",")
   } else {NULL}
 
-  url = "http://api.dp.la/v2/items"
+  url <- "http://api.dp.la/v2/items"
   key <- getOption("dplakey")
 
   if(!limit > 100){
-    args <- compact(list(api_key=key, q=q, page_size=limit, page=page, fields=fields, sourceResource.date.before=date.before, sourceResource.date.after=date.after))
-    temp <- content(GET(url, query = args))
+    args <- compact(list(api_key=key, q=q, page_size=limit, page=page, fields=fields, 
+                         sourceResource.date.before=date.before, 
+                         sourceResource.date.after=date.after))
+    tt <- GET(url, query = args, callopts)
+    stop_for_status(tt)
+    assert_that(tt$headers$`content-type` == "application/json; charset=utf-8")
+    res <- content(tt, as = "text")
+    temp <- fromJSON(res)
     hi <- data.frame(temp[1:3])
     if(verbose)
       message(paste(hi$count, " objects found, started at ", hi$start, ", and returned ", hi$limit, sep=""))
@@ -87,52 +97,6 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10,
     dat <- do.call(c, llply(out, function(x) x[[4]])) # collect data
   }
 
-  # function to process data for each element
-  getdata <- function(y){
-    process_res <- function(x){
-      id <- x$id
-      title <- x$title
-      description <- x$description
-      subject <- if(length(x$subject)>1){paste(as.character(unlist(x$subject)), collapse=";")} else {x$subject[[1]][["name"]]}
-      language <- x$language[[1]][["name"]]
-      format <- x$format
-      collection <- if(any(names(x$collection) %in% "name")) {x$collection[["name"]]} else {"no collection name"}
-      type <- x$type
-      date <- x$date[[1]]
-      publisher <- x$publisher
-      provider <- x$provider[["name"]]
-      creator <- if(length(x$creator)>1){paste(as.character(x$creator), collapse=";")} else {x$creator}
-      rights <- x$rights
-
-      replacenull <- function(y){ ifelse(is.null(y), "no content", y) }
-      ents <- list(id,title,description,subject,language,format,collection,type,provider,publisher,creator,rights,date)
-      names(ents) <- c("id","title","description","subject","language","format","collection","type","provider","publisher","creator","rights","date")
-      ents <- llply(ents, replacenull)
-      data.frame(ents)
-    }
-    if(is.null(fields)){
-      id <- y$id
-      provider <- data.frame(t(y$provider))
-      names(provider) <- c("provider_url","provider_name")
-      score <- y$score
-      url <- y$isShownAt
-      sourceResource <- y$sourceResource
-      sourceResource_df <- process_res(sourceResource)
-      sourceResource_df <- sourceResource_df[,!names(sourceResource_df) %in% c("id","provider")]
-      data.frame(id, sourceResource_df, provider, score, url)
-    } else
-      {
-        names(y) <- str_replace_all(names(y), "sourceResource.", "")
-        if(length(y)==1) {
-          onetemp <- list(y[[1]])
-          onename <- names(y)
-          names(onetemp) <- eval(onename)
-          process_res(onetemp)
-        } else
-        { process_res(y) }
-      }
-  }
-
   output <- ldply(dat, getdata)
 
   if(is.null(fields)){ output  } else
@@ -145,4 +109,50 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10,
         output3
       } else { output2 }
     }
+}
+
+# function to process data for each element
+getdata <- function(y){
+  process_res <- function(x){
+    id <- x$id
+    title <- x$title
+    description <- x$description
+    subject <- if(length(x$subject)>1){paste(as.character(unlist(x$subject)), collapse=";")} else {x$subject[[1]][["name"]]}
+    language <- x$language[[1]][["name"]]
+    format <- x$format
+    collection <- if(any(names(x$collection) %in% "name")) {x$collection[["name"]]} else {"no collection name"}
+    type <- x$type
+    date <- x$date[[1]]
+    publisher <- x$publisher
+    provider <- x$provider[["name"]]
+    creator <- if(length(x$creator)>1){paste(as.character(x$creator), collapse=";")} else {x$creator}
+    rights <- x$rights
+    
+    replacenull <- function(y){ ifelse(is.null(y), "no content", y) }
+    ents <- list(id,title,description,subject,language,format,collection,type,provider,publisher,creator,rights,date)
+    names(ents) <- c("id","title","description","subject","language","format","collection","type","provider","publisher","creator","rights","date")
+    ents <- llply(ents, replacenull)
+    data.frame(ents)
+  }
+  if(is.null(fields)){
+    id <- y$id
+    provider <- data.frame(t(y$provider))
+    names(provider) <- c("provider_url","provider_name")
+    score <- y$score
+    url <- y$isShownAt
+    sourceResource <- y$sourceResource
+    sourceResource_df <- process_res(sourceResource)
+    sourceResource_df <- sourceResource_df[,!names(sourceResource_df) %in% c("id","provider")]
+    data.frame(id, sourceResource_df, provider, score, url)
+  } else
+  {
+    names(y) <- str_replace_all(names(y), "sourceResource.", "")
+    if(length(y)==1) {
+      onetemp <- list(y[[1]])
+      onename <- names(y)
+      names(onetemp) <- eval(onename)
+      process_res(onetemp)
+    } else
+    { process_res(y) }
+  }
 }

@@ -26,6 +26,8 @@
 #' 
 #' # Items from before 1900
 #' dpla_by_fields("1900,date.before")
+#' 
+#' dpla_by_fields("Boston,spatial")
 #' }
 #' @export
 dpla_by_fields <- function(queries = NULL)
