@@ -1,9 +1,9 @@
 Package: rmetadata
 Type: Package
 Title: Scholarly metadata in R.
-Version: 0.1.8
+Version: 0.1.9
 License: MIT + file LICENSE
-Date: 2014-04-24
+Date: 2014-05-22
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 Description: A wrapper to get article metatdata from OAI-PMH servers, and a
@@ -23,3 +23,7 @@ Imports:
     reshape,
     plyr,
     stringr
+Suggests:
+    roxygen2,
+    knitr,
+    testthat
