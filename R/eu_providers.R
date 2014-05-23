@@ -10,6 +10,7 @@
 #' @param limit	(numeric) Size of the result set to fetch.
 #' @param country_code (character) Two-letter ISO 3166-1 country code. Not all countries give data 
 #' back of course, for example, there is no data for country_code='US'. 
+#' @param key Your Europeana API key.
 #' @param callopts Curl options passed on to httr::GET, see examples
 #' @examples \dontrun{
 #' eu_providers(limit=1)

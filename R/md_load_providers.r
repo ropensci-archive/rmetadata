@@ -5,7 +5,7 @@
 #' @param envir R environment to load data in to.
 #' @details Loads the data object providers into the global workspace. 
 #' @return loads the object providers into the working space. 
-#' @seealso \code{\link{update_providers}}
+#' @seealso \code{\link{md_update_providers}}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \donttest{
 #' # By default the new providers table goes to directory ".", so just load from there

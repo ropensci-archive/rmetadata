@@ -22,6 +22,8 @@ when providerid is NULL (the default for that parameter).}
 \item{country_code}{(character) Two-letter ISO 3166-1 country code. Not all countries give data
 back of course, for example, there is no data for country_code='US'.}
 
+\item{key}{Your Europeana API key.}
+
 \item{callopts}{Curl options passed on to httr::GET, see examples}
 }
 \description{

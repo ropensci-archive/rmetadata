@@ -33,6 +33,6 @@ md_load_providers()
 Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 \seealso{
-\code{\link{load_providers}}
+\code{\link{md_load_providers}}
 }
 

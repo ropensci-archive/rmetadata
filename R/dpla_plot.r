@@ -1,7 +1,8 @@
 #' Search metadata from the Digital Public Library of America (DPLA).
 #'
-#' @import ggplot2 lubridate stringr plyr
+#' @import ggplot2 stringr plyr
 #' @importFrom reshape sort_df
+#' @importFrom lubridate ymd
 #' @export
 #' @param input A data.frame from calling a variety of dpla_* functions.
 #' @param plottype One of a number of types. These are for convenience. You

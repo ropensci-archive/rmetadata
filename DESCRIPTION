@@ -18,7 +18,6 @@ Imports:
     XML,
     httr,
     jsonlite,
-    RCurl,
     lubridate,
     reshape,
     stringr,

@@ -27,6 +27,8 @@ is all fields. See details for options.}
 
 \item{verbose}{If TRUE, fun little messages print to console to inform you
 of things.}
+
+\item{callopts}{Curl options passed on to httr::GET}
 }
 \value{
 A data.frame of results.

@@ -14,6 +14,7 @@
 #' @param date.after Date after
 #' @param verbose If TRUE, fun little messages print to console to inform you
 #'    of things.
+#' @param callopts Curl options passed on to httr::GET
 #' @details Options for the fields argument are:
 #' \itemize{
 #'  \item sourceResource.title The title of the object
