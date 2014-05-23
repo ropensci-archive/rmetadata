@@ -3,7 +3,7 @@ Type: Package
 Title: Scholarly metadata in R.
 Version: 0.1.9
 License: MIT + file LICENSE
-Date: 2014-05-22
+Date: 2014-05-23
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 Description: A wrapper to get article metatdata from OAI-PMH servers, and a
