@@ -10,13 +10,13 @@
 #' @examples \donttest{
 #' # By default the new providers table goes to directory ".", so just load from there
 #' update_providers() 
-#' load_providers(path=".")
+#' md_load_providers(path=".")
 #' 
 #' # Loads the version in the package
-#' load_providers()
+#' md_load_providers()
 #' }
 #' @export
-load_providers <- function(path=NULL, envir=.GlobalEnv)
+md_load_providers <- function(path=NULL, envir=.GlobalEnv)
 {
   if(is.null(path))
   	file <- system.file("data", "providers.rda", package="rmd")

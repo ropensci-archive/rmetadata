@@ -20,15 +20,15 @@
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \dontrun{
 #' # Select one
-#' count_identifiers(provider="datacite")
+#' md_count_identifiers(provider="datacite")
 #'
 #' # Select a few
 #' library("plyr")
-#' ldply(c("datacite","pensoft","arXiv"), count_identifiers)
+#' ldply(c("datacite","pensoft","arXiv"), md_count_identifiers)
 #' }
 #' @examples \donttest{
 #' # All of them, takes a while, run in parallel, e.g. on AWS RStudio AMI
-#' out <- llply(providers[,2], function(x) count_identifiers(x, useurl = T), .inform=T)
+#' out <- llply(providers[,2], function(x) md_count_identifiers(x, useurl = T), .inform=T)
 #' outdf <- ldply(out)
 #' str(outdf)
 #' outdf_ <- outdf[!is.na(as.numeric(as.character(outdf$count))), ]  # just those with counts

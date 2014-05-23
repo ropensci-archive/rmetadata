@@ -1,6 +1,5 @@
 #' Search the Microsoft Academic Research API.
 #'
-#' @import RJSONIO RCurl httr
 #' @param FullTextQuery Search terms for a full text query of the MAS API.
 #' @param AuthorQuery Search terms for an author query of the MAS API.
 #' @param TitleQuery Search terms for a title query of the MAS API.

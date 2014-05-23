@@ -29,11 +29,11 @@ Count identifiers for the data sources from the OAI-PMH list, and others not
 \examples{
 \dontrun{
 # Select one
-count_identifiers(provider="datacite")
+md_count_identifiers(provider="datacite")
 
 # Select a few
 library("plyr")
-ldply(c("datacite","pensoft","arXiv"), count_identifiers)
+ldply(c("datacite","pensoft","arXiv"), md_count_identifiers)
 }
 }
 \author{

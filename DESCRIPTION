@@ -17,12 +17,13 @@ Imports:
     ggplot2,
     XML,
     httr,
-    RJSONIO,
+    jsonlite,
     RCurl,
     lubridate,
     reshape,
-    plyr,
-    stringr
+    stringr,
+    assertthat,
+    plyr
 Suggests:
     roxygen2,
     knitr,

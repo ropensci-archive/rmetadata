@@ -6,6 +6,7 @@
 #' 		down here, but you can grab the name using example below.
 #' 
 #' @import httr XML 
+#' @export
 #' @details This table is scraped from 
 #' 		\url{http://www.openarchives.org/Register/BrowseSites}.
 #' 		I would get it from \url{http://www.openarchives.org/Register/ListFriends}, 
@@ -17,11 +18,11 @@
 #' @seealso \code{\link{load_providers}}
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
 #' @examples \donttest{
-#' update_providers()
-#' load_providers()
+#' md_update_providers()
+#' md_load_providers()
 #' }
-#' @export
-update_providers <- function(path=".")
+
+md_update_providers <- function(path=".")
 { 
 	date <- Sys.Date()
 	temp <- content(GET("http://www.openarchives.org/Register/BrowseSites"))

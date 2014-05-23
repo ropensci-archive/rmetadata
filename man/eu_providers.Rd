@@ -4,7 +4,7 @@
 \title{Europeana data providers.}
 \usage{
 eu_providers(providerid = NULL, datasetid = NULL, datasets = FALSE,
-  offset = NULL, limit = 10, country_code = NULL, key = NULL,
+  start = NULL, limit = 10, country_code = NULL, key = NULL,
   callopts = list())
 }
 \arguments{
@@ -15,29 +15,39 @@ eu_providers(providerid = NULL, datasetid = NULL, datasets = FALSE,
 \item{datasets}{(logical) Whether to return datasets or not with provider information. Ignored
 when providerid is NULL (the default for that parameter).}
 
-\item{offset}{(numeric) Query for paging needs - offset to start with}
+\item{start}{(numeric) Record number to start with.}
 
-\item{limit}{(numeric) query    for paging needs - size of the result set to fetch}
+\item{limit}{(numeric) Size of the result set to fetch.}
 
-\item{country_code}{(character) query    two-letters ISO 3166-1 country code. (TBD - is it so?)}
+\item{country_code}{(character) Two-letter ISO 3166-1 country code. Not all countries give data
+back of course, for example, there is no data for country_code='US'.}
 
-\item{callopts}{Curl options passed on to httr::GET}
+\item{callopts}{Curl options passed on to httr::GET, see examples}
 }
 \description{
 Europeana data providers.
 }
 \examples{
 \dontrun{
+eu_providers(limit=1)
+eu_providers(limit=1, start=3)
 out <- eu_providers(limit=3)
 out$meta
 out$items
+eu_providers(start=3)
 eu_providers(providerid=20239)
 eu_providers(providerid=20239, datasets=TRUE)
 eu_providers(datasetid=2023901)
 identical(eu_providers(providerid=20239, datasets=TRUE)$items,
    eu_providers(datasetid=2023901)$items)
 
-eu_providers(country_code='US')
+# Country codes
+out <- eu_providers(country_code='UK')
+sapply(out$items, "[[", "country") # check that all country fields are UK
+
+# Curl debugging
+library("httr")
+eu_providers(limit=1, callopts=verbose())
 }
 }
 

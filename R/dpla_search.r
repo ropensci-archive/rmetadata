@@ -1,6 +1,6 @@
 #' Search metadata from the Digital Public Library of America (DPLA).
 #'
-#' @import httr
+#' @import httr jsonlite assertthat plyr
 #' @export
 #' @param q Query terms.
 #' @param limit Number of items to return, defaults to 10. Max of 100.
@@ -33,29 +33,30 @@
 #' @return A data.frame of results.
 #' @examples \dontrun{
 #' # Basic search, "fruit" in any fields
-#' dpla_basic(q="fruit")
+#' dpla_search(q="fruit")
 #'
 #' # Some verbosity
-#' dpla_basic(q="fruit", verbose=TRUE, limit=2)
+#' dpla_search(q="fruit", verbose=TRUE, limit=2)
 #'
 #' # Return certain fields
-#' dpla_basic(q="fruit", verbose=TRUE, fields=c("publisher","format"))
-#' dpla_basic(q="fruit", fields="subject")
+#' dpla_search(q="fruit", verbose=TRUE, fields=c("publisher","format"))
+#' dpla_search(q="fruit", fields="subject")
 #'
 #' # Max is 100 per call, but the function handles larger numbers by looping
-#' dpla_basic(q="fruit", fields="id", limit=200)
-#' dpla_basic(q="fruit", fields=c("id","provider"), limit=200)
-#' dpla_basic(q="fruit", fields=c("id","provider"), limit=200)
-#' out <- dpla_basic(q="science", fields=c("id","subject"), limit=400)
+#' dpla_search(q="fruit", fields="id", limit=200)
+#' dpla_search(q="fruit", fields=c("id","provider"), limit=200)
+#' dpla_search(q="fruit", fields=c("id","provider"), limit=200)
+#' out <- dpla_search(q="science", fields=c("id","subject"), limit=400)
+#' head(out)
 #'
 #' # Search by date
-#' dpla_basic(q="science", date.before=1900, limit=200)
+#' dpla_search(q="science", date.before=1900, limit=200)
 #' 
 #' # Spatial search
-#' dpla_basic(q='Boston', fields='spatial')
+#' dpla_search(q='Boston', fields='spatial')
 #' }
 
-dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10, page=NULL, 
+dpla_search <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10, page=NULL, 
   sort_by=NULL, date.before=NULL, date.after=NULL, callopts=list())
 {
   fields2 <- fields
@@ -73,14 +74,14 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10, page=NULL,
   key <- getOption("dplakey")
 
   if(!limit > 100){
-    args <- compact(list(api_key=key, q=q, page_size=limit, page=page, fields=fields, 
+    args <- rmet_compact(list(api_key=key, q=q, page_size=limit, page=page, fields=fields, 
                          sourceResource.date.before=date.before, 
                          sourceResource.date.after=date.after))
     tt <- GET(url, query = args, callopts)
-    stop_for_status(tt)
+    warn_for_status(tt)
     assert_that(tt$headers$`content-type` == "application/json; charset=utf-8")
     res <- content(tt, as = "text")
-    temp <- fromJSON(res)
+    temp <- jsonlite::fromJSON(res, FALSE)
     hi <- data.frame(temp[1:3])
     if(verbose)
       message(paste(hi$count, " objects found, started at ", hi$start, ", and returned ", hi$limit, sep=""))
@@ -89,15 +90,22 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10, page=NULL,
   {
     maxpage <- ceiling(limit/100)
     page_vector <- seq(1,maxpage,1)
-    argslist <- llply(page_vector, function(x) compact(list(api_key=key, q=q, page_size=100, page=x, fields=fields, sourceResource.date.before=date.before, sourceResource.date.after=date.after)))
-    out <- llply(argslist, function(x) content(GET(url, query = x)))
+    argslist <- lapply(page_vector, function(x) rmet_compact(list(api_key=key, q=q, page_size=100, page=x, fields=fields, sourceResource.date.before=date.before, sourceResource.date.after=date.after)))
+    out <- lapply(argslist, function(x){ 
+      tt <- GET(url, query = x)
+      warn_for_status(tt)
+      assert_that(tt$headers$`content-type` == "application/json; charset=utf-8")
+      res <- content(tt, as = "text")
+      jsonlite::fromJSON(res, FALSE)
+    })
     hi <- data.frame(out[[1]][1:3], out[[length(out)]][1:3])
     if(verbose)
       message(paste(hi$count, " objects found, started at ", hi$start, ", and returned ", sum(hi[,c(5,6)]), sep=""))
-    dat <- do.call(c, llply(out, function(x) x[[4]])) # collect data
+    dat <- do.call(c, lapply(out, function(x) x[[4]])) # collect data
   }
 
-  output <- ldply(dat, getdata)
+#   output <- ldply(dat, getdata)
+  output <- do.call(rbind.fill, lapply(dat, getdata, flds=fields))
 
   if(is.null(fields)){ output  } else
     {
@@ -112,7 +120,7 @@ dpla_basic <- function(q=NULL, verbose=FALSE, fields=NULL, limit=10, page=NULL,
 }
 
 # function to process data for each element
-getdata <- function(y){
+getdata <- function(y, flds){
   process_res <- function(x){
     id <- x$id
     title <- x$title
@@ -131,12 +139,12 @@ getdata <- function(y){
     replacenull <- function(y){ ifelse(is.null(y), "no content", y) }
     ents <- list(id,title,description,subject,language,format,collection,type,provider,publisher,creator,rights,date)
     names(ents) <- c("id","title","description","subject","language","format","collection","type","provider","publisher","creator","rights","date")
-    ents <- llply(ents, replacenull)
-    data.frame(ents)
+    ents <- lapply(ents, replacenull)
+    data.frame(ents, stringsAsFactors = FALSE)
   }
-  if(is.null(fields)){
+  if(is.null(flds)){
     id <- y$id
-    provider <- data.frame(t(y$provider))
+    provider <- data.frame(t(y$provider), stringsAsFactors = FALSE)
     names(provider) <- c("provider_url","provider_name")
     score <- y$score
     url <- y$isShownAt

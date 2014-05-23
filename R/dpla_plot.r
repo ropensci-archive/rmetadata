@@ -1,7 +1,6 @@
 #' Search metadata from the Digital Public Library of America (DPLA).
 #'
-#' @import ggplot2 lubridate stringr
-#' @importFrom plyr ldply ddply llply compact summarise
+#' @import ggplot2 lubridate stringr plyr
 #' @importFrom reshape sort_df
 #' @export
 #' @param input A data.frame from calling a variety of dpla_* functions.
@@ -58,5 +57,7 @@ dpla_plot <- function(input, plottype = "subjectsum")
         theme(panel.grid.major=element_blank(),
               panel.grid.minor=element_blank())
     } else
-    {message("select one of xxxxx")}
+    {
+      message("select one of xxxxx")
+    }
 }

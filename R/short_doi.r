@@ -1,6 +1,7 @@
 #' Get a random set of DOI's through CrossRef.
 #'
 #' @import httr
+#' @export
 #' @param doi A long-form DOI.
 #' @param justshort If TRUE, return just the short DOI. If false, the short DOI,
 #' 		the submitted long-form DOI, and whether the short DOI is new.
@@ -17,7 +18,7 @@
 #' # Geta a short DOI, all data returned
 #' short_doi(doi = "10.1371/journal.pone.0042793", justshort=FALSE)
 #' }
-#' @export
+
 short_doi <- function(doi = NULL, justshort = TRUE)
 {
 	url = "http://shortdoi.org/"
