@@ -27,19 +27,23 @@ In addition to OAI-PMH access to Datacite metadata, they have a search API, whic
 
 #### CrossRef
 
-Accessed via the separate `rcrossref` package.
-
-+ [General search and freeform search](http://search.labs.crossref.org/help/api) - `crossref_search`, `crossref_search_free`
-+ [OpenURL](http://labs.crossref.org/openurl/) - `crossref_citation`
-+ [Citation count] - `crossref_citation_count`
-+ [Metadata search](http://search.labs.crossref.org/help/api) - `crossref_cn`
-+ [Get random DOIs](http://random.labs.crossref.org/) - `crossref_r`
+**UPDATE**: Crossref is now in a separate package: https://github.com/ropensci/rcrossref
 
 #### Digital Public Library of America
 
 Metadata from the Digital Public Library of America ([DPLA](http://dp.la/)). They have [a great API](https://github.com/dpla/platform) with good documentation - a rare thing in this world. Further documentation on their API can be found on their [search fields](http://dp.la/info/developers/codex/responses/field-reference/) and [examples of queries](http://dp.la/info/developers/codex/requests/).
 
 See below for examples...
+
+#### Europeana
+
+API docs: XXXX
+
+#### HathiTrust
+
+* Data API docs: http://www.hathitrust.org/documents/hathitrust-data-api-v2.pdf
+* Bibliographic API docs: http://www.hathitrust.org/bib_api
+* OAI-PMH docs: http://www.lib.umich.edu/michigan-digitization-project-oai-harvesting
 
 #### Microsoft Academic Search
 
