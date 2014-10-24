@@ -61,14 +61,12 @@ Microsoft is no longer supporting the Academic Research API...
 
 Install `rmetadata` from GitHub:
 
-
-```r
+```{r eval=FALSE}
 install.packages("devtools")
 devtools::install_github("ropensci/rmetadata")
 ```
 
-
-```r
+```{r}
 library('rmetadata')
 ```
 
@@ -76,15 +74,13 @@ library('rmetadata')
 
 Search metadata from the Digital Public Library of America (DPLA).
 
-
-```r
+```{r eval=FALSE}
 dpla_basic(q="fruit", verbose=TRUE, fields=c("publisher","format"))
 ```
 
 Visualize metadata from the DPLA - histogram of number of subjects per record
 
-
-```r
+```{r eval=FALSE}
 # Get results from searching on the terme ecology
 out <- dpla_basic(q="ecology", fields=c("publisher","subject"), limit=90)
 dpla_plot(input=out, plottype = "subjectsum")
@@ -94,8 +90,7 @@ dpla_plot(input=out, plottype = "subjectsum")
 
 Visualize metadata from the DPLA - timeline plot of the top 10 encountered subjects
 
-
-```r
+```{r eval=FALSE}
 # Serching for the term science from before the year 1900
 out <- dpla_basic(q="science", date.before=1900, limit=200)
 dpla_plot(input=out, plottype="subjectsbydate")
