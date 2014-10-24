@@ -1,0 +1,34 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{rmetadata introduction}
+-->
+
+rmetadata introduction
+======
+
+## Install
+
+From CRAN
+
+```{r eval=FALSE}
+install.packages("rmetadata")
+```
+
+Or the development version from GitHub
+
+```{r, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("ropensci/rmetadata")
+```
+
+```{r}
+library('rmetadata')
+```
+
+## Define stuff 
+
+Your base url and a key (if needed). This example should work. You do need to pass a key to the Public Library of Science search API, but it apparently doesn't need to be a real one.
+
+```{r}
+message("hello world")
+```

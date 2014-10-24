@@ -12,6 +12,7 @@ Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
 URL: https://github.com/ropensci/rmetadata
 BugReports: https://github.com/ropensci/rmetadata/issues
 LazyData: yes
+VignetteBuilder: knitr
 Roxygen: list(wrap = FALSE)
 Imports:
     ggplot2,
