@@ -100,3 +100,11 @@ dpla_plot(input=out, plottype="subjectsbydate")
 ```
 
 ![](inst/img/dpla_subjects_through_time.png)
+
+## Meta
+
+* Please [report any issues or bugs](https://github.com/ropensci/rdatacite/issues).
+* License: MIT
+* Get citation information for `rdatacite` in R doing `citation(package = 'rdatacite')`
+
+[![ropensci](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
