@@ -1,6 +1,9 @@
 rmetadata
 =========
 
+[![Build Status](https://api.travis-ci.org/ropensci/rmetadata.png)](https://travis-ci.org/ropensci/rmetadata)
+[![Build status](https://ci.appveyor.com/api/projects/status/yrkc171a9yue73t6?svg=true)](https://ci.appveyor.com/project/sckott/rmetadata)
+
 `rmetadata` gives you access to scholarly metadata around the web.
 
 ## Data sources
