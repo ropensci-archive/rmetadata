@@ -37,8 +37,11 @@ md_getrecord(provider = "pensoft", identifier = "10.3897/zookeys.1.10")
 # Single provider, multiple identifiers
 md_getrecord(provider = "pensoft", identifier = c("10.3897/zookeys.1.10","10.3897/zookeys.4.57"))
 
-# More than one provider found - or just easier than typing in the whole provider name - Choose 15
-md_getrecord(provider = "advances", identifier = "oai:ojs.www.academypublisher.com:article/5460", fuzzy=TRUE)
+# More than one provider found - or just easier than typing in
+# the whole provider name - Choose 15
+md_getrecord(provider = "advances",
+             identifier = "oai:ojs.www.academypublisher.com:article/5460",
+             fuzzy=TRUE)
 }
 }
 \author{
