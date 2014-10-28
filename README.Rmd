@@ -1,10 +1,19 @@
 rmetadata
 =========
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>", 
+  collapse = TRUE,
+  warning = FALSE, 
+  message = FALSE
+)
+```
+
 [![Build Status](https://api.travis-ci.org/ropensci/rmetadata.png)](https://travis-ci.org/ropensci/rmetadata)
 [![Build status](https://ci.appveyor.com/api/projects/status/yrkc171a9yue73t6?svg=true)](https://ci.appveyor.com/project/sckott/rmetadata)
 
-`rmetadata` gives you access to scholarly metadata around the web.
+`rmetadata`: access to scholarly metadata on the web.
 
 ## Data sources
 
@@ -39,7 +48,8 @@ See below for examples...
 
 We plan to add access to Europeana metadata via their API soon...
 
-* [Europeana API docs](#)
+* [Europeana API docs](http://labs.europeana.eu/api/)
+* [Solr stuff with Europeana](http://kirunews.blog.hu/2014/02/13/solr_query_facets_in_europeana)
 
 ### HathiTrust
 
