@@ -40,6 +40,8 @@ Documentation for OAI-PMH in general [here](http://www.openarchives.org/OAI/open
 
 ### Digital Public Library of America
 
+**UPDATE on 2014-10-28**: DPLA is in a separate packge [rdpla](https://github.com/ropensci/rdpla) - but not quite useable yet.
+
 Metadata from the Digital Public Library of America ([DPLA](http://dp.la/)). They have [a great API](https://github.com/dpla/platform) with good documentation - a rare thing in this world. Further documentation on their API can be found on their [search fields](http://dp.la/info/developers/codex/responses/field-reference/) and [examples of queries](http://dp.la/info/developers/codex/requests/).
 
 See below for examples...

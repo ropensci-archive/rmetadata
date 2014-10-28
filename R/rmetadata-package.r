@@ -1,4 +1,4 @@
-  #' Metadata providers data.frame.
+#' Metadata providers data.frame.
 #' @name providers
 #' @docType data
 #' @keywords datasets
