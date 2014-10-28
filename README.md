@@ -41,7 +41,7 @@ See below for examples...
 
 ### Europeana
 
-We plan to add access to Europeana metadata via their API soon...
+**UPDATE on 2014-10-28**: Europeana functions now in a separate package [reuropeana](https://github.com/ropensci/reuropeana) 
 
 * [Europeana API docs](http://labs.europeana.eu/api/)
 * [Solr stuff with Europeana](http://kirunews.blog.hu/2014/02/13/solr_query_facets_in_europeana)
