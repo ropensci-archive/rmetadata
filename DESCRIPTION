@@ -4,16 +4,14 @@ Title: Work with many Scholarly Metadata APIs in R.
 Description: A wrapper to get article metatdata from OAI-PMH servers, and
     other data sources, including Digital Public Library of America,
     HathiTrust, Europeana, and more.
-Version: 0.1.9.99
+Version: 0.1.9.9910
 License: MIT + file LICENSE
-Date: 2014-10-28
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 URL: https://github.com/ropensci/rmetadata
 BugReports: https://github.com/ropensci/rmetadata/issues
 LazyData: yes
 VignetteBuilder: knitr
-Roxygen: list(wrap = FALSE)
 Imports:
     ggplot2,
     XML,
