@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
 
 [![Build Status](https://api.travis-ci.org/ropensci/rmetadata.png)](https://travis-ci.org/ropensci/rmetadata)
 [![Build status](https://ci.appveyor.com/api/projects/status/yrkc171a9yue73t6?svg=true)](https://ci.appveyor.com/project/sckott/rmetadata)
+[![codecov.io](https://codecov.io/github/ropensci/rmetadata/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rmetadata?branch=master)
 
 `rmetadata`: access to scholarly metadata on the web.
 
